@@ -3,7 +3,8 @@
  */
 package com.flipkart.bean;
 
-/**
+
+/*
  * @author Aditya
  *
  */
@@ -81,7 +82,5 @@ public class RegisteredCourse
 		this.sem = sem;
 	}
 	
-	
-	
-	
+
 }

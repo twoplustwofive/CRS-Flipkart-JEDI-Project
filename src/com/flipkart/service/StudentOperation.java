@@ -1,6 +1,6 @@
 package com.flipkart.service;
 
-public class StudentImpl implements StudentInterface {
+public class StudentOperation implements StudentInterface {
 
 
 

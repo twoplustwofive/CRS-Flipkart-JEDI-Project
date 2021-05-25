@@ -1,50 +1,103 @@
-package com.flipkart.service;
+/**
+ * 
+ */
+package com.flipkart.client;
 
-public class StudentImpl implements StudentInterface {
+import com.flipkart.bean.*;
+
+import java.util.List;
+import java.util.Scanner;
+
+/**
+ * @author vijayrathod
+ *
+ */
+public class StudentCRSMenu {
+	
+	Scanner sc = new Scanner(System.in);
+
+	
+	public void create_menu(int studentId) {
+		
+		
+		while(true) {
+			
+				int choice = sc.nextInt();
+			
+				switch (choice) {
+				
+				case 1: 
+					registerCourses(studentId);
+					break;
+					
+				case 2:
+					addCourse(studentId);
+					break;
+					
+				case 3:
+					dropCourse(studentId);
+					break;
+					
+				case 4:
+					viewCourse(studentId);
+					break;
+					
+				case 5:
+					viewRegisteredCourse(studentId);
+					break;
+					
+				case 6:
+					viewGradeCard(studentId);
+					break;
+					
+				case 7:
+					make_payment(studentId);
+					break;
+					
+				case 8:
+					CRSApplication.loggedin = false;
+					break;			
+					
+				default:
+					System.out.println("Incorrect Choice!");
+		
+		
+			}
+			
+		}
+		
+	}
+
+}
 
 
 
-    /**
-     * Method to register a student, although student can't login until it's approved by admin
-     * @param name
-     * @param userID
-     * @param password
-     * @param gender
-     * @param batch
-     * @param branch
-     * @param address
-     * @param country
-     * @return Student ID
-     * @throws StudentNotRegisteredException
-     */
-    @Override
-    public int register(String name, String userID, String password, int batch, String address, String country) {
-        // TODO Auto-generated method stub
-        return 0;
-    }
+
+private void registerCourses(int studentId) {
+	return;
+}
 
 
-    /**
-     * Method to get Student ID from User ID
-     * @param userId
-     * @return Student ID
-     */
-    @Override
-    public int getStudentId(String userId) {
-        // TODO Auto-generated method stub
-        return 0;
-    }
+private void addCourse(int studentId) {
+	return;
+}
 
+private void dropCourse(int studentId) {
+	return;
+}
 
-    /**
-     * Method to check if student is approved by Admin or not
-     * @param studentId
-     * @return boolean indicating if student is approved
-     */
-    @Override
-    public boolean isApproved(int studentId) {
-        // TODO Auto-generated method stub
-        return false;
-    }
+private List<Course> viewCourse(int studentId){
+	return;
+}
 
+private List<Course> viewRegisteredCourse(int studentId){
+	return;
+}
+
+private void viewGradeCard(int studentId) {
+	return;
+}
+
+private void make_payment(int studentId) {
+	return;
 }
