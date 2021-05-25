@@ -13,13 +13,12 @@ import java.sql.SQLException;
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
-import com.flipkart.constant.SQLQueriesConstants;
+import com.flipkart.constant.SQLQueries;
 import com.flipkart.exception.CourseExistsAlreadyException;
 import com.flipkart.exception.CourseNotDeletedException;
 import com.flipkart.exception.CourseNotFoundException;
 import com.flipkart.exception.ProfessorNotAddedException;
 import com.flipkart.exception.UserIdAlreadyInUseException;
-import com.flipkart.exception.UserNotFoundException;
 import com.flipkart.utils.DBUtils;
 
 /**
@@ -67,7 +66,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 		
 		statement = null;
 		try {
-			String sql = SQLQueriesConstants.DELETE_COURSE_QUERY;
+			String sql = SQLQueries.DELETE_COURSE_QUERY;
 			statement = connection.prepareStatement(sql);
 			
 			statement.setString(1,courseCode);
@@ -100,7 +99,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 		statement = null;
 		try {
 			
-			String sql = SQLQueriesConstants.ADD_COURSE_QUERY;
+			String sql = SQLQueries.ADD_COURSE_QUERY;
 			statement = connection.prepareStatement(sql);
 			
 			statement.setString(1, course.getCourseCode());
@@ -136,7 +135,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 		
 		statement = null;
 		try {
-			String sql = SQLQueriesConstants.APPROVE_STUDENT_QUERY;
+			String sql = SQLQueries.APPROVE_STUDENT_QUERY;
 			statement = connection.prepareStatement(sql);
 			
 			statement.setInt(1,studentId);
@@ -170,7 +169,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 		statement = null;
 		try {
 			
-			String sql = SQLQueriesConstants.ADD_USER_QUERY;
+			String sql = SQLQueries.ADD_USER_QUERY;
 			statement = connection.prepareStatement(sql);
 			
 			statement.setString(1, user.getUserId());
@@ -228,7 +227,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 		statement = null;
 		try {
 			
-			String sql = SQLQueriesConstants.ADD_PROFESSOR_QUERY;
+			String sql = SQLQueries.ADD_PROFESSOR_QUERY;
 			statement = connection.prepareStatement(sql);
 			
 			statement.setString(1, professor.getUserId());
@@ -265,7 +264,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 		
 		statement = null;
 		try {
-			String sql = SQLQueriesConstants.ASSIGN_COURSE_QUERY;
+			String sql = SQLQueries.ASSIGN_COURSE_QUERY;
 			statement = connection.prepareStatement(sql);
 			
 			statement.setString(1,professorId);
@@ -300,7 +299,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 		List<Course> courseList = new ArrayList<>();
 		try {
 			
-			String sql = SQLQueriesConstants.VIEW_COURSE_QUERY;
+			String sql = SQLQueries.VIEW_COURSE_QUERY;
 			statement = connection.prepareStatement(sql);
 			statement.setInt(1, catalogId);
 			ResultSet resultSet = statement.executeQuery();
@@ -338,7 +337,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 		List<Professor> professorList = new ArrayList<>();
 		try {
 			
-			String sql = SQLQueriesConstants.VIEW_PROFESSOR_QUERY;
+			String sql = SQLQueries.VIEW_PROFESSOR_QUERY;
 			statement = connection.prepareStatement(sql);
 			ResultSet resultSet = statement.executeQuery();
 			

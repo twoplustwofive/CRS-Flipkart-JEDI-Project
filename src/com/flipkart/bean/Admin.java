@@ -7,12 +7,14 @@ import com.flipkart.constant.Role;
 
 public class Admin extends User
 {
+		private Date dateOfJoining;
+	
 		public Admin(int userID, String name, Gender gender, Role role, String password, String address) 
 		{
 			super(userID, name, gender, role, password, address);
 		}	
 
-		private Date dateOfJoining;
+		
 		public Date getDateOfJoining() 
 		{
 			return dateOfJoining;
