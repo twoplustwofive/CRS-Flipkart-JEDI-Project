@@ -11,12 +11,13 @@ import com.flipkart.constant.Gender;
 import com.flipkart.constant.Role;
 import com.flipkart.exception.StudentNotRegisteredException;
 import com.flipkart.exception.UserNotFoundException;
-import com.flipkart.service.NotificationImpl;
+
 import com.flipkart.service.NotificationInterface;
-import com.flipkart.service.ProfessorImpl;
+import com.flipkart.service.NotificationOperation;
+
 import com.flipkart.service.ProfessorInterface;
 import com.flipkart.service.ProfessorOperation;
-import com.flipkart.service.StudentImpl;
+
 import com.flipkart.service.StudentInterface;
 import com.flipkart.service.StudentOperation;
 import com.flipkart.service.UserInterface;
@@ -32,7 +33,7 @@ public class CRSApplication {
 	 */
 	StudentInterface studentInterface=new StudentOperation();
 	ProfessorInterface profInterface =new ProfessorOperation();
-	NotificationInterface notificationInterface=new NotificationImpl();
+	NotificationInterface notificationInterface=new NotificationOperation();
 	static boolean loggedin = false;
 	
 	public static void main(String[] args) {
@@ -128,6 +129,12 @@ public class CRSApplication {
 				System.out.println("Welcome "+userId);
 				
 				Role userRole;
+				/*
+				 * !!!!User Input User Role!!!!
+				 * 
+				 * */
+				
+				
 				switch(userRole)
 				{
 				case ADMIN:
@@ -250,4 +257,4 @@ public class CRSApplication {
 		
 	}
 
-}
+

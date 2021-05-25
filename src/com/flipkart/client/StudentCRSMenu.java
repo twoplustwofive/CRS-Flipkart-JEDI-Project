@@ -4,6 +4,7 @@
 package com.flipkart.client;
 
 import com.flipkart.bean.*;
+import com.flipkart.service.*;
 
 import java.util.List;
 import java.util.Scanner;
@@ -73,7 +74,12 @@ public class StudentCRSMenu {
 
 
 
-private void registerCourses(int studentId) {
+private void registerCourses(Student stud) 
+{
+	StudentOperation Sop = new StudentOperation();
+	
+	Sop.register(null, null, null, 0, null, null)
+	
 	return;
 }
 

@@ -16,6 +16,9 @@ public class SemRegistration {
 		this.sem = sem;
 		this.date = date;
 	}
+	public SemRegistration() {
+		// TODO Auto-generated constructor stub
+	}
 	public int getStudenID() {
 		return studenID;
 	}
@@ -38,7 +41,7 @@ public class SemRegistration {
 		return courseList;
 	}
 	public void setCourseList(List<Course> courseList) {
-		this.courseList = courseList;
+		this.courseList = new ArrayList<Course>(courseList);
 	}
 	
 	

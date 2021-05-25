@@ -16,15 +16,14 @@ import com.flipkart.bean.*;
 public interface AdminInterface 
 {
 	
+	public List<Course> viewCourses();
+	public List<Professor> viewProfessors();
+	
+	
 	/**
 	 * Method to generate grade card of a Student 
 	 * studentid 
 	 */
-	public List<Course> viewCourses();
-	public List<Professor> viewProfessors();
-	public List<Student> viewPendingAdmissions();
-	
-	
 	public void generateGradeCard(int Studentid);
 	
 	/**
@@ -33,7 +32,7 @@ public interface AdminInterface
 	 * studentlist
 	 */
 	
-	public void verifyStudent(int studentid, List<Student> studentlist);
+	public void verifyStudent(int studentid, List<Student> studentlist) throws StudentAlreadyRegisteredException;
 	
 	/**
 	 * Method to add Professor to DB
