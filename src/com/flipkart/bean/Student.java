@@ -21,7 +21,7 @@ public class Student extends User
 
 
 	private String department;
-	private int stdID;
+	private int studentID;
 	private int gradYear;
 	
 	
@@ -44,20 +44,20 @@ public class Student extends User
 	
 	
 	/**
-	 * @return the stdID
+	 * @return the studentID
 	 */
-	public int getStdID() 
+	public int getStudentID() 
 	{
-		return stdID;
+		return studentID;
 	}
 	
 	
 	/**
-	 * @param stdID the stdID to set
+	 * @param studentID the studentID to set
 	 */
-	public void setStdID(int stdID) 
+	public void setStudentID(int stdID) 
 	{
-		this.stdID = stdID;
+		this.studentID = stdID;
 	}
 	
 	

@@ -17,7 +17,7 @@ public interface RegistrationInterface
 {
 	public boolean addCourse(String crsCode, int stdID, List<Course> courseList);
 	
-	public boolean dropCourse(String crsCode, int stdId, List<Course> registeredCrsList) throws CourseNotFoundException;
+	public boolean dropCourse(String crsCode, int studentId, List<Course> registeredCrsList) throws CourseNotFoundException;
 	
 	public List<Course> viewCourses(int stdId);
 	

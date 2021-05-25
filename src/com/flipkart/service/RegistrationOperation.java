@@ -17,7 +17,7 @@ public class RegistrationOperation implements RegistrationInterface
 {
 
 	@Override
-	public boolean addCourse(String crsCode, int stdID, List<Course> courseCart) 
+	public boolean addCourse(String crsCode, int studentID, List<Course> courseCart) 
 	{
 		Course crs = new Course();
 		
@@ -33,7 +33,7 @@ public class RegistrationOperation implements RegistrationInterface
 	}
 
 	@Override
-	public boolean dropCourse(String crsCode, int stdId, List<Course> courseCart) throws CourseNotFoundException
+	public boolean dropCourse(String crsCode, int studentId, List<Course> courseCart) throws CourseNotFoundException
 	{
 		
 		try
