@@ -28,13 +28,13 @@ public class AdminOperation implements AdminInterface{
 	AdminDaoInterface adminDaoOperation =AdminDaoOperation.getInstance();
 	
 	
-	public List<Course> viewCourses()
+	public List<Course> viewCourses(int catalogId)
 	{
-		return null;
+		return adminDaoOperation.viewCourses(catalogId);
 	}
 	public List<Professor> viewProfessors()
 	{
-		return null;
+		return adminDaoOperation.viewProfessors();
 	}
 	
 	public void generateGradeCard(int Studentid)
@@ -50,7 +50,17 @@ public class AdminOperation implements AdminInterface{
 	 */
 	@Override
 	public void removeCourse(String dropCourseCode, List<Course> courseList) throws CourseNotFoundException, CourseNotDeletedException {
+		if(!AdminValidator.isValidDropCourse(dropCourseCode, courseList)) {
+			System.out.println("courseCode: " + dropCourseCode + " not present in catalog!");
+			throw new CourseNotFoundException(dropCourseCode);
+		}
 		
+		try {
+			adminDaoOperation.removeCourse(dropCourseCode);
+		}
+		catch(CourseNotFoundException | CourseNotDeletedException e) {
+			throw e;
+		}
 	}
 
 	/**
@@ -61,7 +71,17 @@ public class AdminOperation implements AdminInterface{
 	 */
 	@Override
 	public void addCourse(Course newCourse, List<Course> courseList) throws CourseExistsAlreadyException {
+		if(!AdminValidator.isValidNewCourse(newCourse, courseList)) {
+			System.out.println("courseCode: " + newCourse.getCourseCode() + " already present in catalog!");
+			throw new CourseExistsAlreadyException(newCourse.getCourseCode());
+		}
 		
+		try {
+			adminDaoOperation.addCourse(newCourse);
+		}
+		catch(CourseExistsAlreadyException e) {
+			throw e;
+		}
 	}
 	
 	/**
@@ -108,7 +128,12 @@ public class AdminOperation implements AdminInterface{
 	 */
 	public void assignCourse(String courseCode, String professorId) throws CourseNotFoundException, UserNotFoundException
 	{
-		
+		try {
+			adminDaoOperation.assignCourse(courseCode, professorId);
+		}
+		catch(CourseNotFoundException | UserNotFoundException e) {
+			throw e;
+		}
 	}
 	
 

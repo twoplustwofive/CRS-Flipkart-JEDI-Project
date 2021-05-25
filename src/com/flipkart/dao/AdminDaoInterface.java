@@ -8,12 +8,14 @@ import java.util.List;
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
+import com.flipkart.bean.User;
 import com.flipkart.exception.CourseExistsAlreadyException;
 import com.flipkart.exception.CourseNotDeletedException;
 import com.flipkart.exception.CourseNotFoundException;
 import com.flipkart.exception.ProfessorNotAddedException;
 import com.flipkart.exception.StudentNotFoundForApprovalException;
 import com.flipkart.exception.UserIdAlreadyInUseException;
+import com.flipkart.exception.UserNotAddedException;
 import com.flipkart.exception.UserNotFoundException;
 
 /**
@@ -22,7 +24,7 @@ import com.flipkart.exception.UserNotFoundException;
  */
 public interface AdminDaoInterface {
 	
-	public List<Course> viewCourses();
+	public List<Course> viewCourses(int catalogId);
 	public List<Professor> viewProfessors();
 	
 	
@@ -75,4 +77,5 @@ public interface AdminDaoInterface {
 	 */
 	public void assignCourse(String courseCode, String professorId) throws CourseNotFoundException, UserNotFoundException;
 	
+	public void addUser(User user) throws UserNotAddedException, UserIdAlreadyInUseException;
 }
