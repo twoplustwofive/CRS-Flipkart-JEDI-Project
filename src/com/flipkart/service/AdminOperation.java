@@ -89,10 +89,6 @@ public class AdminOperation implements AdminInterface{
 	{
 		
 	}
-	@Override
-	public List<Student> viewPendingAdmissions() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 }
