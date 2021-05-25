@@ -12,7 +12,7 @@ import com.flipkart.bean.Grade;
  * @author Aditya
  *
  */
-public class RegistrationImpl implements RegistrationInterface 
+public class RegistrationOperation implements RegistrationInterface 
 {
 
 	@Override
