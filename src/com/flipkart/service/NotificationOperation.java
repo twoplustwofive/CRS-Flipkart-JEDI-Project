@@ -1,100 +1,35 @@
 /**
- *
+ * 
  */
-package com.flipkart.client;
-
-import java.util.Scanner;
+package com.flipkart.service;
 
 /**
  * @author vijayrathod
  *
  */
-public class StudentCRSMenu {
-
-	Scanner sc = new Scanner(System.in);
-
-
-	public void create_menu(int studentId) {
-
-
-		while(true) {
-
-			int choice = sc.nextInt();
-
-			switch (choice) {
-
-				case 1:
-					registerCourses(studentId);
-					break;
-
-				case 2:
-					addCourse(studentId);
-					break;
-
-				case 3:
-					dropCourse(studentId);
-					break;
-
-				case 4:
-					viewCourse(studentId);
-					break;
-
-				case 5:
-					viewRegisteredCourse(studentId);
-					break;
-
-				case 6:
-					viewGradeCard(studentId);
-					break;
-
-				case 7:
-					make_payment(studentId);
-					break;
-
-				case 8:
-					CRSApplication.loggedin = false;
-					break;
-
-				default:
-					System.out.println("Incorrect Choice!");
-
-
-			}
-
-		}
-
+public class NotificationOperation {
+	
+	/**
+	 * Method to send notification
+	 * @param type: type of the notification to be sent
+	 * @param studentId: student to be notified
+	 * @param modeOfPayment: payment mode used
+	 * @return notification id for the record added in the database
+	 */
+	@Override
+	public int sendNotification(NotificationType type, int studentId,ModeOfPayment modeOfPayment,double amount) {
+		
 	}
-
+	
+	/**
+	 * Method to return UUID for a transaction
+	 * @param notificationId: notification id added in the database
+	 * @return transaction id of the payment
+	 */
+	@Override
+	public UUID getReferenceId(int notificationId) {
+		
+	}
+	
+	
 }
-
-
-
-
-	private void registerCourses(int studentId) {
-		return;
-	}
-
-
-	private void addCourse(int studentId) {
-		return;
-	}
-
-	private void dropCourse(int studentId) {
-		return;
-	}
-
-	private List<Course> viewCourse(int studentId){
-		return;
-	}
-
-	private List<Course> viewRegisteredCourse(int studentId){
-		return;
-	}
-
-	private void viewGradeCard(int studentId) {
-		return;
-	}
-
-	private void make_payment(int studentId) {
-		return;
-	}

@@ -10,9 +10,7 @@ public class SemRegistration {
 	int sem;
 	Date date;
 	List<Course> courseList = new ArrayList<Course>();
-	
-	
-	
+
 	public SemRegistration(int studentID, int sem, Date date) {
 		this.studenID = studentID;
 		this.sem = sem;
