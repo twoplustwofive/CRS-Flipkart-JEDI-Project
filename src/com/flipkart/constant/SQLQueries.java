@@ -7,7 +7,7 @@ package com.flipkart.constant;
  * @author Tanishq
  *
  */
-public class SQLQueriesConstants {
+public class SQLQueries {
 	
 		//AdminDao Queries
 		public static final String DELETE_COURSE_QUERY = "delete from Course where courseCode = ?";
