@@ -9,7 +9,7 @@ import java.util.List;
  * @author Goenka
  *
  */
-public class ProfessorImpl implements ProfessorInterface {
+public class ProfessorOperation implements ProfessorInterface {
 
 	@Override
 	public boolean addGrade(String studentID, String courseID, String grade) {

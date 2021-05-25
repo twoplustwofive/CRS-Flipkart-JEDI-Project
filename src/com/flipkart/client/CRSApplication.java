@@ -9,12 +9,15 @@ import java.util.Scanner;
 
 import com.flipkart.constant.Gender;
 import com.flipkart.constant.Role;
+import com.flipkart.exception.StudentNotRegisteredException;
+import com.flipkart.exception.UserNotFoundException;
 import com.flipkart.service.NotificationImpl;
 import com.flipkart.service.NotificationInterface;
 import com.flipkart.service.ProfessorImpl;
 import com.flipkart.service.ProfessorInterface;
 import com.flipkart.service.StudentImpl;
 import com.flipkart.service.StudentInterface;
+import com.flipkart.service.StudentOperation;
 import com.flipkart.service.UserInterface;
 
 /**
@@ -26,7 +29,7 @@ public class CRSApplication {
 	/**
 	 * @param args
 	 */
-	StudentInterface studentInterface=new StudentImpl();
+	StudentInterface studentInterface=new StudentOperation();
 	ProfessorInterface profInterface =new ProfessorImpl();
 	NotificationInterface notificationInterface=new NotificationImpl();
 	static boolean loggedin = false;

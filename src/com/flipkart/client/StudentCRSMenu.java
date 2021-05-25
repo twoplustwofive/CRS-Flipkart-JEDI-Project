@@ -3,6 +3,9 @@
  */
 package com.flipkart.client;
 
+import com.flipkart.bean.*;
+
+import java.util.List;
 import java.util.Scanner;
 
 /**
