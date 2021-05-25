@@ -22,7 +22,7 @@ public interface StudentInterface {
      * @return Student ID
      * @throws StudentNotRegisteredException
      */
-    public int register(String name, String userID, String password, int batch, String address, String country);
+    public int register();
 
     /**
      * Method to get Student ID from User ID

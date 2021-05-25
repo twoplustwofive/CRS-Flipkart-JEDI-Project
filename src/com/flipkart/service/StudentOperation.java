@@ -1,5 +1,14 @@
 package com.flipkart.service;
 
+import com.flipkart.bean.SemRegistration;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+import com.flipkart.bean.*;
+import com.flipkart.service.*;
+
 public class StudentOperation implements StudentInterface {
 
 
@@ -18,8 +27,50 @@ public class StudentOperation implements StudentInterface {
      * @throws StudentNotRegisteredException
      */
     @Override
-    public int register(String name, String userID, String password, int batch, String address, String country) 
-    {
+    public int register() 
+    {	
+    	
+    	//
+    	
+    	SemRegistration semReg = new SemRegistration();
+    	
+    	RegistrationOperation Rop = new RegistrationOperation();
+    	
+    	List<Course> regCrs = new ArrayList<Course>();
+    	
+    	int t = 1;
+    	Scanner in = new Scanner(System.in);
+    	while(t)
+    	{
+    		int choice;
+    		System.out.println("Please enter your op: ");
+        	choice = in.nextInt();
+        	
+        	switch(choice)
+        	{
+		    	case 1:
+					Rop.addCourse(,,regCrs);
+					break;
+					
+				case 2:
+					dropCourse(studentId);
+					break;
+					
+				case 3:
+					viewCourse(studentId);
+					break;
+					
+				case 4:
+					viewRegisteredCourse(studentId);
+					break;
+        	}
+        	
+    	}
+    	
+    	
+    	
+    	
+    	
     	
         return 0;
     }
