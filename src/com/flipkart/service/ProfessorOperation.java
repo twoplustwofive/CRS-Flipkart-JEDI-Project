@@ -5,6 +5,8 @@ package com.flipkart.service;
 
 import java.util.List;
 
+import com.flipkart.bean.Course;
+
 /**
  * @author Goenka
  *
@@ -12,8 +14,9 @@ import java.util.List;
 public class ProfessorOperation implements ProfessorInterface {
 
 	@Override
-	public boolean addGrade(String studentID, String courseID, String grade) {
-		// TODO Auto-generated method stub
+	public boolean addGrade(String studentID, String courseID, String grade) 
+	{
+		// 
 		return false;
 	}
 
@@ -26,8 +29,8 @@ public class ProfessorOperation implements ProfessorInterface {
 
 	@Override
 	//the type should be Course
-	public List<String> getCourses(String profID) {
-		// TODO Auto-generated method stub
+	public List<String> viewCourses(String profID) 
+	{
 		return null;
 	}
 

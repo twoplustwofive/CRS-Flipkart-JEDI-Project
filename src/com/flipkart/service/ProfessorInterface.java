@@ -19,5 +19,5 @@ public interface ProfessorInterface {
 	public List<RegisteredCourse> viewEnrolledStudent(String courseID);
 	
 	//type must be Course
-	public List<Course> getCourses(String profID);
+	public List<Course> viewCourses(String profID);
 }

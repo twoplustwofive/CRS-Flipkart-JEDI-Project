@@ -18,8 +18,9 @@ public class StudentOperation implements StudentInterface {
      * @throws StudentNotRegisteredException
      */
     @Override
-    public int register(String name, String userID, String password, int batch, String address, String country) {
-        // TODO Auto-generated method stub
+    public int register(String name, String userID, String password, int batch, String address, String country) 
+    {
+    	
         return 0;
     }
 
