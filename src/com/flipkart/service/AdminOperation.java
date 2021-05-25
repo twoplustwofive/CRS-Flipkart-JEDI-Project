@@ -64,7 +64,7 @@ public class AdminOperation implements AdminInterface{
 	 * @throws StudentNotFoundException 
 	 */
 	@Override
-	public void verifyStudent(int studentId, List<Student> studentList) {
+	public void verifyStudent(int studentId, List<Student> studentList) throws StudentAlreadyRegisteredException {
 		
 	}
 
