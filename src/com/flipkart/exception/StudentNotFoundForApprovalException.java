@@ -7,11 +7,11 @@ package com.flipkart.exception;
  * @author Tanishq
  *
  */
-public class StudentAlreadyRegisteredException extends Exception{
+public class StudentNotFoundForApprovalException extends Exception{
 	
-	private String StudentId;
+	private int StudentId;
 	
-	public StudentAlreadyRegisteredException(String id) {
+	public StudentNotFoundForApprovalException(int id) {
 		StudentId = id;
 	}
 	
@@ -19,7 +19,7 @@ public class StudentAlreadyRegisteredException extends Exception{
 	 * Getter function for professorId
 	 * @return
 	 */
-	public String getUserId() {
+	public int getUserId() {
 		return StudentId;
 	}
 	

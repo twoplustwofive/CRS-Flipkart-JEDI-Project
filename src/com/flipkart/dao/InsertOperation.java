@@ -13,7 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.flipkart.utils.DBUtil;
+import com.flipkart.utils.DBUtils;
 public class InsertOperation {
 
 	// Step 1
@@ -43,7 +43,7 @@ public class InsertOperation {
 				   // Step 4 make/open  a connection 
 				   
 				      System.out.println("Connecting to database...");
-				      conn = DBUtil.getConnection();
+				      conn = DBUtils.getConnection();
 				   
 				      //STEP 4: Execute a query
 				      System.out.println("Creating statement...");

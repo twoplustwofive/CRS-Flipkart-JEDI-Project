@@ -12,6 +12,8 @@ import com.flipkart.bean.*;
  *
  */
 public class AdminValidator {
+	
+
 	/**
 	 * Method to validate if newCourse is not already present in catalog
 	 * @param newCourse

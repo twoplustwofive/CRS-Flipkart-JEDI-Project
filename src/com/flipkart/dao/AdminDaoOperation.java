@@ -3,19 +3,24 @@
  */
 package com.flipkart.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
+import com.flipkart.constant.SQLQueriesConstants;
 import com.flipkart.exception.CourseExistsAlreadyException;
 import com.flipkart.exception.CourseNotDeletedException;
 import com.flipkart.exception.CourseNotFoundException;
 import com.flipkart.exception.ProfessorNotAddedException;
 import com.flipkart.exception.UserIdAlreadyInUseException;
 import com.flipkart.exception.UserNotFoundException;
+import com.flipkart.utils.DBUtils;
 
 /**
  * @author Tanishq
@@ -26,7 +31,7 @@ import com.flipkart.exception.UserNotFoundException;
 public class AdminDaoOperation implements AdminDaoInterface{
 	
 	private static volatile AdminDaoOperation instance = null;
-	//private static Logger logger = Logger.getLogger(AdminDaoOperation.class);
+	
 	private PreparedStatement statement = null;
 	
 	/**
@@ -49,68 +54,49 @@ public class AdminDaoOperation implements AdminDaoInterface{
 		return instance;
 	}
 	
-	public List<Course> viewCourses()
-	{
-		
-	}
-	public List<Professor> viewProfessors()
-	{
-		
-	}
-	
+	Connection connection = DBUtils.getConnection();
 	
 	/**
-	 * Method to generate grade card of a Student 
-	 * studentid 
-	 */
-	public void generateGradeCard(int Studentid)
-	{
-		
-	}
-	
-	/**
-	 * Method to approve a Student 
-	 * studentid
-	 * studentlist
-	 */
-	
-	public void verifyStudent(int studentid, List<Student> studentlist)
-	{
-		
-	}
-	
-	/**
-	 * Method to add Professor to DB
-	 * professor : Professor Object storing details of a professor 
-	 */
-	
-	public void addProfessor(Professor professor) throws ProfessorNotAddedException, UserIdAlreadyInUseException
-	{
-		
-	}
-	
-	/**
-	 * Method to Delete Course from Course Catalog
+	 * Delete Course using SQL commands
 	 * @param courseCode
-	 * @param courseList : Courses available in the catalog
-	 * @throws CourseNotFoundException 
+	 * @throws CourseNotFoundException
 	 * @throws CourseNotDeletedException 
 	 */
+	@Override
+	public void removeCourse(String courseCode) throws CourseNotFoundException, CourseNotDeletedException{
+		
+		statement = null;
+		try {
+			String sql = SQLQueriesConstants.DELETE_COURSE_QUERY;
+			statement = connection.prepareStatement(sql);
+			
+			statement.setString(1,courseCode);
+			int row = statement.executeUpdate();
+			
+			System.out.println(row + " entries deleted.");
+			if(row == 0) {
+				System.out.println(courseCode + " not in catalog!");
+				throw new CourseNotFoundException(courseCode);
+			}
 
-	public void removeCourse(String coursecode, List<Course> courselist) throws CourseNotFoundException, CourseNotDeletedException
-	{
+			System.out.println("Course with courseCode: " + courseCode + " deleted.");
+			
+		}catch(SQLException se) {
+			
+			System.out.println(se.getMessage());
+			throw new CourseNotDeletedException(courseCode);
+		}
 		
 	}
-	
+
 	/**
-	 * Method to add Course to Course Catalog
-	 * @param course : Course object storing details of a course
-	 * @param courseList : Courses available in the catalog
-	 * @throws CourseExistsAlreadyException;
+	 * Add Course using SQL commands
+	 * @param course
+	 * @throws CourseFoundException
 	 */
-	
-	public void addCourse(Course course, List<Course> courselist) throws CourseExistsAlreadyException
-	{
+	@Override
+	public void addCourse(Course course) throws CourseExistsAlreadyException{
+		
 		statement = null;
 		try {
 			
@@ -123,33 +109,263 @@ public class AdminDaoOperation implements AdminDaoInterface{
 			statement.setInt(3, 1);
 			int row = statement.executeUpdate();
 			
-			logger.info(row + " course added");
+			System.out.println(row + " course added");
 			if(row == 0) {
-				logger.error("Course with courseCode: " + course.getCourseCode() + "not added to catalog.");
-				throw new CourseFoundException(course.getCourseCode());
+				System.out.println("Course with courseCode: " + course.getCourseCode() + "not added to catalog.");
+				throw new CourseExistsAlreadyException(course.getCourseCode());
 			}
 			
-			logger.info("Course with courseCode: " + course.getCourseCode() + " is added to catalog."); 
+			System.out.println("Course with courseCode: " + course.getCourseCode() + " is added to catalog."); 
 			
 		}catch(SQLException se) {
 			
-			logger.error(se.getMessage());
-			throw new CourseFoundException(course.getCourseCode());
+			System.out.println(se.getMessage());
+			throw new CourseExistsAlreadyException(course.getCourseCode());
+			
+		}
+		
+	}
+
+	/**
+	 * Approve Student using SQL commands
+	 * @param studentId
+	 * @throws StudentNotFoundException
+	 */
+	@Override
+	public void approveStudent(int studentId) throws StudentNotFoundForApprovalException {
+		
+		statement = null;
+		try {
+			String sql = SQLQueriesConstants.APPROVE_STUDENT_QUERY;
+			statement = connection.prepareStatement(sql);
+			
+			statement.setInt(1,studentId);
+			int row = statement.executeUpdate();
+			
+			(row + " student approved.");
+			if(row == 0) {
+				//System.out.println("Student with studentId: " + studentId + " not found.");
+				throw new StudentNotFoundForApprovalException(studentId);
+			}
+			
+			System.out.println("Student with studentId: " + studentId + " approved by admin.");
+			
+		}catch(SQLException se) {
+			
+			System.out.println(se.getMessage());
+			
+		}
+		
+	}
+
+	/**
+	 * Method to add user using SQL commands
+	 * @param user
+	 * @throws UserNotAddedException
+	 * @throws UserIdAlreadyInUseException 
+	 */
+	@Override
+	public void addUser(User user) throws UserNotAddedException, UserIdAlreadyInUseException{
+		
+		statement = null;
+		try {
+			
+			String sql = SQLQueriesConstants.ADD_USER_QUERY;
+			statement = connection.prepareStatement(sql);
+			
+			statement.setString(1, user.getUserId());
+			statement.setString(2, user.getName());
+			statement.setString(3, user.getPassword());
+			statement.setString(4, user.getRole().toString());
+			statement.setString(5, user.getGender().toString());
+			statement.setString(6, user.getAddress());
+			statement.setString(7, user.getCountry());
+			int row = statement.executeUpdate();
+			
+			(row + " user added.");
+			if(row == 0) {
+				System.out.println("User with userId: " + user.getUserId() + " not added.");
+				throw new UserNotAddedException(user.getUserId()); 
+			}
+
+			("User with userId: " + user.getUserId() + " added."); 
+			
+		}catch(SQLException se) {
+			
+			System.out.println(se.getMessage());
+			throw new UserIdAlreadyInUseException(user.getUserId());
+			
+		}
+		
+	}
+
+	/**
+	 * Add professor using SQL commands
+	 * @param professor
+	 * @throws UserIdAlreadyInUseException 
+	 * @throws ProfessorNotAddedException 
+	 */
+	@Override
+	public void addProfessor(Professor professor) throws UserIdAlreadyInUseException, ProfessorNotAddedException {
+		
+		try {
+			
+			this.addUser(professor);
+			
+		}catch (UserNotAddedException e) {
+			
+			System.out.println(e.getMessage());
+			throw new ProfessorNotAddedException(professor.getUserId());
+			
+		}catch (UserIdAlreadyInUseException e) {
+			
+			System.out.println(e.getMessage());
+			throw e;
+			
+		}
+		
+		
+		statement = null;
+		try {
+			
+			String sql = SQLQueriesConstants.ADD_PROFESSOR_QUERY;
+			statement = connection.prepareStatement(sql);
+			
+			statement.setString(1, professor.getUserId());
+			statement.setString(2, professor.getDepartment());
+			statement.setString(3, professor.getDesignation());
+			int row = statement.executeUpdate();
+
+			(row + " professor added.");
+			if(row == 0) {
+				System.out.println("Professor with professorId: " + professor.getUserId() + " not added.");
+				throw new ProfessorNotAddedException(professor.getUserId());
+			}
+			
+			System.out.println("Professor with professorId: " + professor.getUserId() + " added."); 
+			
+		}catch(SQLException se) {
+			
+			System.out.println(se.getMessage());
+			throw new UserIdAlreadyInUseException(professor.getUserId());
+			
+		} 
+		
+	}
+	
+	/**
+	 * Assign courses to Professor using SQL commands
+	 * @param courseCode
+	 * @param professorId
+	 * @throws CourseNotFoundException
+	 * @throws UserNotFoundException 
+	 */
+	@Override
+	public void assignCourse(String courseCode, String professorId) throws CourseNotFoundException, UserNotFoundException{
+		
+		statement = null;
+		try {
+			String sql = SQLQueriesConstants.ASSIGN_COURSE_QUERY;
+			statement = connection.prepareStatement(sql);
+			
+			statement.setString(1,professorId);
+			statement.setString(2,courseCode);
+			int row = statement.executeUpdate();
+			
+			System.out.println(row + " course assigned.");
+			if(row == 0) {
+				System.out.println(courseCode + " not found");
+				throw new CourseNotFoundException(courseCode);
+			}
+			
+			("Course with courseCode: " + courseCode + " is assigned to professor with professorId: " + professorId + ".");
+		
+		}catch(SQLException se) {
+			
+			System.out.println(se.getMessage());
+			throw new UserNotFoundException(professorId);
 			
 		}
 		
 	}
 	
 	/**
-	 * Method to assign Course to a Professor
-	 * @param courseCode
-	 * @param professorId
-	 * @throws CourseNotFoundException 
-	 * @throws UserNotFoundException 
+	 * View courses in the catalog
+	 * @param Catalog ID
+	 * @return List of courses in the catalog
 	 */
-	public void assignCourse(String courseCode, String professorId) throws CourseNotFoundException, UserNotFoundException
-	{
+	public List<Course> viewCourses(int catalogId) {
 		
+		statement = null;
+		List<Course> courseList = new ArrayList<>();
+		try {
+			
+			String sql = SQLQueriesConstants.VIEW_COURSE_QUERY;
+			statement = connection.prepareStatement(sql);
+			statement.setInt(1, catalogId);
+			ResultSet resultSet = statement.executeQuery();
+			
+			while(resultSet.next()) {
+				
+				Course course = new Course();
+				course.setCourseCode(resultSet.getString(1));
+				course.setCourseName(resultSet.getString(2));
+				course.setInstructorId(resultSet.getString(3));
+				courseList.add(course);
+				
+			}
+			
+			(courseList.size() + " courses in catalogId: " + catalogId + ".");
+			
+		}catch(SQLException se) {
+			
+			System.out.println(se.getMessage());
+			
+		}
+		
+		return courseList; 
+		
+	}
+	
+	/**
+	 * View professor in the institute
+	 * @return List of the professors in the institute  
+	 */
+	@Override
+	public List<Professor> viewProfessors() {
+		
+		statement = null;
+		List<Professor> professorList = new ArrayList<>();
+		try {
+			
+			String sql = SQLQueriesConstants.VIEW_PROFESSOR_QUERY;
+			statement = connection.prepareStatement(sql);
+			ResultSet resultSet = statement.executeQuery();
+			
+			while(resultSet.next()) {
+				
+				Professor professor = new Professor();
+				professor.setUserId(resultSet.getString(1));
+				professor.setName(resultSet.getString(2));
+				professor.setGender(Gender.stringToGender(resultSet.getString(3)));
+				professor.setDepartment(resultSet.getString(4));
+				professor.setDesignation(resultSet.getString(5));
+				professor.setAddress(resultSet.getString(6));
+				professor.setCountry(resultSet.getString(7));
+				professor.setRole(Role.PROFESSOR);
+				professor.setPassword("*********");
+				professorList.add(professor);
+				
+			}
+			
+			(professorList.size() + " professors in the institute.");
+			
+		}catch(SQLException se) {
+			
+			System.out.println(se.getMessage());
+			
+		}
+		return professorList;
 	}
 	
 
