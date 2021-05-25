@@ -141,7 +141,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 			statement.setInt(1,studentId);
 			int row = statement.executeUpdate();
 			
-			(row + " student approved.");
+			System.out.println(row + " student approved.");
 			if(row == 0) {
 				//System.out.println("Student with studentId: " + studentId + " not found.");
 				throw new StudentNotFoundForApprovalException(studentId);
