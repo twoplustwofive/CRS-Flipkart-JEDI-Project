@@ -1,4 +1,4 @@
-package com.flipkart.service;
+package com.flipkart.client;
 
 public class StudentImpl implements StudentInterface {
 
