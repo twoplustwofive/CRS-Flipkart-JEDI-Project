@@ -18,7 +18,7 @@ public class StudentCRSMenu {
 	Scanner sc = new Scanner(System.in);
 
 	
-	public void create_menu(int studentId) {
+	public void create_menu(String studentId) {
 		
 		
 		while(true) {
@@ -69,7 +69,7 @@ public class StudentCRSMenu {
 		
 	}
 
-}
+
 
 
 
@@ -84,26 +84,27 @@ private void registerCourses(String studentId)
 }
 
 
-private void addCourse(int studentId) {
+private void addCourse(String studentId) {
 	return;
 }
 
-private void dropCourse(int studentId) {
+private void dropCourse(String studentId) {
 	return;
 }
 
-private List<Course> viewCourse(int studentId){
+private List<Course> viewCourse(String studentId){
 	return;
 }
 
-private List<Course> viewRegisteredCourse(int studentId){
+private List<Course> viewRegisteredCourse(String studentId){
 	return;
 }
 
-private void viewGradeCard(int studentId) {
+private void viewGradeCard(String studentId) {
 	return;
 }
 
-private void make_payment(int studentId) {
+private void make_payment(String studentId) {
 	return;
+}
 }
