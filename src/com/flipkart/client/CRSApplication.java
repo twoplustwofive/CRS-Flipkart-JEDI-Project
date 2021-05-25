@@ -15,6 +15,7 @@ import com.flipkart.service.NotificationImpl;
 import com.flipkart.service.NotificationInterface;
 import com.flipkart.service.ProfessorImpl;
 import com.flipkart.service.ProfessorInterface;
+import com.flipkart.service.ProfessorOperation;
 import com.flipkart.service.StudentImpl;
 import com.flipkart.service.StudentInterface;
 import com.flipkart.service.StudentOperation;
@@ -30,7 +31,7 @@ public class CRSApplication {
 	 * @param args
 	 */
 	StudentInterface studentInterface=new StudentOperation();
-	ProfessorInterface profInterface =new ProfessorImpl();
+	ProfessorInterface profInterface =new ProfessorOperation();
 	NotificationInterface notificationInterface=new NotificationImpl();
 	static boolean loggedin = false;
 	

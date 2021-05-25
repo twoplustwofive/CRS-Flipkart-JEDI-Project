@@ -14,13 +14,21 @@ import com.flipkart.bean.*;
  *
  */
 
-public class AdminOperation implements Admininterface{
+public class AdminOperation implements AdminInterface{
 	
 	
 	/**
 	 * Method to generate grade card of a Student 
 	 * studentid 
 	 */
+	public List<Course> viewCourses()
+	{
+		return null;
+	}
+	public List<Professor> viewProfessors()
+	{
+		return null;
+	}
 	
 	public void generateGradeCard(int Studentid)
 	{
@@ -80,6 +88,11 @@ public class AdminOperation implements Admininterface{
 	public void assignCourse(String courseCode, String professorId) throws CourseNotFoundException, UserNotFoundException
 	{
 		
+	}
+	@Override
+	public List<Student> viewPendingAdmissions() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

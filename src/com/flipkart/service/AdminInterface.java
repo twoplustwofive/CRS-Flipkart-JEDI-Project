@@ -13,13 +13,17 @@ import com.flipkart.bean.*;
  * @author Aditya
  *
  */
-public interface Admininterface 
+public interface AdminInterface 
 {
 	
 	/**
 	 * Method to generate grade card of a Student 
 	 * studentid 
 	 */
+	public List<Course> viewCourses();
+	public List<Professor> viewProfessors();
+	public List<Student> viewPendingAdmissions();
+	
 	
 	public void generateGradeCard(int Studentid);
 	
@@ -65,4 +69,5 @@ public interface Admininterface
 	 * @throws UserNotFoundException 
 	 */
 	public void assignCourse(String courseCode, String professorId) throws CourseNotFoundException, UserNotFoundException;
+	
 }
