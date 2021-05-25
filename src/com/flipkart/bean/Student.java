@@ -17,7 +17,7 @@ public class Student extends User
 	/**
 	 * @return the department
 	 */
-	public String getDepartment() 
+	public String getDepart() 
 	{
 		return department;
 	}
