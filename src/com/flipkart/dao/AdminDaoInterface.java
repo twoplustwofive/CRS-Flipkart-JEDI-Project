@@ -37,7 +37,7 @@ public interface AdminDaoInterface {
 	 * studentlist
 	 */
 	
-	public void verifyStudent(int studentid, List<Student> studentlist);
+	public void verifyStudent(int studentid);
 	
 	/**
 	 * Method to add Professor to DB
@@ -54,7 +54,7 @@ public interface AdminDaoInterface {
 	 * @throws CourseNotDeletedException 
 	 */
 
-	public void removeCourse(String coursecode, List<Course> courselist) throws CourseNotFoundException, CourseNotDeletedException;
+	public void removeCourse(String coursecode) throws CourseNotFoundException, CourseNotDeletedException;
 	
 	/**
 	 * Method to add Course to Course Catalog
@@ -63,7 +63,7 @@ public interface AdminDaoInterface {
 	 * @throws CourseExistsAlreadyException;
 	 */
 	
-	public void addCourse(Course course, List<Course> courselist) throws CourseExistsAlreadyException;
+	public void addCourse(Course course) throws CourseExistsAlreadyException;
 	
 	/**
 	 * Method to assign Course to a Professor
