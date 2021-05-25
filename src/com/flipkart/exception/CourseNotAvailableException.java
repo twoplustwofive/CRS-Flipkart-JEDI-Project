@@ -1,4 +1,4 @@
-package com.flipkart.exceptions;
+package com.flipkart.exception;
 
 /**
  * Exception to check if seats are available for course registration

@@ -1,4 +1,4 @@
-package com.flipkart.exceptions;
+package com.flipkart.exception;
 
 /**
  * Exception to check if the professor is not added successfully by admin
