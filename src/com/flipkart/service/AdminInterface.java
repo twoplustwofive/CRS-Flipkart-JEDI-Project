@@ -16,7 +16,7 @@ import com.flipkart.bean.*;
 public interface AdminInterface 
 {
 	
-	public List<Course> viewCourses();
+	public List<Course> viewCourses(int catalogId);
 	public List<Professor> viewProfessors();
 	
 	
