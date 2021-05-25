@@ -148,7 +148,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 				throw new StudentNotFoundForApprovalException(studentId);
 			}
 			
-			//("Student with studentId: " + studentId + " approved by admin.");
+			System.out.println("Student with studentId: " + studentId + " approved by admin.");
 			
 		}catch(SQLException se) {
 			
@@ -242,7 +242,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 				throw new ProfessorNotAddedException(professor.getUserId());
 			}
 			
-			("Professor with professorId: " + professor.getUserId() + " added."); 
+			System.out.println("Professor with professorId: " + professor.getUserId() + " added."); 
 			
 		}catch(SQLException se) {
 			
