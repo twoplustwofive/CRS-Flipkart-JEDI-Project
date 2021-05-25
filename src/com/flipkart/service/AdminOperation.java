@@ -71,15 +71,15 @@ public class AdminOperation implements AdminInterface{
 	 * @throws StudentNotFoundException 
 	 */
 	@Override
-	public void verifyStudent(int studentId, List<Student> studentList) throws StudentAlreadyRegisteredException {
-		if(!AdminValidator.isRegisteredStudent(studentId, studentList)) {
-			throw new StudentAlreadyRegisteredException(studentId);
+	public void approveStudent(int studentId, List<Student> studentList) throws StudentNotFoundForApprovalException {
+		if(!AdminValidator.isValidUnapprovedStudent(studentId, studentList)) {
+			throw new StudentNotFoundForApprovalException(studentId);
 		}
 		
 		try {
 			adminDaoOperation.approveStudent(studentId);
 		}
-		catch(StudentAlreadyRegisteredException e) {
+		catch(StudentNotFoundForApprovalException e) {
 			throw e;
 		}
 	}

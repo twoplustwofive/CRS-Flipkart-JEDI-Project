@@ -7,11 +7,11 @@ package com.flipkart.exception;
  * @author Tanishq
  *
  */
-public class StudentAlreadyRegisteredException extends Exception{
+public class StudentNotFoundForApprovalException extends Exception{
 	
 	private int StudentId;
 	
-	public StudentAlreadyRegisteredException(int id) {
+	public StudentNotFoundForApprovalException(int id) {
 		StudentId = id;
 	}
 	
