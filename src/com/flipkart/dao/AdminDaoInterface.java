@@ -12,6 +12,7 @@ import com.flipkart.exception.CourseExistsAlreadyException;
 import com.flipkart.exception.CourseNotDeletedException;
 import com.flipkart.exception.CourseNotFoundException;
 import com.flipkart.exception.ProfessorNotAddedException;
+import com.flipkart.exception.StudentAlreadyRegisteredException;
 import com.flipkart.exception.UserIdAlreadyInUseException;
 import com.flipkart.exception.UserNotFoundException;
 
@@ -37,7 +38,7 @@ public interface AdminDaoInterface {
 	 * studentlist
 	 */
 	
-	public void verifyStudent(int studentid);
+	public void verifyStudent(int studentid) throws StudentAlreadyRegisteredException;
 	
 	/**
 	 * Method to add Professor to DB

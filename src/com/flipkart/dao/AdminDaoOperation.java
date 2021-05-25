@@ -6,10 +6,12 @@ package com.flipkart.dao;
 import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
+import com.flipkart.constant.SQLQueriesConstants;
 import com.flipkart.exception.CourseExistsAlreadyException;
 import com.flipkart.exception.CourseNotDeletedException;
 import com.flipkart.exception.CourseNotFoundException;
@@ -69,17 +71,17 @@ public class AdminDaoOperation implements AdminDaoInterface{
 			statement.setString(1,courseCode);
 			int row = statement.executeUpdate();
 			
-			logger.info(row + " entries deleted.");
+			System.out.println(row + " entries deleted.");
 			if(row == 0) {
-				logger.error(courseCode + " not in catalog!");
+				System.out.println(courseCode + " not in catalog!");
 				throw new CourseNotFoundException(courseCode);
 			}
 
-			logger.info("Course with courseCode: " + courseCode + " deleted.");
+			System.out.println("Course with courseCode: " + courseCode + " deleted.");
 			
 		}catch(SQLException se) {
 			
-			logger.error(se.getMessage());
+			System.out.println(se.getMessage());
 			throw new CourseNotDeletedException(courseCode);
 		}
 		
@@ -91,7 +93,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 	 * @throws CourseFoundException
 	 */
 	@Override
-	public void addCourse(Course course) throws CourseFoundException{
+	public void addCourse(Course course) throws CourseExistsAlreadyException{
 		
 		statement = null;
 		try {
@@ -105,18 +107,18 @@ public class AdminDaoOperation implements AdminDaoInterface{
 			statement.setInt(3, 1);
 			int row = statement.executeUpdate();
 			
-			logger.info(row + " course added");
+			System.out.println(row + " course added");
 			if(row == 0) {
-				logger.error("Course with courseCode: " + course.getCourseCode() + "not added to catalog.");
-				throw new CourseFoundException(course.getCourseCode());
+				System.out.println("Course with courseCode: " + course.getCourseCode() + "not added to catalog.");
+				throw new CourseExistsAlreadyException(course.getCourseCode());
 			}
 			
-			logger.info("Course with courseCode: " + course.getCourseCode() + " is added to catalog."); 
+			System.out.println("Course with courseCode: " + course.getCourseCode() + " is added to catalog."); 
 			
 		}catch(SQLException se) {
 			
-			logger.error(se.getMessage());
-			throw new CourseFoundException(course.getCourseCode());
+			System.out.println(se.getMessage());
+			throw new CourseExistsAlreadyException(course.getCourseCode());
 			
 		}
 		
