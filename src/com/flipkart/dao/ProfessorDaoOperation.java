@@ -131,7 +131,7 @@ public class ProfessorDaoOperation implements ProfessorDaoInterface {
 			
 			statement.setString(1, grade);
 			statement.setString(2, courseCode);
-			statement.setInt(3, studentId);
+			statement.setString(3, studentId);
 			
 			int row = statement.executeUpdate();
 			
