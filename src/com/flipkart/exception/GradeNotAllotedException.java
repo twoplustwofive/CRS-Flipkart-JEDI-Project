@@ -13,11 +13,11 @@ public class GradeNotAllotedException extends Exception{
 	 
 	/**
 	 * Constructor
-	 * @param studentId
+	 * @param studentId2
 	 */
-	 public GradeNotAllotedException(int studentId)
+	 public GradeNotAllotedException(String studentId2)
 	 {
-		 this.studentId=studentId;
+		 this.studentId=studentId2;
 	 }
 	 
 	 /**

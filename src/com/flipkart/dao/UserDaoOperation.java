@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import com.flipkart.constant.SQLQueries;
 import com.flipkart.exception.UserNotFoundException;
-import com.flipkart.utils.DBUtil;
+import com.flipkart.utils.DBUtils;
 
 /**
  * 
@@ -48,7 +48,7 @@ public class UserDaoOperation implements UserDaoInterface{
 	 */
 	@Override
 	public boolean updatePassword(String userId, String newPassword) {
-		Connection connection=DBUtil.getConnection();
+		Connection connection=DBUtils.getConnection();
 		try {
 			PreparedStatement statement = connection.prepareStatement(SQLQueries.UPDATE_PASSWORD);
 			
@@ -87,7 +87,7 @@ public class UserDaoOperation implements UserDaoInterface{
 	 */
 	@Override
 	public boolean verifyCredentials(String userId, String password) throws UserNotFoundException {
-		Connection connection = DBUtil.getConnection();
+		Connection connection = DBUtils.getConnection();
 		try
 		{
 			//open db connection
@@ -141,7 +141,7 @@ public class UserDaoOperation implements UserDaoInterface{
 	 */
 	@Override
 	public String getRole(String userId) {
-		Connection connection=DBUtil.getConnection();
+		Connection connection=DBUtils.getConnection();
 		try {
 			PreparedStatement statement = connection.prepareStatement(SQLQueries.GET_ROLE);
 			statement.setString(1, userId);
