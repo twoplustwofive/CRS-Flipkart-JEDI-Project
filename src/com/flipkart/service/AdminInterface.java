@@ -32,7 +32,7 @@ public interface AdminInterface
 	 * studentlist
 	 */
 	
-	public void verifyStudent(int studentid, List<Student> studentlist);
+	public void verifyStudent(int studentid, List<Student> studentlist) throws StudentAlreadyRegisteredException;
 	
 	/**
 	 * Method to add Professor to DB
