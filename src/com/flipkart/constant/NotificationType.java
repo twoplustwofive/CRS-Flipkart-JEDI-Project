@@ -7,7 +7,7 @@ package com.flipkart.constant;
  * @author Aditya
  *
  */
-public enum NotiType
+public enum NotificationType
 {
 	REGISTRATION, APPROVED, PAYED
 };
