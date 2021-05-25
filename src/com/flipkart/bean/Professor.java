@@ -18,10 +18,10 @@ public class Professor extends User {
 	private String designation;
 	private Date dateOfJoining;
 	
-	public Professor(int userID) {
+	public Professor(String userID) {
 		super(userID);
 	}
-	public Professor(int userID, String name, Gender gender, Role role, String password, String address) {
+	public Professor(String userID, String name, Gender gender, Role role, String password, String address) {
 		super(userID, name, gender, role, password, address);
 	}
 	/**

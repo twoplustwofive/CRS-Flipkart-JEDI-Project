@@ -11,17 +11,17 @@ import com.flipkart.constant.Role;
  *
  */
 public abstract class User {
-	private final int userID;
+	private final String userID;
 	private String name;
 	private Gender gender;
 	private Role role;
 	private String password;
 	private String address;
 	
-	public User(int userID) {
+	public User(String userID) {
 		this.userID = userID;
 	}
-	public User(int userID, String name, Gender gender, Role role, String password, String address) {
+	public User(String userID, String name, Gender gender, Role role, String password, String address) {
 		this.userID = userID;
 		this.name = name;
 		this.gender = gender;
@@ -93,7 +93,7 @@ public abstract class User {
 	/**
 	 * @return the userID
 	 */
-	public int getUserID() {
+	public String getUserID() {
 		return userID;
 	}
 	

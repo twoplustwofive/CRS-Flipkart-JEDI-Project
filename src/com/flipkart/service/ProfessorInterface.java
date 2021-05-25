@@ -3,21 +3,33 @@
  */
 package com.flipkart.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 
 import com.flipkart.bean.*;
+import com.flipkart.exception.GradeNotAllotedException;
 /**
  * @author vivek
  *
  */
 public interface ProfessorInterface {
 	
-	public boolean addGrade(String studentID, String courseID, String grade);
+	public boolean addGrade(String studentID, String courseID, String grade) throws GradeNotAllotedException;
 	
-	//type must be RegisteredCourse
-	public List<RegisteredCourse> viewEnrolledStudent(String courseID);
-	
-	//type must be Course
 	public List<Course> viewCourses(String profID);
+
+	/**
+	 * Method to get the professor name with ID
+	 * @param profId
+	 * @return Professor name 
+	 */
+	String getProfessorById(String profId);
+
+	/**
+	 * Method to view all the enrolled students
+	 * @param profId: professor id 
+	 * @return List of enrolled students
+	 */
+	List<EnrolledStudent> viewEnrolledStudents(String profId) throws SQLException;
 }

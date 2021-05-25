@@ -10,7 +10,7 @@ import java.util.List;
 import com.flipkart.bean.Course;
 import com.flipkart.bean.EnrolledStudent;
 import com.flipkart.constant.SQLQueries;
-import com.flipkart.utils.DBUtil;
+import com.flipkart.utils.DBUtils;
 
 /**
  * @author Goenka
@@ -51,7 +51,7 @@ public class ProfessorDaoOperation implements ProfessorDaoInterface {
 	 */
 	@Override
 	public List<Course> getCoursesByProfessor(String profId) {
-		Connection connection=DBUtil.getConnection();
+		Connection connection=DBUtils.getConnection();
 		List<Course> courseList=new ArrayList<Course>();
 		try {
 			PreparedStatement statement = connection.prepareStatement(SQLQueries.GET_COURSES);
@@ -88,12 +88,12 @@ public class ProfessorDaoOperation implements ProfessorDaoInterface {
 	 * @return: return the enrolled students for the corresponding professor and course code.
 	 */
 	@Override
-	public List<EnrolledStudent> getEnrolledStudents(String profId) {
-		Connection connection=DBUtil.getConnection();
+	public List<EnrolledStudent> getEnrolledStudents(String courseId) {
+		Connection connection=DBUtils.getConnection();
 		List<EnrolledStudent> enrolledStudents=new ArrayList<EnrolledStudent>();
 		try {
-			PreparedStatement statement = connection.prepareStatement(SQLQueries.GET_ENROLLED_STUDENTS);
-			statement.setString(1, profId);
+			PreparedStatement statement = connection.prepareStatement(SQLQueries.GET_ENROLLED_STUDENTS_1);
+			statement.setString(1, courseId);
 			
 			ResultSet results = statement.executeQuery();
 			while(results.next())
@@ -124,8 +124,8 @@ public class ProfessorDaoOperation implements ProfessorDaoInterface {
 	 * @param: courseCode: course code for the corresponding 
 	 * @return: returns the status after adding the grade
 	 */
-	public Boolean addGrade(int studentId,String courseCode,String grade) {
-		Connection connection=DBUtil.getConnection();
+	public Boolean addGrade(String studentId,String courseCode,String grade) {
+		Connection connection=DBUtils.getConnection();
 		try {
 			PreparedStatement statement = connection.prepareStatement(SQLQueries.ADD_GRADE);
 			
@@ -166,7 +166,7 @@ public class ProfessorDaoOperation implements ProfessorDaoInterface {
 	public String getProfessorById(String profId)
 	{
 		String prof_Name = null;
-		Connection connection=DBUtil.getConnection();
+		Connection connection=DBUtils.getConnection();
 		try 
 		{
 			PreparedStatement statement = connection.prepareStatement(SQLQueries.GET_PROF_NAME);
