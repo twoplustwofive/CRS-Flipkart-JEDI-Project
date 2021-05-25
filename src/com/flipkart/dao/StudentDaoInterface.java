@@ -10,7 +10,7 @@ import com.flipkart.exception.StudentNotRegisteredException;
 
 /**
  * 
- * @author JEDI-03
+ * @author aditya
  * Interface for Student Operations
  *
  */

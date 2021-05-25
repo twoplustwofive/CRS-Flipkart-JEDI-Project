@@ -13,14 +13,14 @@ import org.apache.log4j.Logger;
 
 import com.flipkart.bean.Student;
 import com.flipkart.client.CRSApplication;
-import com.flipkart.constant.SQLQueriesConstants;
+import com.flipkart.constant.SQLQueries;
 import com.flipkart.exception.StudentNotRegisteredException;
 import com.flipkart.service.StudentOperation;
 import com.flipkart.utils.DBUtils;
 
 /**
  * 
- * @author JEDI-03
+ * @author aditya
  * Class to implement Student Dao Operations
  *
  */
@@ -66,7 +66,7 @@ public class StudentDaoOperation implements StudentDaoInterface {
 		try
 		{
 			//open db connection
-			PreparedStatement preparedStatement=connection.prepareStatement(SQLQueriesConstants.ADD_USER_QUERY);
+			PreparedStatement preparedStatement=connection.prepareStatement(SQLQueries.ADD_USER_QUERY);
 			preparedStatement.setString(1, student.getUserId());
 			preparedStatement.setString(2, student.getName());
 			preparedStatement.setString(3, student.getPassword());
@@ -80,7 +80,7 @@ public class StudentDaoOperation implements StudentDaoInterface {
 				//add the student record
 				//"insert into student (userId,branchName,batch,isApproved) values (?,?,?,?)";
 				PreparedStatement preparedStatementStudent;
-				preparedStatementStudent=connection.prepareStatement(SQLQueriesConstants.ADD_STUDENT,Statement.RETURN_GENERATED_KEYS);
+				preparedStatementStudent=connection.prepareStatement(SQLQueries.ADD_STUDENT,Statement.RETURN_GENERATED_KEYS);
 				preparedStatementStudent.setString(1,student.getUserId());
 				preparedStatementStudent.setString(2, student.getBranchName());
 				preparedStatementStudent.setInt(3, student.getBatch());
@@ -118,7 +118,7 @@ public class StudentDaoOperation implements StudentDaoInterface {
 	public int getStudentId(String userId) {
 		Connection connection=DBUtils.getConnection();
 		try {
-			PreparedStatement statement = connection.prepareStatement(SQLQueriesConstants.GET_STUDENT_ID);
+			PreparedStatement statement = connection.prepareStatement(SQLQueries.GET_STUDENT_ID);
 			statement.setString(1, userId);
 			ResultSet rs = statement.executeQuery();
 			
@@ -130,7 +130,7 @@ public class StudentDaoOperation implements StudentDaoInterface {
 		}
 		catch(SQLException e)
 		{
-			logger.error(e.getMessage());
+			System.out.println(e.getMessage());
 		}
 		
 		return 0;
@@ -145,7 +145,7 @@ public class StudentDaoOperation implements StudentDaoInterface {
 	public boolean isApproved(int studentId) {
 		Connection connection=DBUtils.getConnection();
 		try {
-			PreparedStatement statement = connection.prepareStatement(SQLQueriesConstants.IS_APPROVED);
+			PreparedStatement statement = connection.prepareStatement(SQLQueries.IS_APPROVED);
 			statement.setInt(1, studentId);
 			ResultSet rs = statement.executeQuery();
 			
@@ -157,7 +157,7 @@ public class StudentDaoOperation implements StudentDaoInterface {
 		}
 		catch(SQLException e)
 		{
-			logger.error(e.getMessage());
+			System.out.println(e.getMessage());
 		}
 		
 		return false;
