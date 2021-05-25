@@ -74,11 +74,11 @@ public class StudentCRSMenu {
 
 
 
-private void registerCourses(Student stud) 
+private void registerCourses(String studentId) 
 {
 	StudentOperation Sop = new StudentOperation();
 	
-	Sop.register(null, null, null, 0, null, null)
+	Sop.register();
 	
 	return;
 }

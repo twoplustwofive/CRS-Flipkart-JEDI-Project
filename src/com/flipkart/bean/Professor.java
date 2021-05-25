@@ -16,7 +16,7 @@ public class Professor extends User {
 	private String professorID;
 	private String department;
 	private String designation;
-	private Date dateOfJoining;
+	
 	
 	public Professor(String userID) {
 		super(userID);
@@ -63,13 +63,5 @@ public class Professor extends User {
 	/**
 	 * @return the dateOfJoining
 	 */
-	public Date getDateOfJoining() {
-		return dateOfJoining;
-	}
-	/**
-	 * @param dateOfJoining the dateOfJoining to set
-	 */
-	public void setDateOfJoining(Date dateOfJoining) {
-		this.dateOfJoining = dateOfJoining;
-	}
+	
 }

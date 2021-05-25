@@ -12,7 +12,7 @@ public class EnrolledStudent {
 	String courseName;
 	String studentId;
 	
-	public EnrolledStudent(String courseCode,String courseName,int studentId){
+	public EnrolledStudent(String courseCode,String courseName,String studentId){
 		this.courseCode=courseCode;
 		this.courseName=courseName;
 		this.studentId=studentId;

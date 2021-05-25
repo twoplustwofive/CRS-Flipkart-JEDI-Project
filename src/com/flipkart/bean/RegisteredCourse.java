@@ -28,7 +28,7 @@ public class RegisteredCourse
 	 * @param course the course to set
 	 */
 	public void setCourse(Course course) {
-		this.course = new Course();
+		this.course = new Course(grade, grade, grade, sem);
 	}
 	
 	

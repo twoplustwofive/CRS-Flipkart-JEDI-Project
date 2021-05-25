@@ -12,18 +12,17 @@ import com.flipkart.constant.Role;
  */
 public class Student extends User 
 {
+	private String department;
+	private String studentID;
+	private int gradYear;
+	boolean isApproved;
 	
 	//Constructing User of a Student type.
-	public Student(int userID, String name, Gender gender, Role role, String password, String address) 
+	public Student(String userID, String name, Gender gender, Role role, String password, String address) 
 	{
 		super(userID, name, gender, role, password, address);
 	}
 
-
-	private String department;
-	private int studentID;
-	private int gradYear;
-	
 	
 	/**
 	 * @return the department
@@ -46,7 +45,7 @@ public class Student extends User
 	/**
 	 * @return the studentID
 	 */
-	public int getStudentID() 
+	public String getStudentID() 
 	{
 		return studentID;
 	}
@@ -55,9 +54,9 @@ public class Student extends User
 	/**
 	 * @param studentID the studentID to set
 	 */
-	public void setStudentID(int stdID) 
+	public void setStudentID(String studentID) 
 	{
-		this.studentID = stdID;
+		this.studentID = studentID;
 	}
 	
 	

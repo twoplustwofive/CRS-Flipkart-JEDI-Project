@@ -106,7 +106,7 @@ public class AdminCRSMenu {
 		
 		
 		System.out.println("\n\n");
-		List<Course> courseList= adminOperation.viewCourses();
+		List<Course> courseList= adminOperation.viewCourses(0);
 		System.out.println("**************** Course ****************");
 		System.out.println(String.format("%20s | %20s", "CourseCode", "CourseName"));
 		for(Course course : courseList) {
@@ -137,7 +137,7 @@ public class AdminCRSMenu {
 	private void addProfessor() {
 		
 		System.out.println("Enter User Id(integer):");
-		int userId = in.nextInt();
+		String userId = in.nextLine();
 		Professor professor = new Professor(userId);
 		
 		System.out.println("Enter Professor Name:");
@@ -255,7 +255,7 @@ public class AdminCRSMenu {
 		System.out.println("Enter Course Name:");
 		String courseName = in.next();
 		
-		Course course = new Course();
+		Course course = new Course(courseName, courseName, courseName, 0);
 		course.setCourseCode(courseCode);
 		course.setCourseName(courseName);
 		course.setSeats(10);
