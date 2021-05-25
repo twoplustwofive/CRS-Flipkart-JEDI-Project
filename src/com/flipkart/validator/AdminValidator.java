@@ -12,6 +12,21 @@ import com.flipkart.bean.*;
  *
  */
 public class AdminValidator {
+	
+	/**
+	 * Method to validate if studentId is already registered
+	 * @param studentId
+	 * @param studentList
+	 * @return if studentId is already registered
+	 */
+	public static boolean isRegisteredStudent(int studentId, List<Student> studentList) {
+		for(Student student : studentList) {
+			if(studentId == student.getStudentId()) {
+				return true;
+			}
+		}
+		return false;
+	}
 	/**
 	 * Method to validate if newCourse is not already present in catalog
 	 * @param newCourse

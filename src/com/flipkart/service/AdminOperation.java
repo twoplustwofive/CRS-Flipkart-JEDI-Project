@@ -4,10 +4,13 @@
 package com.flipkart.service;
 
 import com.flipkart.exception.*;
+import com.flipkart.validator.AdminValidator;
 
 import java.util.List;
 
 import com.flipkart.bean.*;
+import com.flipkart.dao.AdminDaoInterface;
+import com.flipkart.dao.AdminDaoOperation;
 
 /**
  * @author Tanishq
@@ -21,6 +24,10 @@ public class AdminOperation implements AdminInterface{
 	 * Method to generate grade card of a Student 
 	 * studentid 
 	 */
+	
+	AdminDaoInterface adminDaoOperation =AdminDaoOperation.getInstance();
+	
+	
 	public List<Course> viewCourses()
 	{
 		return null;
@@ -65,7 +72,16 @@ public class AdminOperation implements AdminInterface{
 	 */
 	@Override
 	public void verifyStudent(int studentId, List<Student> studentList) throws StudentAlreadyRegisteredException {
+		if(!AdminValidator.isRegisteredStudent(studentId, studentList)) {
+			throw new StudentAlreadyRegisteredException(studentId);
+		}
 		
+		try {
+			adminDaoOperation.approveStudent(studentId);
+		}
+		catch(StudentAlreadyRegisteredException e) {
+			throw e;
+		}
 	}
 
 	/**
@@ -74,7 +90,12 @@ public class AdminOperation implements AdminInterface{
 	 */
 	@Override
 	public void addProfessor(Professor professor) throws ProfessorNotAddedException, UserIdAlreadyInUseException {
-		
+		try {
+			adminDaoOperation.addProfessor(professor);
+		}
+		catch(ProfessorNotAddedException | UserIdAlreadyInUseException e) {
+			throw e;
+		}
 		
 	}
 	

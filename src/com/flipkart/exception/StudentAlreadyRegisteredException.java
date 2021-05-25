@@ -9,9 +9,9 @@ package com.flipkart.exception;
  */
 public class StudentAlreadyRegisteredException extends Exception{
 	
-	private String StudentId;
+	private int StudentId;
 	
-	public StudentAlreadyRegisteredException(String id) {
+	public StudentAlreadyRegisteredException(int id) {
 		StudentId = id;
 	}
 	
@@ -19,7 +19,7 @@ public class StudentAlreadyRegisteredException extends Exception{
 	 * Getter function for professorId
 	 * @return
 	 */
-	public String getUserId() {
+	public int getUserId() {
 		return StudentId;
 	}
 	
