@@ -3,12 +3,23 @@
  */
 package com.flipkart.bean;
 
+import com.flipkart.constant.Gender;
+import com.flipkart.constant.Role;
+
 /**
  * @author Aditya
  *
  */
 public class Student extends User 
 {
+	
+	//Constructing User of a Student type.
+	public Student(int userID, String name, Gender gender, Role role, String password, String address) 
+	{
+		super(userID, name, gender, role, password, address);
+	}
+
+
 	private String department;
 	private int stdID;
 	private int gradYear;
