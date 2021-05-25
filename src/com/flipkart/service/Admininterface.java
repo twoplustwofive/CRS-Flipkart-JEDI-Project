@@ -4,6 +4,7 @@
 package com.flipkart.service;
 
 import java.util.List;
+import com.flipkart.exception.*;
 
 import com.flipkart.bean.*;
 
@@ -34,21 +35,33 @@ public interface Admininterface
 	 * professor : Professor Object storing details of a professor 
 	 */
 	
-	public void addProfessor(Professor professor);
+	public void addProfessor(Professor professor) throws ProfessorNotAddedException, UserIdAlreadyInUseException;
 	
 	/**
-	 * Method to Remove Course from Course Catalog
-	 * coursecode
-	 * courselist : Courses available in the catalog
+	 * Method to Delete Course from Course Catalog
+	 * @param courseCode
+	 * @param courseList : Courses available in the catalog
+	 * @throws CourseNotFoundException 
+	 * @throws CourseNotDeletedException 
 	 */
 
-	public void removeCourse(String coursecode, List<Course> courselist);
+	public void removeCourse(String coursecode, List<Course> courselist) throws CourseNotFoundException, CourseNotDeletedException;
 	
 	/**
 	 * Method to add Course to Course Catalog
-	 * course : Course object storing details of a course
-	 * courselist : Courses available in the catalog
+	 * @param course : Course object storing details of a course
+	 * @param courseList : Courses available in the catalog
+	 * @throws CourseExistsAlreadyException;
 	 */
 	
-	public void addCourse(Course course, List<Course> courselist);
+	public void addCourse(Course course, List<Course> courselist) throws CourseExistsAlreadyException;
+	
+	/**
+	 * Method to assign Course to a Professor
+	 * @param courseCode
+	 * @param professorId
+	 * @throws CourseNotFoundException 
+	 * @throws UserNotFoundException 
+	 */
+	public void assignCourse(String courseCode, String professorId) throws CourseNotFoundException, UserNotFoundException;
 }
