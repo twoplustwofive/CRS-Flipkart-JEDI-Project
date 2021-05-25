@@ -3,7 +3,12 @@
  */
 package com.flipkart.service;
 
+
 import java.util.UUID;
+
+import com.flipkart.constant.NotificationType;
+import com.flipkart.constant.PaymentMode;
+
 
 /**
  * @author vijayrathod
@@ -18,15 +23,17 @@ public interface NotificationInterface {
      * @param modeOfPayment: payment mode used
      * @return notification id for the record added in the database
      */
-	//changed data type of "type"
-    public int sendNotification(String type,int studentId,String modeOfPayment,double amount);
+
+
+    public int sendNotification(NotificationType type,int studentId,PaymentMode modeOfPayment,double amount);
+
 
     /**
      * Method to return UUID for a transaction
      * @param notificationId: notification id added in the database
      * @return transaction id of the payment
      */
-    public UUID getReferenceId(int notificationId);
+   // public UUID getReferenceId(int notificationId);
 
 
 }

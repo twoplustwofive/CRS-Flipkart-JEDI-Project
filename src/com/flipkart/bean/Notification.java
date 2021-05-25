@@ -3,7 +3,7 @@
  */
 package com.flipkart.bean;
 
-import com.flipkart.constant.NotiType;
+import com.flipkart.constant.NotificationType;
 
 /**
  * @author Aditya
@@ -16,7 +16,7 @@ public class Notification
 {
 	private int notiID;
 	private int stdID;
-	private NotiType type;
+	private NotificationType type;
 	private String referID;
 	
 	/**
@@ -60,7 +60,7 @@ public class Notification
 	/**
 	 * @return the type
 	 */
-	public NotiType getType() 
+	public NotificationType getType() 
 	{
 		return type;
 	}
@@ -70,7 +70,7 @@ public class Notification
 	/**
 	 * @param type the type to set
 	 */
-	public void setType(NotiType type) 
+	public void setType(NotificationType type) 
 	{
 		this.type = type;
 	}
