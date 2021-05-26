@@ -2,12 +2,13 @@ package com.flipkart.validator;
 
 import java.util.List;
 import com.flipkart.bean.Course;
+import com.flipkart.bean.EnrolledStudent;
 import com.flipkart.bean.RegisteredCourse;
 
 
 /**
  * 
- * @author JEDI-03
+ * @author Goenka
  * Class for Professor Validator
  * 
  */
@@ -19,14 +20,14 @@ public class ProfessorValidator {
 	 * @param studentId: current student
 	 * @return true, if student is valid. else, false.
 	 */
-	public static boolean isValidStudent(List<RegisteredCourse> students,String studentId)
+	public static boolean isValidStudent(List<EnrolledStudent> enrolledStudents,String studentId)
 	{
 		boolean result=false;
 		//check if student exist in the students list
-		for(int i=0;i<students.size();i++)
+		for(int i=0;i<enrolledStudents.size();i++)
 		{
 			//role.equalsIgnoreCase("ADMIN")
-			if(students.get(i).getStdID()==studentId)
+			if(enrolledStudents.get(i).getStudentId()==studentId)
 				result=true;
 				
 		}

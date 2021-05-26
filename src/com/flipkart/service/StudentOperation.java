@@ -1,41 +1,31 @@
 package com.flipkart.service;
 
-import com.flipkart.bean.SemRegistration;
-<<<<<<< HEAD
+
+
+import com.flipkart.bean.Student;
 import com.flipkart.client.CRSApplication;
-=======
->>>>>>> 5eada1b080579e9c87a513721ec0fc66ce880553
+import com.flipkart.constant.Gender;
+import com.flipkart.constant.Role;
 import com.flipkart.dao.StudentDaoInterface;
 import com.flipkart.dao.StudentDaoOperation;
+import com.flipkart.exception.StudentNotRegisteredException;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
-import com.flipkart.bean.*;
-import com.flipkart.service.*;
-
+/**
+ * 
+ * @author JEDI-03
+ * Implementations of Student Operations
+ *
+ */
 public class StudentOperation implements StudentInterface {
-
-	private static volatile StudentOperation instance=null;
-	StudentDaoInterface studentDaoInterface=StudentDaoOperation.getInstance();
-
-<<<<<<< HEAD
+	
 	private static volatile StudentOperation instance=null;
 	
 	StudentDaoInterface studentDaoInterface=StudentDaoOperation.getInstance();
 
-=======
-	
->>>>>>> 5eada1b080579e9c87a513721ec0fc66ce880553
 	private StudentOperation()
 	{
 		
 	}
-<<<<<<< HEAD
-=======
-	
->>>>>>> 5eada1b080579e9c87a513721ec0fc66ce880553
 	/**
 	 * Method to make StudentOperation Singleton
 	 * @return
@@ -52,91 +42,56 @@ public class StudentOperation implements StudentInterface {
 		return instance;
 	}
 	
-    /**
-     * Method to register a student, although student can't login until it's approved by admin
-     * @param name
-     * @param userID
-     * @param password
-     * @param gender
-     * @param batch
-     * @param branch
-     * @param address
-     * @param country
-     * @return Student ID
-     * @throws StudentNotRegisteredException
-     */
-    @Override
-    public int register() 
-    {	
-    	
-    	//
-    	
-    	SemRegistration semReg = new SemRegistration();
-    	
-    	RegistrationOperation Rop = new RegistrationOperation();
-    	
-    	List<Course> regCrs = new ArrayList<Course>();
-    	
-    	int t = 1;
-    	Scanner in = new Scanner(System.in);
-    	while(t)
-    	{
-    		int choice;
-    		System.out.println("Please enter your op: ");
-        	choice = in.nextInt();
-        	
-        	switch(choice)
-        	{
-		    	case 1:
-					Rop.addCourse(,,regCrs);
-					break;
-					
-				case 2:
-					dropCourse(studentId);
-					break;
-					
-				case 3:
-					viewCourse(studentId);
-					break;
-					
-				case 4:
-					viewRegisteredCourse(studentId);
-					break;
-        	}
-        	
-    	}
-    	
-    	
-    	
-    	
-    	
-    	
-        return 0;
-    }
-
-
-    /**
-     * Method to get Student ID from User ID
-     * @param userId
-     * @return Student ID
-     */
-    @Override
-    public int getStudentId(String userId) {
-        // TODO Auto-generated method stub
-        return studentDaoInterface.getStudentId(userId);
-;
-    }
-
-
-    /**
+	/**
+	 * Method to register a student, although student can't login until it's approved by admin
+	 * @param name
+	 * @param userID
+	 * @param password
+	 * @param gender
+	 * @param batch
+	 * @param branch
+	 * @param address
+	 * @param country
+	 * @return Student ID
+	 * @throws StudentNotRegisteredException
+	 */
+	@Override
+	public String register(String name,String userId,String password,Gender gender,int batch,String branch,String address) throws StudentNotRegisteredException{
+		String studentId;
+		try
+		{
+			//call the DAO class, and add the student record to the DB
+			Student newStudent=new Student(userId,name,Role.STUDENT,password,gender,address,branch,0,batch,false);
+			studentId=studentDaoInterface.addStudent(newStudent);
+			
+		}
+		catch(StudentNotRegisteredException ex)
+		{
+			throw ex;
+		}
+		return studentId;
+	}
+	
+	/**
+	 * Method to get Student ID from User ID
+	 * @param userId
+	 * @return Student ID
+	 */
+	@Override
+	public String getStudentId(String userId) {
+		return studentDaoInterface.getStudentId(userId);
+	
+	}
+	
+	/**
      * Method to check if student is approved by Admin or not
      * @param studentId
      * @return boolean indicating if student is approved
      */
-    @Override
-    public boolean isApproved(int studentId) {
-        // TODO Auto-generated method stub
+	@Override
+	public boolean isApproved(String studentId) {
 		return studentDaoInterface.isApproved(studentId);
-    }
+	}
+
 
 }
