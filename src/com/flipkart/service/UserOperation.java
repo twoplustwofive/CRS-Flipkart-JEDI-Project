@@ -6,7 +6,7 @@ import com.flipkart.exception.UserNotFoundException;
 
 /**
  * 
- * @author JEDI-03
+ * @author Goenka
  * Implementations of User Operations
  *
  */

@@ -7,7 +7,7 @@ import com.flipkart.bean.RegisteredCourse;
 
 /**
  * 
- * @author JEDI-03
+ * @author Goenka
  * Class for Professor Validator
  * 
  */

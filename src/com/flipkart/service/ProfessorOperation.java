@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.flipkart.bean.Course;
 import com.flipkart.bean.EnrolledStudent;
+import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.dao.ProfessorDaoInterface;
 import com.flipkart.dao.ProfessorDaoOperation;
 import com.flipkart.exception.GradeNotAllotedException;
@@ -111,4 +112,6 @@ public class ProfessorOperation implements ProfessorInterface {
 	{
 		return professorDAOInterface.getProfessorById(profId);
 	}
+
+	
 }

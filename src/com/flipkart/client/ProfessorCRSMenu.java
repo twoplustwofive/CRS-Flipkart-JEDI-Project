@@ -6,12 +6,12 @@ package com.flipkart.client;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 import com.flipkart.bean.Course;
 import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.exception.GradeNotAllotedException;
 import com.flipkart.service.ProfessorInterface;
 import com.flipkart.service.ProfessorOperation;
+import com.flipkart.validator.ProfessorValidator;
 
 
 /**
