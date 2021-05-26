@@ -22,7 +22,7 @@ public class Professor extends User {
 		super(userID);
 	}
 	public Professor(String userID, String name, Gender gender, Role role, String password, String address) {
-		super(userID, name, gender, role, password, address);
+		super(userID, name, role, password, gender, address);
 	}
 	public Professor() {
 		// TODO Auto-generated constructor stub
