@@ -69,11 +69,11 @@ public class ProfessorOperation implements ProfessorInterface {
 	 */
 	@Override
 	
-	public List<EnrolledStudent> viewEnrolledStudents(String courseId) throws SQLException{
+	public List<EnrolledStudent> viewEnrolledStudents(String profId) throws SQLException{
 		List<EnrolledStudent> enrolledStudents=new ArrayList<EnrolledStudent>();
 		try
 		{
-			enrolledStudents=professorDAOInterface.getEnrolledStudents(courseId);
+			enrolledStudents=professorDAOInterface.getEnrolledStudents(profId);
 		}
 		catch(Exception ex)
 		{
