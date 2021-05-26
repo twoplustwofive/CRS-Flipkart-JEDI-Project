@@ -12,6 +12,29 @@ import com.flipkart.constant.PaymentMode;
  */
 public class NotificationOperation implements NotificationInterface{
 	
+	private static volatile NotificationOperation instance=null;
+	NotificationDaoInterface notificationDaoInterface=NotificationDaoOperation.getInstance();
+	private NotificationOperation()
+	{
+
+	}
+	
+	/**
+	 * Method to make NotificationDaoOperation Singleton
+	 * @return
+	 */
+	public static NotificationOperation getInstance()
+	{
+		if(instance==null)
+		{
+			// This is a synchronized block, when multiple threads will access this instance
+			synchronized(NotificationOperation.class){
+				instance=new NotificationOperation();
+			}
+		}
+		return instance;
+	}
+	
 	/**
 	 * Method to send notification
 	 * @param type: type of the notification to be sent

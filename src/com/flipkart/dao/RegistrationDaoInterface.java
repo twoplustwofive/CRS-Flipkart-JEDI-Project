@@ -1,6 +1,11 @@
 package com.flipkart.dao;
 
+<<<<<<< HEAD
 import java.sql.SQLException; 
+=======
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+>>>>>>> 272dedbcac3432355690e38bc23c15bb75a871fb
 import java.util.List;
 
 import com.flipkart.bean.Course;
@@ -14,7 +19,8 @@ import com.flipkart.bean.GradeCard;
 
 
 public interface RegistrationDaoInterface {
-
+	
+	
 	/**
 	 * Method to add course in database
 	 * @param courseCode

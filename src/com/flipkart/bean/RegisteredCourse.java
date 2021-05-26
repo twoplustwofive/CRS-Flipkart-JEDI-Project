@@ -11,7 +11,7 @@ package com.flipkart.bean;
 public class RegisteredCourse 
 {
 	Course course;
-	int stdID;
+	String stdID;
 	String grade;
 	int sem;
 	
@@ -35,7 +35,7 @@ public class RegisteredCourse
 	/**
 	 * @return the stdID
 	 */
-	public int getStdID() {
+	public String getStdID() {
 		return stdID;
 	}
 	
@@ -43,7 +43,7 @@ public class RegisteredCourse
 	/**
 	 * @param stdID the stdID to set
 	 */
-	public void setStdID(int stdID) {
+	public void setStdID(String stdID) {
 		this.stdID = stdID;
 	}
 	

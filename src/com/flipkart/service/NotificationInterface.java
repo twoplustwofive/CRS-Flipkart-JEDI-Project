@@ -27,6 +27,13 @@ public interface NotificationInterface {
 
     public int sendNotification(NotificationType type,int studentId,PaymentMode modeOfPayment,double amount);
 
+	/**
+	 * Method to return UUID for a transaction
+	 * @param notificationId: notification id added in the database
+	 * @return transaction id of the payment
+	 */
+	UUID getReferenceId(int notificationId);
+
 
     /**
      * Method to return UUID for a transaction

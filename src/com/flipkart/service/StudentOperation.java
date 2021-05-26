@@ -1,6 +1,10 @@
 package com.flipkart.service;
 
 import com.flipkart.bean.SemRegistration;
+<<<<<<< HEAD
+import com.flipkart.client.CRSApplication;
+=======
+>>>>>>> 5eada1b080579e9c87a513721ec0fc66ce880553
 import com.flipkart.dao.StudentDaoInterface;
 import com.flipkart.dao.StudentDaoOperation;
 
@@ -16,12 +20,26 @@ public class StudentOperation implements StudentInterface {
 	private static volatile StudentOperation instance=null;
 	StudentDaoInterface studentDaoInterface=StudentDaoOperation.getInstance();
 
+<<<<<<< HEAD
+	private static volatile StudentOperation instance=null;
 	
+	StudentDaoInterface studentDaoInterface=StudentDaoOperation.getInstance();
+
+=======
+	
+<<<<<<< HEAD
 	public StudentOperation()
+=======
+>>>>>>> 5eada1b080579e9c87a513721ec0fc66ce880553
+	private StudentOperation()
+>>>>>>> 272dedbcac3432355690e38bc23c15bb75a871fb
 	{
 		
 	}
+<<<<<<< HEAD
+=======
 	
+>>>>>>> 5eada1b080579e9c87a513721ec0fc66ce880553
 	/**
 	 * Method to make StudentOperation Singleton
 	 * @return

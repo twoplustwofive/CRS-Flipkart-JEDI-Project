@@ -3,9 +3,17 @@
  */
 package com.flipkart.client;
 
+<<<<<<< HEAD
 import com.flipkart.bean.*; 
+=======
+import com.flipkart.bean.*;
+import com.flipkart.exception.CourseLimitExceededException;
+import com.flipkart.exception.CourseNotAvailableException;
+import com.flipkart.exception.CourseNotFoundException;
+>>>>>>> 272dedbcac3432355690e38bc23c15bb75a871fb
 import com.flipkart.service.*;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -19,15 +27,29 @@ public class StudentCRSMenu {
 	Scanner sc = new Scanner(System.in);
 	RegistrationInterface registrationInterface = RegistrationOperation.getInstance();
 	ProfessorInterface professorInterface = ProfessorOperation.getInstance();
-	NotificationInterface notificationInterface=NotificationOperation.getInstance();
+	NotificationInterface notificationInterface = NotificationOperation.getInstance();
 	private boolean is_registered;
 	
 
 	
 	public void create_menu(String studentId) {
 		
+		is_registered = getRegistrationStatus(studentId);
 		
-		while(true) {
+		while(CRSApplication.loggedin) {
+			
+				System.out.println("*****************************");
+				System.out.println("**********Student Menu*********");
+				System.out.println("*****************************");
+				System.out.println("1. Course Registration");
+				System.out.println("2. Add Course");
+				System.out.println("3. Drop Course");
+				System.out.println("4. View Course");
+				System.out.println("5. View Registered Courses");
+				System.out.println("6. View grade card");
+				System.out.println("7. Make Payment");
+				System.out.println("8. Logout");
+				System.out.println("*****************************");
 			
 				int choice = sc.nextInt();
 			
@@ -80,13 +102,54 @@ public class StudentCRSMenu {
 
 
 
-private void registerCourses(String studentId) 
+private void registerCourses(String studentId)
 {
-	StudentOperation Sop = new StudentOperation();
+	if(is_registered)
+	{
+		System.out.println(" Registration is already completed");
+		return;
+	}
 	
-	Sop.register();
+	int count = 0;
+	while(count < 6)
+	{
+		try
+		{
+			List<Course> courseList=viewCourse(studentId);
+			
+			if(courseList==null)
+				return;
+			
+			System.out.println("Enter Course Code : " + (count+1));
+			String courseCode = sc.next();
+			
+			if(registrationInterface.addCourse(courseCode,studentId,courseList))
+			{
+				System.out.println("Course " + courseCode + " registered sucessfully.");
+				count++;
+			}
+			else
+			{
+				System.out.println(" You have already registered for Course : " + courseCode);
+			}
+		}	
+		catch(CourseNotAvailableException | CourseLimitExceededException | SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+	}
 	
-	return;
+	System.out.println("Registration Successful");	
+    is_registered = true;
+    
+    try 
+    {
+		registrationInterface.setRegistrationStatus(studentId);
+	} 
+    catch (SQLException e) 
+    {
+    	System.out.println(e.getMessage());
+	}
 }
 
 
