@@ -137,7 +137,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 		List<Student> userList = new ArrayList<Student>();
 		try {
 			
-			String sql = SQLQueriesConstants.VIEW_PENDING_ADMISSION_QUERY;
+			String sql = SQLQueries.VIEW_PENDING_ADMISSION_QUERY;
 			statement = connection.prepareStatement(sql);
 			ResultSet resultSet = statement.executeQuery();
 
