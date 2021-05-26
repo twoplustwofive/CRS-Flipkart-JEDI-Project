@@ -24,6 +24,13 @@ public class Student extends User
 	}
 
 	
+	public Student(String userId, String name, Role student, String password, Gender gender, String address,
+			String branch, int i, int batch, boolean b) 
+	{
+		// TODO Auto-generated constructor stub
+	}
+
+
 	/**
 	 * @return the department
 	 */
