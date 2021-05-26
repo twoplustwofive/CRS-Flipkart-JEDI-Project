@@ -123,15 +123,11 @@ public class CRSApplication {
 				 LocalDateTime myDateObj = LocalDateTime.now();
 				   
 				 String formattedDate = myDateObj.format(myFormatObj);  
+				
+				 String role = userInterface.getRole(userId);
+			
 				 
 				 
-				    
-				
-				String role = userInterface.getRole(userId);
-				
-				
-				
-				
 				switch(role) {
 				case "ADMIN":
 					System.out.println(formattedDate + " Login Successful");

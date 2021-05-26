@@ -144,12 +144,20 @@ public class UserDaoOperation implements UserDaoInterface{
 	 * @return Role
 	 */
 	@Override
-	public String getRole(String userId) {
+	public String getRole(String userId) 
+	{
 		Connection connection=DBUtils.getConnection();
 		try {
+			System.out.println(userId);
+			connection=DBUtils.getConnection();
+			
 			PreparedStatement statement = connection.prepareStatement(SQLQueries.GET_ROLE);
 			statement.setString(1, userId);
 			ResultSet rs = statement.executeQuery();
+			
+			
+			
+			System.out.println("query executed");
 			
 			if(rs.next())
 			{
@@ -158,17 +166,19 @@ public class UserDaoOperation implements UserDaoInterface{
 			}
 				
 		}
-		catch(SQLException e)
+		catch(Exception e)
 		{
 			System.out.println(e.getMessage());
+			
 		}
+		
 		finally
 		{
 			try {
 				connection.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 		}
 		return null;

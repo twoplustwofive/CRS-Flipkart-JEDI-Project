@@ -9,13 +9,13 @@ package com.flipkart.constant;
 public enum Role {
 	ADMIN,PROFESSOR,STUDENT;
 	
-	
-	/*@Override
+
+	@Override
 	public String toString()
 	{
 		final String name=name();
 		return name; 
-	}*/
+	}
 	
 	/**
 	 * Method to get Role object from String
