@@ -6,13 +6,11 @@ package com.flipkart.client;
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Grade;
 import com.flipkart.exception.CourseLimitExceededException;
-import com.flipkart.exception.CourseNotAvailableException;
 import com.flipkart.exception.CourseNotFoundException;
 import com.flipkart.exception.SeatNotAvailableException;
 import com.flipkart.service.*;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
