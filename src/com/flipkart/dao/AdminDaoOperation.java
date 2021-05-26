@@ -56,7 +56,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 	Connection connection = DBUtils.getConnection();
 	
 	/**
-	 * Delete Course using SQL commands
+	 * Remove Course using SQL commands
 	 * @param courseCode
 	 * @throws CourseNotFoundException
 	 * @throws CourseNotDeletedException 
@@ -122,6 +122,48 @@ public class AdminDaoOperation implements AdminDaoInterface{
 			throw new CourseExistsAlreadyException(course.getCourseCode());
 			
 		}
+		
+	}
+	
+	/**
+	 * Fetch Students yet to approved using SQL commands
+	 * @return List of Students yet to approved
+	 */
+	@Override
+	public List<Student> viewPendingAdmissions() {
+		
+		statement = null;
+		List<Student> userList = new ArrayList<Student>();
+		try {
+			
+			String sql = SQLQueriesConstants.VIEW_PENDING_ADMISSION_QUERY;
+			statement = connection.prepareStatement(sql);
+			ResultSet resultSet = statement.executeQuery();
+
+			while(resultSet.next()) {
+				
+				Student user = new Student();
+				user.setUserId(resultSet.getString(1));
+				user.setName(resultSet.getString(2));
+				user.setPassword(resultSet.getString(3));
+				user.setRole(Role.stringToName(resultSet.getString(4)));
+				user.setGender(Gender.stringToGender( resultSet.getString(5)));
+				user.setAddress(resultSet.getString(6));
+				user.setCountry(resultSet.getString(7));
+				user.setStudentId(resultSet.getInt(8));
+				userList.add(user);
+				
+			}
+			
+			System.out.println(userList.size() + " students have pending-approval.");
+			
+		}catch(SQLException se) {
+			
+			System.out.println(se.getMessage());
+			
+		}
+		
+		return userList;
 		
 	}
 

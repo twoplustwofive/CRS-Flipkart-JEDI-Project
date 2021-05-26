@@ -35,10 +35,17 @@ public interface AdminDaoInterface {
 	public void generateGradeCard(int Studentid);
 	
 	/**
+	 * Fetch Students yet to approved using SQL commands
+	 * @return List of Students yet to approved
+	 */
+	public List<Student> viewPendingAdmissions();
+	
+	/**
 	 * Method to approve a Student 
 	 * studentid
 	 * studentlist
 	 */
+	
 	
 	public void approveStudent(int studentid) throws StudentNotFoundForApprovalException;
 	
