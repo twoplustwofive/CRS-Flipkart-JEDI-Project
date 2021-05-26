@@ -1,8 +1,12 @@
 package com.flipkart.dao;
 
+<<<<<<< HEAD
+import java.sql.PreparedStatement;
+=======
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+>>>>>>> 5eada1b080579e9c87a513721ec0fc66ce880553
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,6 +63,33 @@ public class RegistrationDaoOperation implements RegistrationDaoInterface{
 	
 	
 
+<<<<<<< HEAD
+	private static volatile RegistrationDaoOperation instance=null;
+	private PreparedStatement stmt = null;
+	
+	/**
+	 * Default Constructor
+	 */
+	private RegistrationDaoOperation() 
+	{}
+	
+	/**
+	 * Method to make RegistrationDaoOperation Singleton
+	 * @return
+	 */
+	public static RegistrationDaoOperation getInstance()
+	{
+		if(instance==null)
+		{
+			synchronized(RegistrationDaoOperation.class){
+				instance=new RegistrationDaoOperation();
+			}
+		}
+		return instance;
+	}
+	
+	
+=======
 	/**
 	 * Method to add course in database
 	 * @param courseCode
@@ -66,6 +97,7 @@ public class RegistrationDaoOperation implements RegistrationDaoInterface{
 	 * @return boolean indicating if the course is added successfully
 	 * @throws SQLException 
 	 */
+>>>>>>> 5eada1b080579e9c87a513721ec0fc66ce880553
 	@Override
 	public boolean addCourse(String courseCode, int studentId) throws SQLException{
 		
