@@ -13,6 +13,4 @@ public interface GradeCardDaoInterface {
 	
 	public float calculateCGPA(int studentID);
 
-	public boolean addRegisteredCourse(RegisteredCourse regCourse);
-
 }

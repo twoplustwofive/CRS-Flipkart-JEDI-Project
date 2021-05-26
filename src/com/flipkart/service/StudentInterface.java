@@ -29,13 +29,13 @@ public interface StudentInterface {
      * @param userId
      * @return Student ID
      */
-    public int getStudentId(String userId);
+    public String getStudentId(String userId);
 
     /**
      * Method to check if student is approved by Admin or not
      * @param studentId
      * @return boolean indicating if student is approved
      */
-    public boolean isApproved(int studentId);
+    public boolean isApproved(String studentId);
 
 }
