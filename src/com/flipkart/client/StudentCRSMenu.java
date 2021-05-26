@@ -6,6 +6,7 @@ package com.flipkart.client;
 import com.flipkart.bean.*;
 import com.flipkart.service.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -16,9 +17,14 @@ import java.util.Scanner;
 public class StudentCRSMenu {
 	
 	Scanner sc = new Scanner(System.in);
+	RegistrationInterface registrationInterface = RegistrationOperation.getInstance();
+	ProfessorInterface professorInterface = ProfessorOperation.getInstance();
+	NotificationInterface notificationInterface=NotificationOperation.getInstance();
+	private boolean is_registered;
+	
 
 	
-	public void create_menu(int studentId) {
+	public void create_menu(String studentId) {
 		
 		
 		while(true) {
@@ -69,41 +75,44 @@ public class StudentCRSMenu {
 		
 	}
 
-}
 
 
 
 
-private void registerCourses(Student stud) 
+
+private void registerCourses(String studentId) 
 {
 	StudentOperation Sop = new StudentOperation();
 	
-	Sop.register(null, null, null, 0, null, null)
+	Sop.register();
 	
 	return;
 }
 
 
-private void addCourse(int studentId) {
+private void addCourse(String studentId) {
 	return;
 }
 
-private void dropCourse(int studentId) {
+private void dropCourse(String studentId) {
 	return;
 }
 
-private List<Course> viewCourse(int studentId){
+private List<Course> viewCourse(String studentId){
+	List<Course> l = new ArrayList<Course>();
+	return l;
+}
+
+private List<Course> viewRegisteredCourse(String studentId){
+	List<Course> l = new ArrayList<Course>();
+	return l;
+}
+
+private void viewGradeCard(String studentId) {
 	return;
 }
 
-private List<Course> viewRegisteredCourse(int studentId){
+private void make_payment(String studentId) {
 	return;
 }
-
-private void viewGradeCard(int studentId) {
-	return;
-}
-
-private void make_payment(int studentId) {
-	return;
 }

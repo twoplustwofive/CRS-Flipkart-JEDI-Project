@@ -16,9 +16,24 @@ import com.flipkart.bean.*;
 public interface AdminInterface 
 {
 	
+	/**
+	 * Method to get list of courses in catalog
+	 * @param catalogId
+	 * @return List of courses in catalog
+	 */
 	public List<Course> viewCourses(int catalogId);
+	
+	/**
+	 * View professor in the institute
+	 * @return List of the professors in the institute  
+	 */
 	public List<Professor> viewProfessors();
 	
+	/**
+	 * Method to view Students yet to be approved by Admin
+	 * @return List of Students with pending admissions
+	 */
+	public List<Student> viewPendingAdmissions();
 	
 	/**
 	 * Method to generate grade card of a Student 

@@ -16,6 +16,7 @@ import com.flipkart.exception.StudentNotRegisteredException;
  */
 public interface StudentDaoInterface {
 	
+	
 	/**
 	 * Method to add student to database
 	 * @param student: student object containing all the fields
@@ -30,12 +31,12 @@ public interface StudentDaoInterface {
 	 * @param userId
 	 * @return Student Id
 	 */
-	public int getStudentId(String userId);
+	public String getStudentId(String userId);
 	
 	/**
 	 * Method to check if Student is approved
 	 * @param studentId
 	 * @return boolean indicating if student is approved
 	 */
-	public boolean isApproved(int studentId);
+	public boolean isApproved(String studentId);
 }

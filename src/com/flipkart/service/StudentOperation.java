@@ -1,7 +1,10 @@
 package com.flipkart.service;
 
 import com.flipkart.bean.SemRegistration;
+<<<<<<< HEAD
 import com.flipkart.client.CRSApplication;
+=======
+>>>>>>> 5eada1b080579e9c87a513721ec0fc66ce880553
 import com.flipkart.dao.StudentDaoInterface;
 import com.flipkart.dao.StudentDaoOperation;
 
@@ -14,15 +17,25 @@ import com.flipkart.service.*;
 
 public class StudentOperation implements StudentInterface {
 
+	private static volatile StudentOperation instance=null;
+	StudentDaoInterface studentDaoInterface=StudentDaoOperation.getInstance();
 
+<<<<<<< HEAD
 	private static volatile StudentOperation instance=null;
 	
 	StudentDaoInterface studentDaoInterface=StudentDaoOperation.getInstance();
 
+=======
+	
+>>>>>>> 5eada1b080579e9c87a513721ec0fc66ce880553
 	private StudentOperation()
 	{
 		
 	}
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 5eada1b080579e9c87a513721ec0fc66ce880553
 	/**
 	 * Method to make StudentOperation Singleton
 	 * @return
@@ -110,7 +123,8 @@ public class StudentOperation implements StudentInterface {
     @Override
     public int getStudentId(String userId) {
         // TODO Auto-generated method stub
-        return 0;
+        return studentDaoInterface.getStudentId(userId);
+;
     }
 
 
@@ -122,7 +136,7 @@ public class StudentOperation implements StudentInterface {
     @Override
     public boolean isApproved(int studentId) {
         // TODO Auto-generated method stub
-        return false;
+		return studentDaoInterface.isApproved(studentId);
     }
 
 }

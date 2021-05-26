@@ -10,9 +10,9 @@ package com.flipkart.bean;
 public class EnrolledStudent {
 	String courseCode;
 	String courseName;
-	int studentId;
+	String studentId;
 	
-	public EnrolledStudent(String courseCode,String courseName,int studentId){
+	public EnrolledStudent(String courseCode,String courseName,String studentId){
 		this.courseCode=courseCode;
 		this.courseName=courseName;
 		this.studentId=studentId;

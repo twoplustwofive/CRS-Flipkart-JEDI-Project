@@ -19,11 +19,27 @@ import com.flipkart.dao.AdminDaoOperation;
 
 public class AdminOperation implements AdminInterface{
 	
+	private static volatile AdminOperation instance = null;
+	
+	private AdminOperation()
+	{
+		
+	}
 	
 	/**
-	 * Method to generate grade card of a Student 
-	 * studentid 
+	 * Method to make AdminOperation Singleton
 	 */
+	
+	public static AdminOperation getInstance()
+	{
+		if(instance == null)
+		{
+			synchronized(AdminOperation.class){
+				instance = new AdminOperation();
+			}
+		}
+		return instance;
+	}
 	
 	AdminDaoInterface adminDaoOperation =AdminDaoOperation.getInstance();
 	
@@ -37,13 +53,27 @@ public class AdminOperation implements AdminInterface{
 		return adminDaoOperation.viewProfessors();
 	}
 	
+	/**
+	 * Method to view Students yet to be approved by Admin
+	 * @return List of Students with pending admissions
+	 */
+	@Override
+	public List<Student> viewPendingAdmissions() {
+		return adminDaoOperation.viewPendingAdmissions();
+	}
+	
+	/**
+	 * Method to generate grade card of a Student 
+	 * studentid 
+	 */
+	
 	public void generateGradeCard(int Studentid)
 	{
 		
 	}
 	
 	/**
-	 * Method to Delete Course from Course Catalog
+	 * Method to remove Course from Course Catalog
 	 * @param courseCode
 	 * @param courseList : Courses available in the catalog
 	 * @throws CourseNotFoundException 
@@ -135,6 +165,5 @@ public class AdminOperation implements AdminInterface{
 			throw e;
 		}
 	}
-	
 
 }

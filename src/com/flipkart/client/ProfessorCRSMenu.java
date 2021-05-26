@@ -9,7 +9,9 @@ import java.util.Scanner;
 
 import com.flipkart.bean.Course;
 import com.flipkart.bean.RegisteredCourse;
+import com.flipkart.exception.GradeNotAllotedException;
 import com.flipkart.service.ProfessorInterface;
+import com.flipkart.service.ProfessorOperation;
 
 
 /**
@@ -112,7 +114,7 @@ public class ProfessorCRSMenu {
 			} else {
 				System.out.println("Invalid data entered, try again!");
 			}
-		} catch(GradeNotAddedException ex) {
+		} catch(GradeNotAllotedException ex) {
 			System.out.println("Grade cannot be added for"+ex.getStudentId());
 			
 		}

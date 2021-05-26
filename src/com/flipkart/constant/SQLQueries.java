@@ -11,10 +11,10 @@ public class SQLQueries {
 	
 		//AdminDao Queries
 		public static final String DELETE_COURSE_QUERY = "delete from Course where courseCode = ?";
-		public static final String ADD_COURSE_QUERY = "insert into Course(courseCode, courseName, catalogId) values (?, ?, ?)";
-		public static final String VIEW_PENDING_ADMISSION_QUERY = "select userId, name, password, role, gender, address, country, studentId from student natural join user where isApproved = 0";
+		public static final String ADD_COURSE_QUERY = "insert into Course(courseCode, courseName) values (?, ?)";
+		public static final String VIEW_PENDING_ADMISSION_QUERY = "select userId, name, password, role, gender, address, studentId from student natural join user where isApproved = 0";
 		public static final String APPROVE_STUDENT_QUERY = "update Student set isApproved = 1 where studentId = ?";
-		public static final String ADD_USER_QUERY = "insert into User(userId, name, password, role, gender, address, country) values (?, ?, ?, ?, ?, ?, ?)";
+		public static final String ADD_USER_QUERY = "insert into User(userId, name, password, role, gender, address) values (?, ?, ?, ?, ?, ?)";
 		public static final String ADD_PROFESSOR_QUERY = "insert into Professor(userId, department, designation) values (?, ?, ?)";
 		public static final String ASSIGN_COURSE_QUERY = "update Course set professorId = ? where courseCode = ?";
 		public static final String VIEW_COURSE_QUERY = "select courseCode, courseName, professorId from Course where catalogId = ?";
@@ -42,6 +42,8 @@ public class SQLQueries {
 		public static final String SET_REGISTRATION_STATUS="update student set isRegistered = true  where studentId=?";
 		public static final String NUMBER_OF_REGISTERED_COURSES=" select studentId from registeredcourse where studentId = ? ";
 		public static final String IS_REGISTERED=" select courseCode from registeredcourse where courseCode=? and studentId=? ";
+		
+		public static final String GET_GRADES = "select grade from registeredcourse where studentId=?";
 		
 		//ProfessorDao queries
 	

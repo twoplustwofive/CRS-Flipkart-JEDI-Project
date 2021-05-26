@@ -63,7 +63,7 @@ public class CRSApplication {
 					crsApplication.updatePassword();
 					break;
 				default:
-					logger.info("Invalid Input");
+					System.out.println("Invalid Input");
 			}
 			createMainMenu();
 			userInput=sc.nextInt();
@@ -71,7 +71,7 @@ public class CRSApplication {
 		}
 		catch(Exception ex)
 		{
-			logger.error("Error occured "+ex);
+			System.out.println("Error occured "+ex);
 		}
 		finally
 		{
@@ -84,12 +84,12 @@ public class CRSApplication {
 	 */
 	public static void createMainMenu()
 	{
-		logger.info("----------Welcome to Course Management System---------");
-		logger.info("1. Login");
-		logger.info("2. Student Registration");
-		logger.info("3. Update password");
-		logger.info("4. Exit");
-		logger.info("Enter user input");
+		System.out.println("----------Welcome to Course Management System---------");
+		System.out.println("1. Login");
+		System.out.println("2. Student Registration");
+		System.out.println("3. Update password");
+		System.out.println("4. Exit");
+		System.out.println("Enter user input");
 	}
 	
 	/**
