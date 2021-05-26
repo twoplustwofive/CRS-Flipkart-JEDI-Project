@@ -21,22 +21,22 @@ public class DBUtils {
         if (connection != null) {
         	try {
         		if (connection.isClosed()) {
-                	System.out.println("Connection was closed...");
+                	//System.out.println("Connection was closed...");
                 	connection = null;
                 	return getConnection();
                 } else {
-                	System.out.println("Connection good...");
+                	//System.out.println("Connection good...");
                 	return connection;
                 }
         	} catch (SQLException e) {
-        		System.out.println("Error2345: " + e.getMessage());
-        		e.printStackTrace();
+        		//System.out.println("Error2345: " + e.getMessage());
+        		//e.printStackTrace();
         		//connection = null;
         		return getConnection();
         	}
         } else {
             try {
-            	System.out.println("Connection was NULL...");
+            	//System.out.println("Connection was NULL...");
             	Properties prop = new Properties();
                 InputStream inputStream = DBUtils.class.getClassLoader().getResourceAsStream("./config.properties");
                 prop.load(inputStream);

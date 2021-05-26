@@ -12,14 +12,14 @@ public class Course
 	private String crsCode;
 	private String crsName;
 	private String instructorId;
-	private int seats = 50;
+	private int seats = 10;
 	
 	public Course()
 	{
 		
 	}
 	
-	public Course(String crsCode,String crsName,String instructorId,int seats) {
+	public Course(String crsCode,String crsName,String professorId,int seats) {
 		this.crsCode=crsCode;
 		this.crsName=crsName;
 		this.instructorId=instructorId;

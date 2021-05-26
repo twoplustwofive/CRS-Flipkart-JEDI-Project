@@ -21,7 +21,7 @@ public interface AdminInterface
 	 * @param catalogId
 	 * @return List of courses in catalog
 	 */
-	public List<Course> viewCourses(int catalogId);
+	public List<Course> viewCourses();
 	
 	/**
 	 * View professor in the institute

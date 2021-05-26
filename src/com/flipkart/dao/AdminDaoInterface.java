@@ -24,7 +24,7 @@ import com.flipkart.exception.UserNotFoundException;
  */
 public interface AdminDaoInterface {
 	
-	public List<Course> viewCourses(int catalogId);
+	public List<Course> viewCourses();
 	public List<Professor> viewProfessors();
 	
 	

@@ -107,7 +107,7 @@ public class AdminCRSMenu {
 		
 		
 		System.out.println("\n\n");
-		List<Course> courseList= adminOperation.viewCourses(1);
+		List<Course> courseList= adminOperation.viewCourses();
 		System.out.println("**************** Course ****************");
 		System.out.println(String.format("%20s | %20s", "CourseCode", "CourseName"));
 		for(Course course : courseList) {
@@ -138,7 +138,7 @@ public class AdminCRSMenu {
 	private void addProfessor() {
 		
 		System.out.println("Enter User Id(integer):");
-		String userId = in.nextLine();
+		String userId = in.next();
 		Professor professor = new Professor(userId);
 		
 		System.out.println("Enter Professor Name:");
@@ -259,7 +259,7 @@ public class AdminCRSMenu {
 		System.out.println("Enter Course Name:");
 		String courseName = in.next();
 		
-		Course course = new Course(courseName, courseName, courseName, 0);
+		Course course = new Course(courseCode, courseName,"", 10);
 		course.setCourseCode(courseCode);
 		course.setCourseName(courseName);
 		course.setSeats(10);
@@ -277,7 +277,7 @@ public class AdminCRSMenu {
 	 * @return List of courses in catalogue
 	 */
 	private List<Course> viewCoursesInCatalogue() {
-		List<Course> courseList = adminOperation.viewCourses(1);
+		List<Course> courseList = adminOperation.viewCourses();
 		if(courseList.size() == 0) {
 			System.out.println("Nothing present in the catalogue!");
 			return courseList;

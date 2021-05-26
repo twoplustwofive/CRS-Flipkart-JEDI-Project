@@ -340,7 +340,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 	 * @param Catalog ID
 	 * @return List of courses in the catalog
 	 */
-	public List<Course> viewCourses(int catalogId) {
+	public List<Course> viewCourses() {
 		
 		statement = null;
 		List<Course> courseList = new ArrayList<>();
@@ -348,7 +348,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 			
 			String sql = SQLQueries.VIEW_COURSE_QUERY;
 			statement = connection.prepareStatement(sql);
-			statement.setInt(1, catalogId);
+			//statement.setInt(1, catalogId);
 			ResultSet resultSet = statement.executeQuery();
 			
 			while(resultSet.next()) {
@@ -361,7 +361,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 				
 			}
 			
-			System.out.println(courseList.size() + " courses in catalogId: " + catalogId + ".");
+			System.out.println("Number of courses in the Catalog are : " + courseList.size());
 			
 		}catch(SQLException se) {
 			
@@ -381,7 +381,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 	public List<Professor> viewProfessors() {
 		
 		statement = null;
-		List<Professor> professorList = new ArrayList<>();
+		List<Professor> professorList = new ArrayList<Professor>();
 		try {
 			
 			String sql = SQLQueries.VIEW_PROFESSOR_QUERY;
@@ -414,11 +414,15 @@ public class AdminDaoOperation implements AdminDaoInterface{
 	}
 
 	@Override
-	public void generateGradeCard(String Studentid) {
+	public void generateGradeCard(String Studentid) 
+	{
 		
 		
 		
 	}
+
+	
+	
 	
 
 }

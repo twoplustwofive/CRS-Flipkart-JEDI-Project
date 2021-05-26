@@ -44,9 +44,9 @@ public class AdminOperation implements AdminInterface{
 	AdminDaoInterface adminDaoOperation =AdminDaoOperation.getInstance();
 	
 	
-	public List<Course> viewCourses(int catalogId)
+	public List<Course> viewCourses()
 	{
-		return adminDaoOperation.viewCourses(catalogId);
+		return adminDaoOperation.viewCourses();
 	}
 	public List<Professor> viewProfessors()
 	{
