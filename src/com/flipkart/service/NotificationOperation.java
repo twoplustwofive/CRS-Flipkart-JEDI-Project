@@ -3,8 +3,12 @@
  */
 package com.flipkart.service;
 
+import java.util.UUID;
+
 import com.flipkart.constant.NotificationType;
 import com.flipkart.constant.PaymentMode;
+import com.flipkart.dao.NotificationDaoInterface;
+import com.flipkart.dao.NotificationDaoOperation;
 
 /**
  * @author vijayrathod
@@ -14,10 +18,7 @@ public class NotificationOperation implements NotificationInterface{
 	
 	private static volatile NotificationOperation instance=null;
 	NotificationDaoInterface notificationDaoInterface=NotificationDaoOperation.getInstance();
-	private NotificationOperation()
-	{
-
-	}
+	private NotificationOperation() {}
 	
 	/**
 	 * Method to make NotificationDaoOperation Singleton
@@ -46,6 +47,18 @@ public class NotificationOperation implements NotificationInterface{
 	public int sendNotification(NotificationType type, int studentId,PaymentMode modeOfPayment,double amount) {
 		return 0;
 		
+	}
+
+	@Override
+	public int sendNotification(NotificationType type, String studentId, PaymentMode modeOfPayment, double amount) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public UUID getReferenceId(int notificationId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	/**
