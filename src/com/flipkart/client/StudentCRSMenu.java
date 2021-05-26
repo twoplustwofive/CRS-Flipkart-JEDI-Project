@@ -5,6 +5,8 @@ package com.flipkart.client;
 
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Grade;
+import com.flipkart.constant.NotificationType;
+import com.flipkart.constant.PaymentMode;
 import com.flipkart.exception.CourseLimitExceededException;
 import com.flipkart.exception.CourseNotFoundException;
 import com.flipkart.exception.SeatNotAvailableException;
@@ -363,10 +365,69 @@ private void viewGradeCard(String studentId) {
 	
 }
 
-private void make_payment(String studentId) 
+private void make_payment(String studentId)
 {
-		
-	return;
-}
+	
+	double fee = 1000.0;
+	boolean isreg = false;
+	try
+	{
+		isreg = registrationInterface.getRegistrationStatus(studentId);
+//		fee=registrationInterface.calculateFee(studentId);
+	} 
+	catch (SQLException e) 
+	{
 
+        System.out.println(e.getMessage());
+	}
+
+	
+	if(isreg)
+	{
+		System.out.println("You have already paid the fees");
+	}
+	else
+	{
+		
+		System.out.println("Your total fee  = " + fee);
+		System.out.println("Want to continue Fee Payment(y/n)");
+		String ch = sc.next();
+		if(ch.equals("y"))
+		{
+			System.out.println("Select Mode of Payment:");
+			
+			int index = 1;
+			for(PaymentMode mode : PaymentMode.values())
+			{
+				System.out.println(index + " " + mode);
+				index = index + 1;
+			}
+			
+			PaymentMode mode = PaymentMode.getPaymentMode(sc.nextInt());
+			
+			if(mode == null)
+				System.out.println("Invalid Input");
+			else
+			{
+				try 
+				{
+					notificationInterface.sendNotification(NotificationType.PAYED, studentId, mode, fee);
+					System.out.println("Payment Successful by StudentId :" + studentId);
+					registrationInterface.setRegistrationStatus(studentId);				
+				}
+				catch (Exception e) 
+				{
+
+		            System.out.println(e.getMessage());
+				}
+			}
+			
+			
+			
+				
+		}
+		
+	}
+	
+}
 }

@@ -1,0 +1,4 @@
+01:44:39,894 ERROR RegistrationDaoOperation,main:273 - 1054
+01:44:39,896 ERROR RegistrationDaoOperation,main:274 - Unknown column 'courseFee' in 'field list'
+01:45:41,976 ERROR RegistrationDaoOperation,main:273 - 1054
+01:45:41,977 ERROR RegistrationDaoOperation,main:274 - Unknown column 'courseFee' in 'field list'
