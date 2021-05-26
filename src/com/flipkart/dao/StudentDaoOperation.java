@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import org.apache.log4j.Logger;
+
 
 import com.flipkart.bean.Student;
 import com.flipkart.client.CRSApplication;
@@ -81,7 +81,7 @@ public class StudentDaoOperation implements StudentDaoInterface {
 				PreparedStatement preparedStatementStudent;
 				preparedStatementStudent=connection.prepareStatement(SQLQueries.ADD_STUDENT,Statement.RETURN_GENERATED_KEYS);
 				preparedStatementStudent.setString(1,student.getUserID());
-				preparedStatementStudent.setString(2, student.getBranchName());
+				preparedStatementStudent.setString(2, student.getBranch());
 				preparedStatementStudent.setInt(3, student.getBatch());
 				preparedStatementStudent.setBoolean(4, false);
 				preparedStatementStudent.executeUpdate();

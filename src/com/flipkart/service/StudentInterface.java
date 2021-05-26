@@ -1,9 +1,7 @@
 package com.flipkart.service;
 
-<<<<<<< HEAD
-=======
+
 import com.flipkart.constant.Gender;
->>>>>>> 09eebac02dc52570ccfa1b523f636ed363e95aa6
 import com.flipkart.exception.StudentNotRegisteredException;
 
 /**
@@ -13,32 +11,6 @@ import com.flipkart.exception.StudentNotRegisteredException;
  *
  */
 public interface StudentInterface {
-<<<<<<< HEAD
-
-
-    /**
-     * Method to register a student, although student can't login until it's approved by admin
-     * @param name
-     * @param userID
-     * @param password
-     * @param batch
-     * @param branch
-     * @param address
-     * @param country
-     * @return Student ID
-     * @throws StudentNotRegisteredException
-     */
-	public int register(String name,String userID,String password,int batch,String branch,String address,String country) throws StudentNotRegisteredException;
-
-    /**
-     * Method to get Student ID from User ID
-     * @param userId
-     * @return Student ID
-     */
-    public String getStudentId(String userId);
-
-    /**
-=======
 	
 	/**
 	 * Method to register a student, although student can't login until it's approved by admin
