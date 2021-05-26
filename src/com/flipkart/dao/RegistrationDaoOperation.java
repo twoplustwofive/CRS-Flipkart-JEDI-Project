@@ -1,28 +1,17 @@
 package com.flipkart.dao;
 
-<<<<<<< HEAD
-import java.sql.PreparedStatement;
-=======
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
->>>>>>> 5eada1b080579e9c87a513721ec0fc66ce880553
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 
 import com.flipkart.bean.Course;
-import com.flipkart.bean.Notification;
 import com.flipkart.bean.Grade;
-//import com.flipkart.constant.Grade;
-import com.flipkart.constant.PaymentMode;
-import com.flipkart.constant.NotificationType;
 import com.flipkart.constant.SQLQueries;
-import com.flipkart.exception.CourseLimitExceededException;
 import com.flipkart.exception.CourseNotFoundException;
-import com.flipkart.exception.SeatNotAvailableException;
 import com.flipkart.utils.DBUtils;
 
 
@@ -43,8 +32,7 @@ public class RegistrationDaoOperation implements RegistrationDaoInterface{
 	/**
 	 * Default Constructor
 	 */
-	private RegistrationDaoOperation() 
-	{}
+	private RegistrationDaoOperation() {}
 	
 	/**
 	 * Method to make RegistrationDaoOperation Singleton
@@ -60,50 +48,13 @@ public class RegistrationDaoOperation implements RegistrationDaoInterface{
 		}
 		return instance;
 	}
-	
-	
 
-<<<<<<< HEAD
-	private static volatile RegistrationDaoOperation instance=null;
-	private PreparedStatement stmt = null;
-	
-	/**
-	 * Default Constructor
-	 */
-	private RegistrationDaoOperation() 
-	{}
-	
-	/**
-	 * Method to make RegistrationDaoOperation Singleton
-	 * @return
-	 */
-	public static RegistrationDaoOperation getInstance()
-	{
-		if(instance==null)
-		{
-			synchronized(RegistrationDaoOperation.class){
-				instance=new RegistrationDaoOperation();
-			}
-		}
-		return instance;
-	}
-	
-	
-=======
-	/**
-	 * Method to add course in database
-	 * @param courseCode
-	 * @param studentId
-	 * @return boolean indicating if the course is added successfully
-	 * @throws SQLException 
-	 */
->>>>>>> 5eada1b080579e9c87a513721ec0fc66ce880553
+
 	@Override
 	public boolean addCourse(String courseCode, String studentId) throws SQLException{
 		
 		Connection conn = DBUtils.getConnection();
 		
-
 		try 
 		{
 			stmt = conn.prepareStatement(SQLQueries.ADD_COURSE);

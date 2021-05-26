@@ -14,7 +14,7 @@ public abstract class User {
 	private final String userID;
 	private String name;
 	private Gender gender;
-	private Role role;
+	protected Role role;
 	private String password;
 	private String address;
 	
