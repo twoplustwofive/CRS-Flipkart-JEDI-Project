@@ -15,7 +15,7 @@ import com.flipkart.exception.SeatNotAvailableException;
 import com.flipkart.validator.StudentValidator;
 
 /**
- * @author JEDI-03
+ * @author Aditya
  * The Registration Operation provides the business logic for student registration.
  * 
  */
