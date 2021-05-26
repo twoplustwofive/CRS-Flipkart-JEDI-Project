@@ -60,7 +60,9 @@ public class StudentOperation implements StudentInterface {
 		try
 		{
 			//call the DAO class, and add the student record to the DB
-			Student newStudent=new Student(userId,name,Role.STUDENT,password,gender,address,branch,0,batch,false);
+			
+			Student newStudent=new Student(userId,name,Role.STUDENT,password,gender,address,branch,userId,batch,false);
+			System.out.println("object created");
 			studentId=studentDaoInterface.addStudent(newStudent);
 			
 		}

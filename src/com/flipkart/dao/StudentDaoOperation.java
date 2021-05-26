@@ -59,6 +59,7 @@ public class StudentDaoOperation implements StudentDaoInterface {
 	@Override
 	public String addStudent(Student student) throws StudentNotRegisteredException{
 		Connection connection=DBUtils.getConnection();
+		
 		String studentId=null;
 		try
 		{
@@ -81,7 +82,7 @@ public class StudentDaoOperation implements StudentDaoInterface {
 				preparedStatementStudent.setString(1,student.getUserId());
 				preparedStatementStudent.setString(2, student.getDepartment());
 				preparedStatementStudent.setInt(3, student.getGradYear());
-				preparedStatementStudent.setBoolean(4, false);
+				preparedStatementStudent.setBoolean(4, true);
 				preparedStatementStudent.executeUpdate();
 				ResultSet results=preparedStatementStudent.getGeneratedKeys();
 				if(results.next())
@@ -92,7 +93,7 @@ public class StudentDaoOperation implements StudentDaoInterface {
 		}
 		catch(Exception ex)
 		{
-			throw new StudentNotRegisteredException(student.getName());
+			throw new StudentNotRegisteredException(ex.getMessage());
 		}
 		finally
 		{

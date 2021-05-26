@@ -18,23 +18,17 @@ public class Student extends User
 	boolean isApproved;
 	
 	//Constructing User of a Student type.
-	public Student(String userID, String name, Gender gender, Role role, String password, String address) 
-	{
-		super(userID, name, gender, role, password, address);
+	public Student(String userId, String name, Role role, String password, Gender gender, String address,String branchName,String studentId,int batch,boolean isApproved) {
+		super(userId, name, role, password,gender,address);
+		this.department = branchName;
+		this.studentId = studentId;
+		this.gradYear = batch;
+		this.isApproved = isApproved;
 	}
 
-	
-	public Student(String userId, String name, Role student, String password, Gender gender, String address,
-			String branch, int i, int batch, boolean b) 
-	{
-		super(userId, name, gender, student, password, address);
+	public Student() {
+		
 	}
-
-	public Student()
-	{
-		super();
-	}
-
 	/**
 	 * @return the department
 	 */

@@ -21,7 +21,7 @@ public abstract class User {
 	public User(String userId) {
 		this.userId = userId;
 	}
-	public User(String userId, String name, Gender gender, Role role, String password, String address) {
+	public User(String userId, String name,Role role,String password ,Gender gender, String address) {
 		this.userId = userId;
 		this.name = name;
 		this.gender = gender;

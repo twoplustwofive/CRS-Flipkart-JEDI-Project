@@ -217,10 +217,10 @@ public class CRSApplication {
 			sc.nextLine();
 			System.out.println("Address:");
 			address=sc.nextLine();
-			System.out.println("Country");
-			country=sc.next();
+			
 			
 			String newStudentId = studentInterface.register(name, userId, password, gender, batch, branchName, address);
+			
 			notificationInterface.sendNotification(NotificationType.REGISTRATION, newStudentId, null,0);
 			
 		}
