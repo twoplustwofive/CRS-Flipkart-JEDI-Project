@@ -6,6 +6,7 @@ package com.flipkart.dao;
 import java.sql.SQLException;
 
 import com.flipkart.constant.NotificationType;
+import com.flipkart.constant.PaymentMode;
 
 /**
  * @author vijayrathod
@@ -22,6 +23,6 @@ public interface NotificationDaoInterface {
 	 * @return notification id for the record added in the database
 	 * @throws SQLException
 	 */
-	public int sendNotification(NotificationType type,int studentId,ModeOfPayment modeOfPayment,double amount) throws SQLException;
+	public int sendNotification(NotificationType type,int studentId,PaymentMode modeOfPayment,double amount) throws SQLException;
 	
 }
