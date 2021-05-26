@@ -27,8 +27,12 @@ public class StudentOperation implements StudentInterface {
 
 =======
 	
+<<<<<<< HEAD
+	public StudentOperation()
+=======
 >>>>>>> 5eada1b080579e9c87a513721ec0fc66ce880553
 	private StudentOperation()
+>>>>>>> 272dedbcac3432355690e38bc23c15bb75a871fb
 	{
 		
 	}
@@ -121,7 +125,7 @@ public class StudentOperation implements StudentInterface {
      * @return Student ID
      */
     @Override
-    public int getStudentId(String userId) {
+    public String getStudentId(String userId) {
         // TODO Auto-generated method stub
         return studentDaoInterface.getStudentId(userId);
 ;
