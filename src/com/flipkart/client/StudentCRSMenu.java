@@ -14,12 +14,15 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 /**
  * @author vijayrathod
  *
  */
 public class StudentCRSMenu {
 	
+	private static Logger logger = Logger.getLogger(StudentCRSMenu.class);
 	Scanner sc = new Scanner(System.in);
 	RegistrationInterface registrationInterface = RegistrationOperation.getInstance();
 	ProfessorInterface professorInterface = ProfessorOperation.getInstance();
@@ -34,18 +37,18 @@ public class StudentCRSMenu {
 		
 		while(CRSApplication.loggedin) {
 			
-				System.out.println("*****************************");
-				System.out.println("**********Student Menu*********");
-				System.out.println("*****************************");
-				System.out.println("1. Course Registration");
-				System.out.println("2. Add Course");
-				System.out.println("3. Drop Course");
-				System.out.println("4. View Course");
-				System.out.println("5. View Registered Courses");
-				System.out.println("6. View grade card");
-				System.out.println("7. Make Payment");
-				System.out.println("8. Logout");
-				System.out.println("*****************************");
+				logger.info("*****************************");
+				logger.info("**********Student Menu*********");
+				logger.info("*****************************");
+				logger.info("1. Course Registration");
+				logger.info("2. Add Course");
+				logger.info("3. Drop Course");
+				logger.info("4. View Course");
+				logger.info("5. View Registered Courses");
+				logger.info("6. View grade card");
+				logger.info("7. Make Payment");
+				logger.info("8. Logout");
+				logger.info("*****************************");
 			
 				int choice = sc.nextInt();
 			
@@ -84,7 +87,7 @@ public class StudentCRSMenu {
 					break;			
 					
 				default:
-					System.out.println("Incorrect Choice!");
+					logger.warn("Incorrect Choice!");
 		
 		
 			}
@@ -102,7 +105,7 @@ private void registerCourses(String studentId)
 {
 	if(is_registered)
 	{
-		System.out.println(" Registration is already completed");
+		logger.info(" Registration is already completed");
 		return;
 	}
 	
@@ -116,29 +119,29 @@ private void registerCourses(String studentId)
 			if(courseList==null)
 				return;
 			
-			System.out.println("Enter Course Code : " + (count+1));
+			logger.info("Enter Course Code : " + (count+1));
 			String courseCode = sc.next();
 			
 			if(registrationInterface.addCourse(courseCode,studentId,courseList))
 			{
-				System.out.println("Course " + courseCode + " registered sucessfully.");
+				logger.info("Course " + courseCode + " registered sucessfully.");
 				count++;
 			}
 			else
 			{
-				System.out.println(" You have already registered for Course : " + courseCode);
+				logger.info(" You have already registered for Course : " + courseCode);
 			}
 		}	
 		catch(CourseNotFoundException | CourseLimitExceededException | SQLException e)
 		{
-			System.out.println(e.getMessage());
+			logger.info(e.getMessage());
 		} catch (SeatNotAvailableException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	System.out.println("Registration Successful");	
+	logger.info("Registration Successful");	
     is_registered = true;
     
     try 
@@ -147,7 +150,7 @@ private void registerCourses(String studentId)
 	} 
     catch (SQLException e) 
     {
-    	System.out.println(e.getMessage());
+    	logger.info(e.getMessage());
 	}
 }
 
@@ -162,20 +165,20 @@ private void addCourse(String studentId) {
 
 		try
 		{
-			System.out.println("Enter Course Code : " );
+			logger.info("Enter Course Code : " );
 			String courseCode = sc.next();
 			if(registrationInterface.addCourse(courseCode, studentId,availableCourseList))
 			{
-				System.out.println(" You have successfully registered for Course : " + courseCode);
+				logger.info(" You have successfully registered for Course : " + courseCode);
 			}
 			else
 			{
-				System.out.println(" You have already registered for Course : " + courseCode);
+				logger.info(" You have already registered for Course : " + courseCode);
 			}
 		}
 		 catch(SQLException e)
 		{
-			System.out.println(e.getMessage());
+			logger.info(e.getMessage());
 		} catch (CourseNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -189,7 +192,7 @@ private void addCourse(String studentId) {
 	}
 	else 
 	{
-		System.out.println("Please complete registration");
+		logger.info("Please complete registration");
 	}
 
 }
@@ -207,7 +210,7 @@ private boolean getRegistrationStatus(String studentId)
 	} 
 	catch (SQLException e)
 	{
-		System.out.println(e.getMessage());
+		logger.info(e.getMessage());
 	}
 	return false;
 }
@@ -225,28 +228,28 @@ private void dropCourse(String studentId) {
 		if(registeredCourseList==null)
 			return;
 		
-		System.out.println("Enter the Course Code : ");
+		logger.info("Enter the Course Code : ");
 		String courseCode = sc.next();
 		
 		try
 		{
 			registrationInterface.dropCourse(courseCode, studentId,registeredCourseList);
-			System.out.println("You have successfully dropped Course : " + courseCode);
+			logger.info("You have successfully dropped Course : " + courseCode);
 			
 		}
 		catch(CourseNotFoundException e)
 		{
-			System.out.println("You have not registered for course : " + e.getCourseCode());
+			logger.info("You have not registered for course : " + e.getCourseCode());
 		} 
 		catch (SQLException e) 
 		{
 
-			System.out.println(e.getMessage());
+			logger.info(e.getMessage());
 		}
 	}
 	else
 	{
-		System.out.println("Please complete registration");
+		logger.info("Please complete registration");
 	}
 }
 
@@ -265,21 +268,21 @@ private List<Course> viewCourse(String studentId){
 	catch (SQLException e) 
 	{
 
-		System.out.println(e.getMessage());
+		logger.info(e.getMessage());
 	}
 
 
 	if(course_available.isEmpty())
 	{
-		System.out.println("NO COURSE AVAILABLE");
+		logger.info("NO COURSE AVAILABLE");
 		return null;
 	}
 	
 
-	System.out.println(String.format("%-20s %-20s %-20s %-20s","COURSE CODE", "COURSE NAME", "INSTRUCTOR", "SEATS"));
+	logger.info(String.format("%-20s %-20s %-20s %-20s","COURSE CODE", "COURSE NAME", "INSTRUCTOR", "SEATS"));
 	for(Course obj : course_available)
 	{
-		System.out.println(String.format("%-20s %-20s %-20s %-20s",obj.getCourseCode(), obj.getCourseName(),obj.getInstructorId(), obj.getSeats()));
+		logger.info(String.format("%-20s %-20s %-20s %-20s",obj.getCourseCode(), obj.getCourseName(),obj.getInstructorId(), obj.getSeats()));
 	}
 	
 	return course_available;
@@ -300,22 +303,22 @@ private List<Course> viewRegisteredCourse(String studentId){
 	catch (SQLException e) 
 	{
 
-		System.out.println(e.getMessage());
+		logger.info(e.getMessage());
 	}
 	
 	if(course_registered.isEmpty())
 	{
-		System.out.println("You haven't registered for any course");
+		logger.info("You haven't registered for any course");
 		return null;
 	}
 	
-	System.out.println(String.format("%-20s %-20s %-20s","COURSE CODE", "COURSE NAME", "INSTRUCTOR"));
+	logger.info(String.format("%-20s %-20s %-20s","COURSE CODE", "COURSE NAME", "INSTRUCTOR"));
 	
 	for(Course obj : course_registered)
 	{
 		 
 		
-		System.out.println(String.format("%-20s %-20s %-20s ",obj.getCourseCode(), obj.getCourseName(),professorInterface.getProfessorById(obj.getInstructorId())));
+		logger.info(String.format("%-20s %-20s %-20s ",obj.getCourseCode(), obj.getCourseName(),professorInterface.getProfessorById(obj.getInstructorId())));
 	}
 	
 	return course_registered;
@@ -334,20 +337,20 @@ private void viewGradeCard(String studentId) {
 	catch (SQLException e) 
 	{
 
-		System.out.println(e.getMessage());
+		logger.info(e.getMessage());
 	}
 	
-	System.out.println(String.format("%-20s %-20s %-20s","COURSE CODE", "COURSE NAME", "GRADE"));
+	logger.info(String.format("%-20s %-20s %-20s","COURSE CODE", "COURSE NAME", "GRADE"));
 	
 	if(grade_card.isEmpty())
 	{
-		System.out.println("You haven't registered for any course");
+		logger.info("You haven't registered for any course");
 		return;
 	}
 	
 	for(Grade obj : grade_card)
 	{
-		System.out.println(String.format("%-20s %-20s %-20s",obj.getCrsCode(), obj.getCrsName(),obj.getGrade()));
+		logger.info(String.format("%-20s %-20s %-20s",obj.getCrsCode(), obj.getCrsName(),obj.getGrade()));
 	}
 }
 

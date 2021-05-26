@@ -6,6 +6,8 @@ package com.flipkart.client;
 import java.util.List;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.RegisteredCourse;
@@ -31,6 +33,8 @@ import com.flipkart.service.NotificationOperation;
  */
 public class AdminCRSMenu {
 
+	private static Logger logger = Logger.getLogger(AdminCRSMenu.class);
+
 	AdminInterface adminOperation = AdminOperation.getInstance();
 	Scanner in = new Scanner(System.in);
 	NotificationInterface notificationInterface=NotificationOperation.getInstance();
@@ -41,19 +45,20 @@ public class AdminCRSMenu {
 	public void createMenu(){
 		
 		while(CRSApplication.loggedin) {
-			System.out.println("*****************************");
-			System.out.println("**********Admin Menu*********");
-			System.out.println("*****************************");
-			System.out.println("1. View course in catalog");
-			System.out.println("2. Add Course to catalog");
-			System.out.println("3. Delete Course from catalog");
-			System.out.println("4. Approve Students");
-			System.out.println("5. View Pending Approvals");
-			System.out.println("6. Add Professor");
-			System.out.println("7. Assign Professor To Courses");
-			System.out.println("8. Generate Report Card");
-			System.out.println("9. Logout");
-			System.out.println("*****************************");
+			logger.info("*****************************");
+			logger.info("**********Admin Menu*********");
+			logger.info("*****************************");
+			logger.info("1. View course in catalog");
+			logger.info("2. Add Course to catalog");
+			logger.info("3. Delete Course from catalog");
+			logger.info("4. Approve Students");
+			logger.info("5. View Pending Approvals");
+			logger.info("6. Add Professor");
+			logger.info("7. Assign Professor To Courses");
+			logger.info("8. Generate Report Card");
+			logger.info("9. Logout");
+			logger.info("*****************************");
+			
 			
 			int choice = in.nextInt();
 			
@@ -95,7 +100,7 @@ public class AdminCRSMenu {
 				return;
 
 			default:
-				System.out.println("***** Wrong Choice *****");
+				logger.warn("***** Wrong Choice *****");
 			}
 		}
 	}
@@ -106,14 +111,14 @@ public class AdminCRSMenu {
 		System.out.print("Enter The StudentId for generating report card : ");
 		String studentId = in.next(); 
 		List<RegisteredCourse> CoursesOfStudent = adminOperation.generateGradeCard(studentId);
-		System.out.println("*************************** Report Card *************************** ");
-		System.out.println("***************************" + studentId + "*************************** ");
+		logger.info("*************************** Report Card *************************** ");
+		logger.info("***************************" + studentId + "*************************** ");
 		
-		System.out.println(String.format("%20s | %20s | %20s ", "CourseCode", "CourseName", "Grade"));
+		logger.info(String.format("%20s | %20s | %20s ", "CourseCode", "CourseName", "Grade"));
 		for(RegisteredCourse obj : CoursesOfStudent) {
-			System.out.println(String.format("%20s | %20s | %20s ", obj.getCourse().getCourseCode(), obj.getCourse().getCourseName(), obj.getGrade()));	
+			logger.info(String.format("%20s | %20s | %20s ", obj.getCourse().getCourseCode(), obj.getCourse().getCourseName(), obj.getGrade()));	
 		}
-		System.out.println("**********************************************************************");
+		logger.info("**********************************************************************");
 	}
 
 	/**
@@ -121,25 +126,25 @@ public class AdminCRSMenu {
 	 */
 	private void assignCourseToProfessor() {
 		List<Professor> professorList= adminOperation.viewProfessors();
-		System.out.println("*************************** Professor *************************** ");
-		System.out.println(String.format("%20s | %20s | %20s ", "ProfessorId", "Name", "Designation"));
+		logger.info("*************************** Professor *************************** ");
+		logger.info(String.format("%20s | %20s | %20s ", "ProfessorId", "Name", "Designation"));
 		for(Professor professor : professorList) {
-			System.out.println(String.format("%20s | %20s | %20s ", professor.getUserId(), professor.getName(), professor.getDesignation()));
+			logger.info(String.format("%20s | %20s | %20s ", professor.getUserId(), professor.getName(), professor.getDesignation()));
 		}
 		
 		
-		System.out.println("\n\n");
+		logger.info("\n\n");
 		List<Course> courseList= adminOperation.viewCourses();
-		System.out.println("**************** Course ****************");
-		System.out.println(String.format("%20s | %20s", "CourseCode", "CourseName"));
+		logger.info("**************** Course ****************");
+		logger.info(String.format("%20s | %20s", "CourseCode", "CourseName"));
 		for(Course course : courseList) {
-			System.out.println(String.format("%20s | %20s ", course.getCourseCode(), course.getCourseName()));
+			logger.info(String.format("%20s | %20s ", course.getCourseCode(), course.getCourseName()));
 		}
 		
-		System.out.println("Enter Course Code:");
+		logger.info("Enter Course Code:");
 		String courseCode = in.next();
 		
-		System.out.println("Enter Professor's User Id:");
+		logger.info("Enter Professor's User Id:");
 		String userId = in.next();
 		
 		try {
@@ -149,7 +154,7 @@ public class AdminCRSMenu {
 		}
 		catch(CourseNotFoundException | UserNotFoundException  e) {
 			
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		
 	}
@@ -159,27 +164,27 @@ public class AdminCRSMenu {
 	 */
 	private void addProfessor() {
 		
-		System.out.println("Enter User Id(integer):");
+		logger.info("Enter User Id(integer):");
 		String userId = in.next();
 		Professor professor = new Professor(userId);
 		
-		System.out.println("Enter Professor Name:");
+		logger.info("Enter Professor Name:");
 		String professorName = in.next();
 		professor.setName(professorName);
 		
-		System.out.println("Enter Department:");
+		logger.info("Enter Department:");
 		String department = in.next();
 		professor.setDepartment(department);
 		
-		System.out.println("Enter Designation:");
+		logger.info("Enter Designation:");
 		String designation = in.next();
 		professor.setDesignation(designation);
 		
-		System.out.println("Enter Password:");
+		logger.info("Enter Password:");
 		String password = in.next();
 		professor.setPassword(password);
 		
-		System.out.println("Enter Gender: \t 1: Male \t 2.Female \t 3.Other ");
+		logger.info("Enter Gender: \t 1: Male \t 2.Female \t 3.Other ");
 		int gender = in.nextInt();
 		
 		if(gender==1)
@@ -189,7 +194,7 @@ public class AdminCRSMenu {
 		else if(gender==3)
 			professor.setGender(Gender.OTHER);
 		
-		System.out.println("Enter Address:");
+		logger.info("Enter Address:");
 		String address = in.next();
 		professor.setAddress(address);
 		
@@ -198,7 +203,7 @@ public class AdminCRSMenu {
 		try {
 			adminOperation.addProfessor(professor);
 		} catch (ProfessorNotAddedException | UserIdAlreadyInUseException e) {
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 
 	}
@@ -213,9 +218,9 @@ public class AdminCRSMenu {
 		if(pendingStudentsList.size() == 0) {
 			return pendingStudentsList;
 		}
-		System.out.println(String.format("%20s | %20s | %20s", "StudentId", "Name", "Gender"));
+		logger.info(String.format("%20s | %20s | %20s", "StudentId", "Name", "Gender"));
 		for(Student student : pendingStudentsList) {
-			System.out.println(String.format("%20s | %20s | %20s", student.getStudentId(), student.getName(), student.getGender().toString()));
+			logger.info(String.format("%20s | %20s | %20s", student.getStudentId(), student.getName(), student.getGender().toString()));
 		}
 		return pendingStudentsList;
 	}
@@ -230,7 +235,7 @@ public class AdminCRSMenu {
 			return;
 		}
 		
-		System.out.println("Enter Student's ID:");
+		logger.info("Enter Student's ID:");
 		String studentUserIdApproval = in.next();
 		
 		
@@ -240,7 +245,7 @@ public class AdminCRSMenu {
 			notificationInterface.sendNotification(NotificationType.REGISTRATION, studentUserIdApproval, null,0);
 	
 		} catch (StudentNotFoundForApprovalException e) {
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 	
 		
@@ -252,18 +257,18 @@ public class AdminCRSMenu {
 	 */
 	private void removeCourse() {
 		List<Course> courseList = viewCoursesInCatalogue();
-		System.out.println("Enter Course Code:");
+		logger.info("Enter Course Code:");
 		String courseCode = in.next();
 		
 		try {
 			adminOperation.removeCourse(courseCode, courseList);
 		} catch (CourseNotFoundException e) {
 			
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		catch (CourseNotDeletedException e) {
 			
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 	}
 	
@@ -275,10 +280,10 @@ public class AdminCRSMenu {
 		List<Course> courseList = viewCoursesInCatalogue();
 
 		in.nextLine();
-		System.out.println("Enter Course Code:");
+		logger.info("Enter Course Code:");
 		String courseCode = in.nextLine();
 		
-		System.out.println("Enter Course Name:");
+		logger.info("Enter Course Name:");
 		String courseName = in.next();
 		
 		Course course = new Course(courseCode, courseName,"", 10);
@@ -290,7 +295,7 @@ public class AdminCRSMenu {
 		adminOperation.addCourse(course, courseList);		
 		}
 		catch (CourseExistsAlreadyException e) {
-			System.out.println("Course already existed "+e.getMessage());
+			logger.error("Course already existed "+e.getMessage());
 		}
 
 	}
@@ -302,12 +307,12 @@ public class AdminCRSMenu {
 	private List<Course> viewCoursesInCatalogue() {
 		List<Course> courseList = adminOperation.viewCourses();
 		if(courseList.size() == 0) {
-			System.out.println("Nothing present in the catalogue!");
+			logger.info("Nothing present in the catalogue!");
 			return courseList;
 		}
-		System.out.println(String.format("%20s | %20s | %20s","COURSE CODE", "COURSE NAME", "INSTRUCTOR"));
+		logger.info(String.format("%20s | %20s | %20s","COURSE CODE", "COURSE NAME", "INSTRUCTOR"));
 		for(Course course : courseList) {
-			System.out.println(String.format("%20s | %20s | %20s", course.getCourseCode(), course.getCourseName(), course.getInstructorId()));
+			logger.info(String.format("%20s | %20s | %20s", course.getCourseCode(), course.getCourseName(), course.getInstructorId()));
 		}
 		return courseList;
 	}

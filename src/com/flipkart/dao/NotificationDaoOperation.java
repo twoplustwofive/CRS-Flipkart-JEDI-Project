@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.UUID;
 
+import org.apache.log4j.Logger;
+
 import com.flipkart.constant.NotificationType;
 import com.flipkart.constant.PaymentMode;
 import com.flipkart.constant.SQLQueries;
@@ -23,7 +25,8 @@ public class NotificationDaoOperation implements NotificationDaoInterface{
 
 	
 	private static volatile NotificationDaoOperation instance=null;
-	
+	private static Logger logger = Logger.getLogger(NotificationDaoOperation.class);
+
 	/**
 	 * Default Constructor
 	 */

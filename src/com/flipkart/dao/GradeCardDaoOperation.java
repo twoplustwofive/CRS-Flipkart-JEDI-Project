@@ -8,6 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.apache.log4j.Logger;
+
 import com.flipkart.constant.Grade;
 import com.flipkart.constant.SQLQueries;
 import com.flipkart.utils.DBUtils;
@@ -19,7 +21,7 @@ import com.flipkart.utils.DBUtils;
 public class GradeCardDaoOperation implements GradeCardDaoInterface {
 	
 	private static volatile GradeCardDaoOperation instance = null;
-	
+	private static Logger logger = Logger.getLogger(AdminDaoOperation.class);
 	private PreparedStatement statement = null;
 	
 	/**
@@ -75,13 +77,13 @@ public class GradeCardDaoOperation implements GradeCardDaoInterface {
 				count++;
 			}
 		} catch(SQLException e) {
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		} finally {
 			try {
 				connection.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				logger.error(e.getMessage());
 			}
 		}
 		if (count == 0) return 0;

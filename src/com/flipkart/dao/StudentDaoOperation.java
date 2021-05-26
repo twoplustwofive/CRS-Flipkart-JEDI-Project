@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-
+import org.apache.log4j.Logger;
 
 import com.flipkart.bean.Student;
 import com.flipkart.constant.SQLQueries;
@@ -25,7 +25,8 @@ import com.flipkart.utils.DBUtils;
 public class StudentDaoOperation implements StudentDaoInterface {
 	
 	private static volatile StudentDaoOperation instance=null;
-	
+	private static Logger logger = Logger.getLogger(StudentDaoOperation.class);
+
 	/**
 	 * Default Constructor
 	 */
@@ -75,7 +76,7 @@ public class StudentDaoOperation implements StudentDaoInterface {
 			int rowsAffected=preparedStatement.executeUpdate();
 			if(rowsAffected==1)
 			{
-				System.out.println("enter student entry");
+				logger.info("enter student entry");
 				//add the student record
 				//"insert into student (userId,branchName,batch,isApproved) values (?,?,?,?)";
 				PreparedStatement preparedStatementStudent;
@@ -101,7 +102,7 @@ public class StudentDaoOperation implements StudentDaoInterface {
 			try {
 				connection.close();
 			} catch (SQLException e) {
-				System.out.println(e.getMessage()+"SQL error");
+				logger.info(e.getMessage()+"SQL error");
 				e.printStackTrace();
 			}
 		}
@@ -129,7 +130,7 @@ public class StudentDaoOperation implements StudentDaoInterface {
 		}
 		catch(SQLException e)
 		{
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		
 		return null;
@@ -156,7 +157,7 @@ public class StudentDaoOperation implements StudentDaoInterface {
 		}
 		catch(SQLException e)
 		{
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		
 		return false;
