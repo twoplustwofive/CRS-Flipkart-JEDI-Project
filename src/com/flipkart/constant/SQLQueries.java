@@ -20,7 +20,7 @@ public class SQLQueries {
 		public static final String VIEW_COURSE_QUERY = "select courseCode, courseName, professorId from Course where catalogId = ?";
 		public static final String VIEW_PROFESSOR_QUERY = "select userId, name, gender, department, designation, address from Professor natural join User";
 		
-		public static final String ADD_STUDENT="insert into student (userId,branchName,batch,isApproved) values (?,?,?,?)";
+		public static final String ADD_STUDENT="insert into student (studentId,department,gradYear,isApproved) values (?,?,?,?)";
 		public static final String IS_APPROVED="select isApproved from student where studentId = ? ";
 		public static final String GET_STUDENT_ID="select studentId from student where userId = ? ";
 			

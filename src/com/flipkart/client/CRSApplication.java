@@ -112,10 +112,12 @@ public class CRSApplication {
 			System.out.println("Password:");
 			password = in.next();
 			loggedin = userInterface.verifyCredentials(userId, password);
+			System.out.println("unknown");
 			//2 cases
 			//true->role->student->approved
 			if(loggedin)
 			{
+				 System.out.println("Logged in");
 				 DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");  
 				 
 				 LocalDateTime myDateObj = LocalDateTime.now();
@@ -124,8 +126,11 @@ public class CRSApplication {
 				 
 				 
 				    
-				//System.out.println("Welcome "+userId);
+				
 				String role = userInterface.getRole(userId);
+				
+				
+				
 				
 				switch(role) {
 				case "ADMIN":

@@ -95,10 +95,14 @@ public class UserDaoOperation implements UserDaoInterface{
 			preparedStatement.setString(1,userId);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			
+			System.out.println("inside verify");
+			
 			if(!resultSet.next())
 				throw new UserNotFoundException(userId);
+
 			else if(password.equals(resultSet.getString("password")))
 			{
+				System.out.println("inside equals");
 				return true;
 			}
 			else
@@ -149,6 +153,7 @@ public class UserDaoOperation implements UserDaoInterface{
 			
 			if(rs.next())
 			{
+				System.out.println(rs.getString("role"));
 				return rs.getString("role");
 			}
 				
