@@ -19,6 +19,11 @@ public interface AdminInterface
 	public List<Course> viewCourses();
 	public List<Professor> viewProfessors();
 	
+	/**
+	 * Method to view Students yet to be approved by Admin
+	 * @return List of Students with pending admissions
+	 */
+	public List<Student> viewPendingAdmissions();
 	
 	/**
 	 * Method to generate grade card of a Student 
