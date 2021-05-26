@@ -220,7 +220,7 @@ public class CRSApplication {
 			System.out.println("Country");
 			country=sc.next();
 			
-			int newStudentId = studentInterface.register(name, userId, password, gender, batch, branchName, address, country);
+			String newStudentId = studentInterface.register(name, userId, password, gender, batch, branchName, address);
 			notificationInterface.sendNotification(NotificationType.REGISTRATION, newStudentId, null,0);
 			
 		}

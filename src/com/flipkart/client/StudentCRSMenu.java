@@ -4,9 +4,11 @@
 package com.flipkart.client;
 
 import com.flipkart.bean.Course;
+import com.flipkart.bean.Grade;
 import com.flipkart.exception.CourseLimitExceededException;
 import com.flipkart.exception.CourseNotAvailableException;
 import com.flipkart.exception.CourseNotFoundException;
+import com.flipkart.exception.SeatNotAvailableException;
 import com.flipkart.service.*;
 
 import java.sql.SQLException;
@@ -129,9 +131,12 @@ private void registerCourses(String studentId)
 				System.out.println(" You have already registered for Course : " + courseCode);
 			}
 		}	
-		catch(CourseNotAvailableException | CourseLimitExceededException | SQLException e)
+		catch(CourseNotFoundException | CourseLimitExceededException | SQLException e)
 		{
 			System.out.println(e.getMessage());
+		} catch (SeatNotAvailableException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	
@@ -170,9 +175,18 @@ private void addCourse(String studentId) {
 				System.out.println(" You have already registered for Course : " + courseCode);
 			}
 		}
-		catch(CourseNotFoundException | CourseLimitExceedException | SQLException e)
+		 catch(SQLException e)
 		{
 			System.out.println(e.getMessage());
+		} catch (CourseNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (CourseLimitExceededException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SeatNotAvailableException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	else 
@@ -187,7 +201,7 @@ private void addCourse(String studentId) {
  * @param studentId
  * @return Registration Status
  */
-private boolean getRegistrationStatus(int studentId)
+private boolean getRegistrationStatus(String studentId)
 {
 	try 
 	{

@@ -174,7 +174,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 	 * @throws StudentNotFoundException
 	 */
 	@Override
-	public void approveStudent(int studentId) throws StudentNotFoundForApprovalException {
+	public void approveStudent(String studentId) throws StudentNotFoundForApprovalException {
 		
 		statement = null;
 		try {
