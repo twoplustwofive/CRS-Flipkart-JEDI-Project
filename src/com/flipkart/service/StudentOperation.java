@@ -1,22 +1,13 @@
 package com.flipkart.service;
 
-<<<<<<< HEAD
 import com.flipkart.bean.SemRegistration;
 import com.flipkart.constant.Role;
 import com.flipkart.dao.StudentDaoInterface;
 import com.flipkart.dao.StudentDaoOperation;
 import com.flipkart.exception.StudentNotRegisteredException;
-=======
->>>>>>> 09eebac02dc52570ccfa1b523f636ed363e95aa6
-
-
 import com.flipkart.bean.Student;
 import com.flipkart.client.CRSApplication;
 import com.flipkart.constant.Gender;
-import com.flipkart.constant.Role;
-import com.flipkart.dao.StudentDaoInterface;
-import com.flipkart.dao.StudentDaoOperation;
-import com.flipkart.exception.StudentNotRegisteredException;
 
 /**
  * 
