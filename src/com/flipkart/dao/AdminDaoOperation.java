@@ -400,7 +400,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 				
 			}
 			
-			(professorList.size() + " professors in the institute.");
+			System.out.println(professorList.size() + " professors in the institute.");
 			
 		}catch(SQLException se) {
 			
