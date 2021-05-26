@@ -27,7 +27,6 @@ import com.flipkart.utils.DBUtils;
 public class StudentDaoOperation implements StudentDaoInterface {
 	
 	private static volatile StudentDaoOperation instance=null;
-	private static Logger logger = Logger.getLogger(StudentOperation.class);
 	
 	/**
 	 * Default Constructor
@@ -67,7 +66,7 @@ public class StudentDaoOperation implements StudentDaoInterface {
 		{
 			//open db connection
 			PreparedStatement preparedStatement=connection.prepareStatement(SQLQueries.ADD_USER_QUERY);
-			preparedStatement.setString(1, student.getUserId());
+			preparedStatement.setString(1, student.getUserID());
 			preparedStatement.setString(2, student.getName());
 			preparedStatement.setString(3, student.getPassword());
 			preparedStatement.setString(4, student.getRole().toString());
@@ -81,7 +80,7 @@ public class StudentDaoOperation implements StudentDaoInterface {
 				//"insert into student (userId,branchName,batch,isApproved) values (?,?,?,?)";
 				PreparedStatement preparedStatementStudent;
 				preparedStatementStudent=connection.prepareStatement(SQLQueries.ADD_STUDENT,Statement.RETURN_GENERATED_KEYS);
-				preparedStatementStudent.setString(1,student.getUserId());
+				preparedStatementStudent.setString(1,student.getUserID());
 				preparedStatementStudent.setString(2, student.getBranchName());
 				preparedStatementStudent.setInt(3, student.getBatch());
 				preparedStatementStudent.setBoolean(4, false);

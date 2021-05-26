@@ -16,6 +16,7 @@ import com.flipkart.exception.StudentNotRegisteredException;
  */
 public interface StudentDaoInterface {
 	
+	
 	/**
 	 * Method to add student to database
 	 * @param student: student object containing all the fields
