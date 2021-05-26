@@ -11,7 +11,7 @@ import com.flipkart.constant.Role;
  *
  */
 public abstract class User {
-	private final String userID;
+	private String userID;
 	private String name;
 	private Gender gender;
 	protected Role role;
@@ -30,6 +30,9 @@ public abstract class User {
 		this.address = address;
 	}
 
+	public User() {
+		
+	}
 	/**
 	 * @return the name
 	 */

@@ -14,6 +14,11 @@ public class Course
 	private String instructorId;
 	private int seats = 50;
 	
+	public Course()
+	{
+		
+	}
+	
 	public Course(String crsCode,String crsName,String instructorId,int seats) {
 		this.crsCode=crsCode;
 		this.crsName=crsName;

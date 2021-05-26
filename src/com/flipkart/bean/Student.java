@@ -30,6 +30,10 @@ public class Student extends User
 		super(userId, name, gender, student, password, address);
 	}
 
+	public Student()
+	{
+		super();
+	}
 
 	/**
 	 * @return the department
