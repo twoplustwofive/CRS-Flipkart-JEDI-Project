@@ -418,7 +418,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 	public List<RegisteredCourse> generateGradeCard(String Studentid) 
 	{
 		List<RegisteredCourse> CoursesOfStudent = new ArrayList<RegisteredCourse>();
-		RegisteredCourse temp = new RegisteredCourse() ;
+		
 		try {
 					String sql = SQLQueries.VIEW_REGISTERED_COURSES;
 					statement = connection.prepareStatement(sql);
@@ -428,10 +428,13 @@ public class AdminDaoOperation implements AdminDaoInterface{
 					while(resultSet.next()) {
 						
 						Course course = new Course();
+						RegisteredCourse temp = new RegisteredCourse() ;
 						course.setCourseCode(resultSet.getString(1));
 						course.setCourseName(resultSet.getString(2));
 						course.setInstructorId(resultSet.getString(3));
 						course.setSeats(resultSet.getInt(4));
+						
+						System.out.println(resultSet.getString(1));
 						
 						temp.setCourse(course);
 						temp.setstudentId(Studentid);
@@ -443,8 +446,8 @@ public class AdminDaoOperation implements AdminDaoInterface{
 					
 					String sql1 = SQLQueries.SET_GENERATED_REPORT_CARD_TRUE;
 					statement = connection.prepareStatement(sql1);
-					//statement.setInt(1, catalogId);
-					ResultSet resultSet1 = statement.executeQuery();
+					statement.setString(1, Studentid);
+					int row = statement.executeUpdate();
 						
 					
 				}catch(SQLException se) {
