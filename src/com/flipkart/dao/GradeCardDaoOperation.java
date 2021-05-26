@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.flipkart.bean.RegisteredCourse;
+import com.flipkart.constant.Grade;
 import com.flipkart.constant.SQLQueries;
 import com.flipkart.utils.DBUtils;
 
@@ -42,23 +42,19 @@ public class GradeCardDaoOperation implements GradeCardDaoInterface {
 	
 	private float grade2float(String grade) {
 		switch (grade) {
-		case "A":
-		case "A*":
-		case "a":
-		case "a*":
+		case Grade.A_:
+		case Grade.A:
 			return 10;
-		case "B":
-		case "b":
+		case Grade.B:
 			return 8;
-		case "C":
-		case "c":
+		case Grade.C:
 			return 6;
-		case "D":
-		case "d":
+		case Grade.D:
 			return 4;
-		case "E":
-		case "e":
+		case Grade.E:
 			return 2;
+		case Grade.F:
+			return 0;
 		default:
 			return 0;
 		}
