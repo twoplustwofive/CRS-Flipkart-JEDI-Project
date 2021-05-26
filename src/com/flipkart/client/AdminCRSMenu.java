@@ -32,7 +32,7 @@ public class AdminCRSMenu {
 
 	AdminInterface adminOperation = AdminOperation.getInstance();
 	Scanner in = new Scanner(System.in);
-	NotificationInterface notificationInterface=new NotificationOperation();
+	NotificationInterface notificationInterface=NotificationOperation.getInstance();
 	
 	/**
 	 * Method to Create Admin Menu

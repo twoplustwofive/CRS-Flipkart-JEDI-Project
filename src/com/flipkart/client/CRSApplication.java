@@ -101,16 +101,16 @@ public class CRSApplication {
 		//invalid credential exception
 		//user not found exception
 		//user not approved exception
-		Scanner sc=new Scanner(System.in);
+		Scanner in = new Scanner(System.in);
 
 		String userId,password;
 		try
 		{
 			System.out.println("-----------------Login------------------");
 			System.out.println("Email:");
-			userId=sc.next();
+			userId = in.next();
 			System.out.println("Password:");
-			password=sc.next();
+			password = in.next();
 			loggedin = userInterface.verifyCredentials(userId, password);
 			//2 cases
 			//true->role->student->approved
@@ -125,13 +125,12 @@ public class CRSApplication {
 				 
 				    
 				//System.out.println("Welcome "+userId);
-				String role=userInterface.getRole(userId);
+				String role = userInterface.getRole(userId);
 				
-				switch(role)
-				{
+				switch(role) {
 				case "ADMIN":
 					System.out.println(formattedDate + " Login Successful");
-					AdminCRSMenu adminMenu=new AdminCRSMenu();
+					AdminCRSMenu adminMenu = new AdminCRSMenu();
 					adminMenu.createMenu();
 					break;
 				case "PROFESSOR":
@@ -144,15 +143,12 @@ public class CRSApplication {
 					
 					String studentId=studentInterface.getStudentId(userId);
 					boolean isApproved=studentInterface.isApproved(studentId);
-					if(isApproved)
-					{
+					if(isApproved) {
 						System.out.println(formattedDate + " Login Successful");
 						StudentCRSMenu studentMenu=new StudentCRSMenu();
 						studentMenu.create_menu(studentId);
 						
-					}
-					else
-					{
+					} else {
 						System.out.println("Failed to login, you have not been approved by the administration!");
 						loggedin=false;
 					}
@@ -170,7 +166,8 @@ public class CRSApplication {
 		catch(UserNotFoundException ex)
 		{
 			System.out.println(ex.getMessage());
-		}	
+		}
+		in.close();
 	}
 	
 	/**
@@ -223,7 +220,7 @@ public class CRSApplication {
 			System.out.println("Country");
 			country=sc.next();
 			
-			int newStudentId=studentInterface.register(name, userId, password, gender, batch, branchName, address, country);
+			int newStudentId = studentInterface.register(name, userId, password, gender, batch, branchName, address, country);
 			notificationInterface.sendNotification(NotificationType.REGISTRATION, newStudentId, null,0);
 			
 		}
@@ -236,28 +233,25 @@ public class CRSApplication {
 	/**
 	 * Method to update password of User
 	 */
-	public void updatePassword()
-	{
-		Scanner sc=new Scanner(System.in);
+	public void updatePassword() {
+		Scanner in = new Scanner(System.in);
 		String userId,newPassword;
-		try
-		{
+		try {
 			System.out.println("------------------Update Password--------------------");
 			System.out.println("Email");
-			userId=sc.next();
+			userId=in.next();
 			System.out.println("New Password:");
-			newPassword=sc.next();
+			newPassword=in.next();
 			boolean isUpdated=userInterface.updatePassword(userId, newPassword);
 			if(isUpdated)
 				System.out.println("Password updated successfully!");
 
 			else
 				System.out.println("Something went wrong, please try again!");
-		}
-		catch(Exception ex)
-		{
+		} catch(Exception ex) {
 			System.out.println("Error Occured "+ex.getMessage());
 		}
+		in.close();
 	}
 		
 }
