@@ -12,6 +12,7 @@ import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.exception.GradeNotAllotedException;
 import com.flipkart.service.ProfessorInterface;
 import com.flipkart.service.ProfessorOperation;
+import com.flipkart.validator.ProfessorValidator;
 
 
 /**
@@ -58,10 +59,10 @@ public class ProfessorCRSMenu {
 				System.out.println("Please select appropriate option...");
 			}
 		}
+		in.close();
 	}
 	
 	public void viewEnrolledStudents(String profID) {
-		List<Course> coursesEnrolled = professorInterface.getCourses(profID);
 		System.out.println(String.format("%20s %20s %20s","COURSE CODE","COURSE NAME","Student" ));
 		try {
 			List<RegisteredCourse> enrolledStudents = new ArrayList<RegisteredCourse>();
@@ -118,6 +119,6 @@ public class ProfessorCRSMenu {
 			System.out.println("Grade cannot be added for"+ex.getStudentId());
 			
 		}
-	
+		in.close();
 	}
 }
