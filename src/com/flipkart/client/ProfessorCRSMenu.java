@@ -122,6 +122,7 @@ public class ProfessorCRSMenu {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		in.close();
+		
 	}
+
 }

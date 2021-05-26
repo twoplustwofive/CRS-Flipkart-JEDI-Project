@@ -430,7 +430,7 @@ public class RegistrationDaoOperation implements RegistrationDaoInterface{
 			ResultSet rs = stmt.executeQuery();
 			rs.next();
 			status = rs.getBoolean(1);
-
+			System.out.println(status);	
 		} 
 		catch (SQLException e) 
 		{

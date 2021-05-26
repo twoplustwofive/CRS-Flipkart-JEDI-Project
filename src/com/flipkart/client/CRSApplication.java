@@ -110,7 +110,9 @@ public class CRSApplication {
 			password = in.next();
 			loggedin = userInterface.verifyCredentials(userId, password);
 			System.out.println("unknown");
-			//2 cases
+			//2 cases1
+			
+			
 			//true->role->student->approved
 			if(loggedin)
 			{
