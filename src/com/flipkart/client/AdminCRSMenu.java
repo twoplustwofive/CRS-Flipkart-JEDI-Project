@@ -193,7 +193,7 @@ public class AdminCRSMenu {
 		}
 		System.out.println(String.format("%20s | %20s | %20s | %20s", "UserId", "StudentId", "Name", "Gender"));
 		for(Student student : pendingStudentsList) {
-			System.out.println(String.format("%20s | %20d | %20s | %20s", student.getUserID(), student.getStudentID(), student.getName(), student.getGender().toString()));
+			System.out.println(String.format("%20s | %20d | %20s | %20s", student.getUserID(), student.getStudentId(), student.getName(), student.getGender().toString()));
 		}
 		return pendingStudentsList;
 	}
