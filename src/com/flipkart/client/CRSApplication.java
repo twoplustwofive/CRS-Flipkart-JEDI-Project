@@ -150,7 +150,7 @@ public class CRSApplication {
 					break;
 				case STUDENT:
 					
-					int studentId=studentInterface.getStudentId(userId);
+					String studentId=studentInterface.getStudentId(userId);
 					boolean isApproved=studentInterface.isApproved(studentId);
 					if(isApproved)
 					{

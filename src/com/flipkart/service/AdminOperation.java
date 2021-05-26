@@ -135,6 +135,11 @@ public class AdminOperation implements AdminInterface{
 			throw e;
 		}
 	}
+	@Override
+	public List<Course> viewCourses() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }

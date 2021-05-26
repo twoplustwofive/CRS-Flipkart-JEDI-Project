@@ -6,6 +6,7 @@ package com.flipkart.client;
 import com.flipkart.bean.*;
 import com.flipkart.service.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -93,11 +94,13 @@ private void dropCourse(String studentId) {
 }
 
 private List<Course> viewCourse(String studentId){
-	return;
+	List<Course> l = new ArrayList<Course>();
+	return l;
 }
 
 private List<Course> viewRegisteredCourse(String studentId){
-	return;
+	List<Course> l = new ArrayList<Course>();
+	return l;
 }
 
 private void viewGradeCard(String studentId) {
