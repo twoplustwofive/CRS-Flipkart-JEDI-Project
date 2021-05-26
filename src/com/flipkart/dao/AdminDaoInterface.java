@@ -47,7 +47,7 @@ public interface AdminDaoInterface {
 	 */
 	
 	
-	public void approveStudent(int studentid) throws StudentNotFoundForApprovalException;
+	public void approveStudent(String studentid) throws StudentNotFoundForApprovalException;
 	
 	/**
 	 * Method to add Professor to DB

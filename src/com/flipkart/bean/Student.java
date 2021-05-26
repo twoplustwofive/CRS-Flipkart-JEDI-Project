@@ -13,7 +13,7 @@ import com.flipkart.constant.Role;
 public class Student extends User 
 {
 	private String department;
-	private String studentID;
+	private String studentId;
 	private int gradYear;
 	boolean isApproved;
 	
@@ -52,9 +52,9 @@ public class Student extends User
 	/**
 	 * @return the studentID
 	 */
-	public String getStudentID() 
+	public String getStudentId() 
 	{
-		return studentID;
+		return studentId;
 	}
 	
 	

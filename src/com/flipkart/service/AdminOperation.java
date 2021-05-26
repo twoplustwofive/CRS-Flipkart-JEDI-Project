@@ -121,7 +121,7 @@ public class AdminOperation implements AdminInterface{
 	 * @throws StudentNotFoundException 
 	 */
 	@Override
-	public void approveStudent(int studentId, List<Student> studentList) throws StudentNotFoundForApprovalException {
+	public void approveStudent(String studentId, List<Student> studentList) throws StudentNotFoundForApprovalException {
 		if(!AdminValidator.isValidUnapprovedStudent(studentId, studentList)) {
 			throw new StudentNotFoundForApprovalException(studentId);
 		}

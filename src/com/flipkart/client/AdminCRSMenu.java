@@ -209,7 +209,7 @@ public class AdminCRSMenu {
 		}
 		
 		System.out.println("Enter Student's ID:");
-		int studentUserIdApproval = in.nextInt();
+		String studentUserIdApproval = in.nextLine();
 		
 		
 		try {

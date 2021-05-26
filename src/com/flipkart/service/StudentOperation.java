@@ -79,7 +79,7 @@ public class StudentOperation implements StudentInterface {
     @Override
     public String getStudentId(String userId) {
         
-        return StudentDaoInterface.getStudentId(userId);
+        return studentDaoInterface.getStudentId(userId);
     }
 
 

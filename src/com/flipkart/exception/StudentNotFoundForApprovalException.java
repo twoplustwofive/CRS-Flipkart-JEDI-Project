@@ -9,9 +9,9 @@ package com.flipkart.exception;
  */
 public class StudentNotFoundForApprovalException extends Exception{
 	
-	private int StudentId;
+	private String StudentId;
 	
-	public StudentNotFoundForApprovalException(int id) {
+	public StudentNotFoundForApprovalException(String id) {
 		StudentId = id;
 	}
 	
@@ -19,7 +19,7 @@ public class StudentNotFoundForApprovalException extends Exception{
 	 * Getter function for professorId
 	 * @return
 	 */
-	public int getUserId() {
+	public String getUserId() {
 		return StudentId;
 	}
 	
