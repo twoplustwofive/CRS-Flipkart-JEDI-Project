@@ -1,8 +1,10 @@
 package com.flipkart.service;
 
 import com.flipkart.bean.SemRegistration;
+import com.flipkart.constant.Role;
 import com.flipkart.dao.StudentDaoInterface;
 import com.flipkart.dao.StudentDaoOperation;
+import com.flipkart.exception.StudentNotRegisteredException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,54 +53,22 @@ public class StudentOperation implements StudentInterface {
      * @return Student ID
      * @throws StudentNotRegisteredException
      */
-    @Override
-    public int register() 
-    {	
-    	
-    	//
-    	
-    	SemRegistration semReg = new SemRegistration();
-    	
-    	RegistrationOperation Rop = new RegistrationOperation();
-    	
-    	List<Course> regCrs = new ArrayList<Course>();
-    	
-    	int t = 1;
-    	Scanner in = new Scanner(System.in);
-    	while(t)
-    	{
-    		int choice;
-    		System.out.println("Please enter your op: ");
-        	choice = in.nextInt();
-        	
-        	switch(choice)
-        	{
-		    	case 1:
-					Rop.addCourse(,,regCrs);
-					break;
-					
-				case 2:
-					dropCourse(studentId);
-					break;
-					
-				case 3:
-					viewCourse(studentId);
-					break;
-					
-				case 4:
-					viewRegisteredCourse(studentId);
-					break;
-        	}
-        	
-    	}
-    	
-    	
-    	
-    	
-    	
-    	
-        return 0;
-    }
+	@Override
+	public int register(String name,String userId,String password,Gender gender,int batch,String branch,String address,String country) throws StudentNotRegisteredException{
+		int studentId;
+		try
+		{
+			//call the DAO class, and add the student record to the DB
+			Student newStudent=new Student(userId,name,Role.STUDENT,password,gender,address,country,branch,0,batch,false);
+			studentId=studentDaoInterface.addStudent(newStudent);
+			
+		}
+		catch(StudentNotRegisteredException ex)
+		{
+			throw ex;
+		}
+		return studentId;
+	}
 
 
     /**
@@ -107,9 +77,9 @@ public class StudentOperation implements StudentInterface {
      * @return Student ID
      */
     @Override
-    public int getStudentId(String userId) {
+    public String getStudentId(String userId) {
         // TODO Auto-generated method stub
-        return studentDaoInterface.getStudentId(userId);
+        return StudentDaoInterface.getStudentId(userId);
 ;
     }
 
