@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.flipkart.bean.Course;
+import com.flipkart.bean.Grade;
 import com.flipkart.bean.GradeCard;
 
 /**
@@ -55,13 +56,7 @@ public interface RegistrationDaoInterface {
 	 * @param studentId
 	 * @return Grade Card
 	 */
-	public List<GradeCard> viewGradeCard(int studentId) throws SQLException;
-
-	/**
-	 * Method to retrieve fee for the selected courses from the database and calculate total fee
-	 * @param studentId
-	 * @return Fee Student has to pay
-	 */
+	
 	public double calculateFee(int studentId) throws SQLException;
 
 	/**
@@ -100,6 +95,15 @@ public interface RegistrationDaoInterface {
 	 * @param studentId
 	 */
 	public void setRegistrationStatus(int studentId) throws SQLException;
+
+
+	/**
+	 * Method to view grade card of the student
+	 * @param studentId
+	 * @throws SQLException 
+	 * @return Studen's grade card
+	 */
+	public List<Grade> viewGradeCard(String studentId) throws SQLException;
 
 	
 }

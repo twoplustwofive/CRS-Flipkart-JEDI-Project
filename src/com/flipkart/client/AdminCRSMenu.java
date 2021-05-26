@@ -16,6 +16,7 @@ import com.flipkart.exception.CourseExistsAlreadyException;
 import com.flipkart.exception.CourseNotDeletedException;
 import com.flipkart.exception.CourseNotFoundException;
 import com.flipkart.exception.ProfessorNotAddedException;
+import com.flipkart.exception.StudentNotFoundForApprovalException;
 import com.flipkart.exception.UserIdAlreadyInUseException;
 import com.flipkart.exception.UserNotFoundException;
 import com.flipkart.service.AdminInterface;
@@ -29,7 +30,7 @@ import com.flipkart.service.NotificationOperation;
  */
 public class AdminCRSMenu {
 
-	AdminInterface adminOperation = new AdminOperation();
+	AdminInterface adminOperation = AdminOperation.getInstance();
 	Scanner in = new Scanner(System.in);
 	NotificationInterface notificationInterface=new NotificationOperation();
 	
@@ -46,7 +47,7 @@ public class AdminCRSMenu {
 			System.out.println("2. Add Course to catalog");
 			System.out.println("3. Delete Course from catalog");
 			System.out.println("4. Approve Students");
-			System.out.println("5. View Pending Admission");
+			System.out.println("5. View Pending Admissions");
 			System.out.println("6. Add Professor");
 			System.out.println("7. Assign Courses To Professor");
 			System.out.println("8. Logout");
@@ -213,9 +214,14 @@ public class AdminCRSMenu {
 		int studentUserIdApproval = in.nextInt();
 		
 		
-		adminOperation.verifyStudent(studentUserIdApproval, studentList);
-		//send notification from system
-		notificationInterface.sendNotification(NotificationType.REGISTRATION, studentUserIdApproval, null,0);
+		try {
+			adminOperation.approveStudent(studentUserIdApproval, studentList);
+			//send notification from system
+			notificationInterface.sendNotification(NotificationType.REGISTRATION, studentUserIdApproval, null,0);
+	
+		} catch (StudentNotFoundForApprovalException e) {
+			System.out.println(e.getMessage());
+		}
 	
 		
 	}
@@ -273,7 +279,7 @@ public class AdminCRSMenu {
 	 * @return List of courses in catalogue
 	 */
 	private List<Course> viewCoursesInCatalogue() {
-		List<Course> courseList = adminOperation.viewCourses();
+		List<Course> courseList = adminOperation.viewCourses(1);
 		if(courseList.size() == 0) {
 			System.out.println("Nothing present in the catalogue!");
 			return courseList;
