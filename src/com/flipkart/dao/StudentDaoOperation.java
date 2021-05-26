@@ -9,10 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import com.flipkart.bean.Student;
-import com.flipkart.client.CRSApplication;
 import com.flipkart.constant.SQLQueries;
 import com.flipkart.exception.StudentNotRegisteredException;
-import com.flipkart.service.StudentOperation;
 import com.flipkart.utils.DBUtils;
 
 /**
@@ -80,6 +78,7 @@ public class StudentDaoOperation implements StudentDaoInterface {
 				preparedStatementStudent.setString(1,student.getUserID());
 				preparedStatementStudent.setString(2, student.getDepartment());
 				preparedStatementStudent.setInt(3, student.getGradYear());
+
 				preparedStatementStudent.setBoolean(4, false);
 				preparedStatementStudent.executeUpdate();
 				ResultSet results=preparedStatementStudent.getGeneratedKeys();
