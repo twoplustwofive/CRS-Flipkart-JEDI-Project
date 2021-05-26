@@ -104,5 +104,8 @@ public interface RegistrationDaoInterface {
 	 */
 	public List<Grade> viewGradeCard(String studentId) throws SQLException;
 
+
+	public boolean isReportGenerated(String studentId) throws SQLException;
+
 	
 }

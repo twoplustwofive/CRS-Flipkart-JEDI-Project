@@ -430,7 +430,7 @@ public class RegistrationDaoOperation implements RegistrationDaoInterface{
 			ResultSet rs = stmt.executeQuery();
 			rs.next();
 			status = rs.getBoolean(1);
-			System.out.println(status);	
+			//System.out.println(status);	
 		} 
 		catch (SQLException e) 
 		{
@@ -472,6 +472,34 @@ public class RegistrationDaoOperation implements RegistrationDaoInterface{
 			conn.close();
 		}
 
+	}
+
+	@Override
+	public boolean isReportGenerated(String studentId) throws SQLException
+	{
+		Connection conn = DBUtils.getConnection();
+		boolean status = false;
+		try 
+		{
+			stmt = conn.prepareStatement(SQLQueries.GET_GENERATED_REPORT_CARD_TRUE);
+			stmt.setString(1, studentId);
+			ResultSet rs = stmt.executeQuery();
+			rs.next();
+			status = rs.getBoolean(1);
+			//System.out.println(status);	
+		} 
+		catch (SQLException e) 
+		{
+			System.out.println(e.getMessage());
+	
+		} 
+		finally
+		{
+			stmt.close();
+			conn.close();
+		}
+	
+		return status;
 	}
 
 

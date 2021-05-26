@@ -177,4 +177,10 @@ public class RegistrationOperation implements RegistrationInterface {
 
 	}
 
+	@Override
+	public boolean isReportGenerated(String studentId) throws SQLException {
+		
+		return registrationDaoInterface.isReportGenerated(studentId);
+	}
+
 }

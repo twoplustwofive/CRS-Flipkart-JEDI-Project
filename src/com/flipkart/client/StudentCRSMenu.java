@@ -22,6 +22,7 @@ public class StudentCRSMenu {
 	
 	Scanner sc = new Scanner(System.in);
 	RegistrationInterface registrationInterface = RegistrationOperation.getInstance();
+	AdminInterface adminInterface = AdminOperation.getInstance();
 	ProfessorInterface professorInterface = ProfessorOperation.getInstance();
 	NotificationInterface notificationInterface = NotificationOperation.getInstance();
 	private boolean is_registered;
@@ -258,6 +259,9 @@ private void dropCourse(String studentId) {
  */
 private List<Course> viewCourse(String studentId){
 	List<Course> course_available=null;
+	
+	 
+	
 	try 
 	{
 		course_available = registrationInterface.viewCourses(studentId);
@@ -327,9 +331,28 @@ private List<Course> viewRegisteredCourse(String studentId){
  */
 private void viewGradeCard(String studentId) {
 	List<Grade> grade_card=null;
+	boolean isReportGenerated = false;
+	
 	try 
 	{
-		grade_card = registrationInterface.viewGradeCard(studentId);
+		isReportGenerated = registrationInterface.isReportGenerated(studentId);
+		if(isReportGenerated) {
+			grade_card = registrationInterface.viewGradeCard(studentId);
+			System.out.println(String.format("%-20s %-20s %-20s","COURSE CODE", "COURSE NAME", "GRADE"));
+			
+			if(grade_card.isEmpty())
+			{
+				System.out.println("You haven't registered for any course");
+				return;
+			}
+			
+			for(Grade obj : grade_card)
+			{
+				System.out.println(String.format("%-20s %-20s %-20s",obj.getCrsCode(), obj.getCrsName(),obj.getGrade()));
+			}
+		}
+		else
+			System.out.println("Report card not yet generated");
 	} 
 	catch (SQLException e) 
 	{
@@ -337,22 +360,13 @@ private void viewGradeCard(String studentId) {
 		System.out.println(e.getMessage());
 	}
 	
-	System.out.println(String.format("%-20s %-20s %-20s","COURSE CODE", "COURSE NAME", "GRADE"));
 	
-	if(grade_card.isEmpty())
-	{
-		System.out.println("You haven't registered for any course");
-		return;
-	}
-	
-	for(Grade obj : grade_card)
-	{
-		System.out.println(String.format("%-20s %-20s %-20s",obj.getCrsCode(), obj.getCrsName(),obj.getGrade()));
-	}
 }
 
-private void make_payment(String studentId) {
-		return;
-	}
+private void make_payment(String studentId) 
+{
+		
+	return;
+}
 
 }

@@ -434,7 +434,6 @@ public class AdminDaoOperation implements AdminDaoInterface{
 						course.setInstructorId(resultSet.getString(3));
 						course.setSeats(resultSet.getInt(4));
 						
-						System.out.println(resultSet.getString(1));
 						
 						temp.setCourse(course);
 						temp.setstudentId(Studentid);

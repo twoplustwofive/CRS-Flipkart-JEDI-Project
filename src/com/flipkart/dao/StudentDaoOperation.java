@@ -75,7 +75,7 @@ public class StudentDaoOperation implements StudentDaoInterface {
 			int rowsAffected=preparedStatement.executeUpdate();
 			if(rowsAffected==1)
 			{
-				System.out.println("enter student entry");
+				//System.out.println("enter student entry");
 				//add the student record
 				//"insert into student (userId,branchName,batch,isApproved) values (?,?,?,?)";
 				PreparedStatement preparedStatementStudent;

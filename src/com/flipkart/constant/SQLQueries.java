@@ -20,6 +20,7 @@ public class SQLQueries {
 		public static final String VIEW_COURSE_QUERY = "select courseCode, courseName, professorId from Course";
 		public static final String VIEW_PROFESSOR_QUERY = "select userId, name, gender, department, designation, address from Professor natural join User where userId = professorId";
 		public static final String SET_GENERATED_REPORT_CARD_TRUE = "update student set isReportGenerated = 1 where studentId = ?";
+		public static final String GET_GENERATED_REPORT_CARD_TRUE = "select isReportGenerated from student where studentId = ?";
 		public static final String ADD_STUDENT="insert into student (studentId,department,gradYear,isApproved,isRegistered,isReportGenerated) values (?,?,?,?,1,0)";
 		public static final String IS_APPROVED="select isApproved from student where studentId = ? ";
 		public static final String GET_STUDENT_ID="select studentId from student where userId = ? ";

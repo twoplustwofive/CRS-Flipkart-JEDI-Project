@@ -168,7 +168,7 @@ public class CRSApplication {
 		{
 			System.out.println(ex.getMessage());
 		}
-		in.close();
+		
 	}
 	
 	/**
@@ -222,14 +222,14 @@ public class CRSApplication {
 			
 			String newStudentId = studentInterface.register(name, userId, password, gender, batch, branchName, address);
 			
-			notificationInterface.sendNotification(NotificationType.REGISTRATION, newStudentId, null,0);
+			//notificationInterface.sendNotification(NotificationType.REGISTRATION, newStudentId, null,0);
 			
 		}
 		catch(StudentNotRegisteredException ex)
 		{
 			System.out.println("Something went wrong! "+ex.getStudentName() +" not registered. Please try again");
 		}
-		sc.close();
+		//sc.close();
 	}
 	
 	/**
@@ -253,7 +253,7 @@ public class CRSApplication {
 		} catch(Exception ex) {
 			System.out.println("Error Occured "+ex.getMessage());
 		}
-		in.close();
+		
 	}
 		
 }

@@ -82,5 +82,7 @@ public interface RegistrationInterface {
 	 */
 	boolean dropCourse(String courseCode, String studentId, List<Course> registeredCourseList)
 			throws CourseNotFoundException, SQLException;
+
+	public boolean isReportGenerated(String studentId) throws SQLException;
 	
 }
