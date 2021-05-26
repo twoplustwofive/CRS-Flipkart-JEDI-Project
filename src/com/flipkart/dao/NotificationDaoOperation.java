@@ -11,6 +11,7 @@ import java.sql.Statement;
 import java.util.UUID;
 
 import com.flipkart.constant.NotificationType;
+import com.flipkart.constant.PaymentMode;
 import com.flipkart.constant.SQLQueries;
 import com.flipkart.utils.DBUtils;
 
@@ -18,7 +19,7 @@ import com.flipkart.utils.DBUtils;
  * @author vijayrathod
  *
  */
-public class NotificationDaoOperation {
+public class NotificationDaoOperation implements NotificationDaoInterface{
 
 	
 	private static volatile NotificationDaoOperation instance=null;
@@ -57,7 +58,7 @@ public class NotificationDaoOperation {
 	 * @throws SQLException
 	 */
 	@Override
-	public int sendNotification(NotificationType type, int studentId,ModeOfPayment modeOfPayment,double amount) throws SQLException{
+	public int sendNotification(NotificationType type, int studentId,PaymentMode modeOfPayment,double amount) throws SQLException{
 		int notificationId=0;
 		Connection connection=DBUtils.getConnection();
 		try
@@ -66,7 +67,7 @@ public class NotificationDaoOperation {
 			PreparedStatement ps = connection.prepareStatement(SQLQueries.INSERT_NOTIFICATION,Statement.RETURN_GENERATED_KEYS);
 			ps.setInt(1, studentId);
 			ps.setString(2,type.toString());
-			if(type==NotificationType.PAYMENT)
+			if(type==NotificationType.PAYED)
 			{
 				//insert into payment, get reference id and add here
 				UUID referenceId=addPayment(studentId, modeOfPayment,amount);
@@ -85,10 +86,10 @@ public class NotificationDaoOperation {
 			case REGISTRATION:
 				System.out.println("Registration successfull. Administration will verify the details and approve it!");
 				break;
-			case REGISTRATION_APPROVAL:
+			case APPROVED:
 				System.out.println("Student with id "+studentId+" has been approved!");
 				break;
-			case PAYMENT:
+			case PAYED:
 				System.out.println("Student with id "+studentId+" fee has been paid");
 			}
 			
@@ -108,7 +109,7 @@ public class NotificationDaoOperation {
 	 * @return: reference id of the transaction
 	 * @throws SQLException
 	 */
-	public UUID addPayment(int studentId, ModeOfPayment modeOfPayment,double amount) throws SQLException
+	public UUID addPayment(int studentId, PaymentMode modeOfPayment,double amount) throws SQLException
 	{
 		UUID referenceId;
 		Connection connection=DBUtils.getConnection();
@@ -116,7 +117,7 @@ public class NotificationDaoOperation {
 		{
 			referenceId=UUID.randomUUID();
 			//INSERT_NOTIFICATION = "insert into notification(studentId,type,referenceId) values(?,?,?);";
-			PreparedStatement statement = connection.prepareStatement(SQLQueriesConstants.INSERT_PAYMENT);
+			PreparedStatement statement = connection.prepareStatement(SQLQueries.INSERT_PAYMENT);
 			statement.setInt(1, studentId);
 			statement.setString(2, modeOfPayment.toString());
 			statement.setString(3,referenceId.toString());
