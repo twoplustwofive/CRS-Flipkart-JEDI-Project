@@ -5,11 +5,11 @@ import java.util.List;
 
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Notification;
-import com.flipkart.bean.StudentGrade;
-import com.flipkart.constant.ModeOfPayment;
+import com.flipkart.bean.Grade;
+import com.flipkart.constant.PaymentMode;
 import com.flipkart.dao.RegistrationDaoInterface;
 import com.flipkart.dao.RegistrationDaoOperation;
-import com.flipkart.exception.CourseLimitExceedException;
+import com.flipkart.exception.CourseLimitExceededException;
 import com.flipkart.exception.CourseNotFoundException;
 import com.flipkart.exception.SeatNotAvailableException;
 import com.flipkart.validator.StudentValidator;
@@ -54,14 +54,15 @@ public class RegistrationOperation implements RegistrationInterface {
 	 * @throws SQLException 
 	 */
 	@Override
-	public boolean addCourse(String courseCode, int studentId,List<Course> availableCourseList) throws CourseNotFoundException, CourseLimitExceedException, SeatNotAvailableException, SQLException 
+	
+	public boolean addCourse(String courseCode, String studentId,List<Course> availableCourseList) throws CourseNotFoundException, CourseLimitExceededException, SeatNotAvailableException, SQLException 
 	{
        
 		
 
 		if (registrationDaoInterface.numOfRegisteredCourses(studentId) >= 6)
 		{	
-			throw new CourseLimitExceedException(6);
+			throw new CourseLimitExceededException(6);
 		}
 		else if (registrationDaoInterface.isRegistered(courseCode, studentId)) 
 		{
@@ -92,7 +93,8 @@ public class RegistrationOperation implements RegistrationInterface {
 	 * @throws SQLException 
 	 */
 	@Override
-	public boolean dropCourse(String courseCode, int studentId,List<Course> registeredCourseList) throws CourseNotFoundException, SQLException {
+	
+	public boolean dropCourse(String courseCode, String studentId,List<Course> registeredCourseList) throws CourseNotFoundException, SQLException {
 		  if(!StudentValidator.isRegistered(courseCode, studentId, registeredCourseList))
 	        {
 	        	throw new CourseNotFoundException(courseCode);
@@ -109,7 +111,8 @@ public class RegistrationOperation implements RegistrationInterface {
 	 * @throws SQLException 
 	 */
 	@Override
-	public double calculateFee(int studentId) throws SQLException {
+	
+	public double calculateFee(String studentId) throws SQLException {
 		return registrationDaoInterface.calculateFee(studentId);
 	}
 
@@ -121,7 +124,8 @@ public class RegistrationOperation implements RegistrationInterface {
 	 * @throws SQLException 
 	 */
 	@Override
-	public List<StudentGrade> viewGradeCard(int studentId) throws SQLException {
+	
+	public List<Grade> viewGradeCard(String studentId) throws SQLException {
 		return registrationDaoInterface.viewGradeCard(studentId);
 	}
 
@@ -132,7 +136,8 @@ public class RegistrationOperation implements RegistrationInterface {
 	 * @throws SQLException 
 	 */
 	@Override
-	public List<Course> viewCourses(int studentId) throws SQLException {
+	
+	public List<Course> viewCourses(String studentId) throws SQLException {
 		return registrationDaoInterface.viewCourses(studentId);
 	}
 
@@ -143,7 +148,8 @@ public class RegistrationOperation implements RegistrationInterface {
 	 * @throws SQLException 
 	 */
 	@Override
-	public List<Course> viewRegisteredCourses(int studentId) throws SQLException {
+	
+	public List<Course> viewRegisteredCourses(String studentId) throws SQLException {
 		return registrationDaoInterface.viewRegisteredCourses(studentId);
 	}
     
@@ -154,7 +160,8 @@ public class RegistrationOperation implements RegistrationInterface {
 	 * @throws SQLException
 	 */
 	@Override
-	public boolean getRegistrationStatus(int studentId) throws SQLException {
+
+	public boolean getRegistrationStatus(String studentId) throws SQLException {
 		return registrationDaoInterface.getRegistrationStatus(studentId);
 	}
 	
@@ -164,7 +171,8 @@ public class RegistrationOperation implements RegistrationInterface {
 	 * @throws SQLException
 	 */
 	@Override
-	public void setRegistrationStatus(int studentId) throws SQLException {
+	
+	public void setRegistrationStatus(String studentId) throws SQLException {
 		registrationDaoInterface.setRegistrationStatus(studentId);
 
 	}
