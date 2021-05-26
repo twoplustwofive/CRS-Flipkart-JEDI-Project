@@ -12,7 +12,7 @@ import java.util.UUID;
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Notification;
 import com.flipkart.bean.Grade;
-import com.flipkart.constant.Grade;
+//import com.flipkart.constant.Grade;
 import com.flipkart.constant.PaymentMode;
 import com.flipkart.constant.NotificationType;
 import com.flipkart.constant.SQLQueries;
@@ -67,7 +67,7 @@ public class RegistrationDaoOperation implements RegistrationDaoInterface{
 	 * @throws SQLException 
 	 */
 	@Override
-	public boolean addCourse(String courseCode, int studentId) throws SQLException{
+	public boolean addCourse(String courseCode, String studentId) throws SQLException{
 		
 		Connection conn = DBUtils.getConnection();
 		
@@ -75,7 +75,7 @@ public class RegistrationDaoOperation implements RegistrationDaoInterface{
 		try 
 		{
 			stmt = conn.prepareStatement(SQLQueries.ADD_COURSE);
-			stmt.setInt(1, studentId);
+			stmt.setString(1, studentId);
 			stmt.setString(2, courseCode);
 
 			stmt.executeUpdate();
@@ -106,7 +106,7 @@ public class RegistrationDaoOperation implements RegistrationDaoInterface{
 	 * @throws SQLException 
 	 */
 	@Override
-	public int numOfRegisteredCourses(int studentId) throws SQLException{
+	public int numOfRegisteredCourses(String studentId) throws SQLException{
 		
 		Connection conn = DBUtils.getConnection();
 		
@@ -114,7 +114,7 @@ public class RegistrationDaoOperation implements RegistrationDaoInterface{
 		try {
 
 			stmt = conn.prepareStatement(SQLQueries.NUMBER_OF_REGISTERED_COURSES);
-			stmt.setInt(1, studentId);
+			stmt.setString(1, studentId);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				count++;
@@ -187,7 +187,7 @@ public class RegistrationDaoOperation implements RegistrationDaoInterface{
 	 * @throws SQLException 
 	 */
 	@Override
-	public boolean isRegistered(String courseCode, int studentId) throws SQLException{
+	public boolean isRegistered(String courseCode, String studentId) throws SQLException{
 		
 		Connection conn = DBUtils.getConnection();
 		
@@ -196,7 +196,7 @@ public class RegistrationDaoOperation implements RegistrationDaoInterface{
 		{
 			stmt = conn.prepareStatement(SQLQueries.IS_REGISTERED);
 			stmt.setString(1, courseCode);
-			stmt.setInt(2, studentId);
+			stmt.setString(2, studentId);
 			ResultSet rs = stmt.executeQuery();
 			
 			while(rs.next())
@@ -228,7 +228,7 @@ public class RegistrationDaoOperation implements RegistrationDaoInterface{
 	 * @throws CourseNotFoundException 
 	 */
 	@Override
-	public boolean dropCourse(String courseCode, int studentId) throws SQLException {
+	public boolean dropCourse(String courseCode, String studentId) throws SQLException {
 	
 		Connection conn = DBUtils.getConnection();
 		
@@ -237,7 +237,7 @@ public class RegistrationDaoOperation implements RegistrationDaoInterface{
 			{
 				stmt = conn.prepareStatement(SQLQueries.DROP_COURSE_QUERY);
 				stmt.setString(1, courseCode);
-				stmt.setInt(2, studentId);
+				stmt.setString(2, studentId);
 				stmt.execute();
 				
 				stmt = conn.prepareStatement(SQLQueries.INCREMENT_SEAT_QUERY);
@@ -272,14 +272,14 @@ public class RegistrationDaoOperation implements RegistrationDaoInterface{
 	 */
 	
 	@Override
-	public double calculateFee(int studentId) throws SQLException
+	public double calculateFee(String studentId) throws SQLException
 	{
 		Connection conn = DBUtils.getConnection();
 		double fee = 0;
 		try
 		{
 			stmt = conn.prepareStatement(SQLQueries.CALCULATE_FEES);
-			stmt.setInt(1, studentId);
+			stmt.setString(1, studentId);
 			ResultSet rs = stmt.executeQuery();
 			rs.next();
 			fee = rs.getDouble(1);
@@ -353,7 +353,7 @@ public class RegistrationDaoOperation implements RegistrationDaoInterface{
 	 * @throws SQLException
 	 */
 	@Override
-	public List<Course> viewCourses(int studentId) throws SQLException {
+	public List<Course> viewCourses(String studentId) throws SQLException {
 		
 		List<Course> availableCourseList = new ArrayList<>();
 		Connection conn = DBUtils.getConnection();
@@ -361,7 +361,7 @@ public class RegistrationDaoOperation implements RegistrationDaoInterface{
 		try 
 		{
 			stmt = conn.prepareStatement(SQLQueries.VIEW_AVAILABLE_COURSES);
-			stmt.setInt(1, studentId);
+			stmt.setString(1, studentId);
 			stmt.setBoolean(2, true);
 			ResultSet rs = stmt.executeQuery();
 
@@ -398,14 +398,14 @@ public class RegistrationDaoOperation implements RegistrationDaoInterface{
 	 * @throws SQLException 
 	 */
 	@Override
-	public List<Course> viewRegisteredCourses(int studentId) throws SQLException {
+	public List<Course> viewRegisteredCourses(String studentId) throws SQLException {
 
 		Connection conn = DBUtils.getConnection();
 		List<Course> registeredCourseList = new ArrayList<>();
 		try 
 		{
 			stmt = conn.prepareStatement(SQLQueries.VIEW_REGISTERED_COURSES);
-			stmt.setInt(1, studentId);
+			stmt.setString(1, studentId);
 
 			ResultSet rs = stmt.executeQuery();
 			
@@ -436,14 +436,14 @@ public class RegistrationDaoOperation implements RegistrationDaoInterface{
 	 * @throws SQLException
 	 */
 	@Override
-	public boolean getRegistrationStatus(int studentId) throws SQLException
+	public boolean getRegistrationStatus(String studentId) throws SQLException
 	{
 		Connection conn = DBUtils.getConnection();
 		boolean status = false;
 		try 
 		{
 			stmt = conn.prepareStatement(SQLQueries.GET_REGISTRATION_STATUS);
-			stmt.setInt(1, studentId);
+			stmt.setString(1, studentId);
 			ResultSet rs = stmt.executeQuery();
 			rs.next();
 			status = rs.getBoolean(1);
@@ -468,13 +468,13 @@ public class RegistrationDaoOperation implements RegistrationDaoInterface{
 	 * @throws SQLException
 	 */
 	@Override
-	public void setRegistrationStatus(int studentId) throws SQLException
+	public void setRegistrationStatus(String studentId) throws SQLException
 	{
 		Connection conn = DBUtils.getConnection();
 		try 
 		{
 			stmt = conn.prepareStatement(SQLQueries.SET_REGISTRATION_STATUS);
-			stmt.setInt(1, studentId);
+			stmt.setString(1, studentId);
 			stmt.executeUpdate();
 
 		} 

@@ -31,7 +31,7 @@ public interface StudentDaoInterface {
 	 * @param userId
 	 * @return Student Id
 	 */
-	public int getStudentId(String userId);
+	public String getStudentId(String userId);
 	
 	/**
 	 * Method to check if Student is approved

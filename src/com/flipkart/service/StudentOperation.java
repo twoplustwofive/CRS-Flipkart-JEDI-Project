@@ -17,7 +17,7 @@ public class StudentOperation implements StudentInterface {
 	StudentDaoInterface studentDaoInterface=StudentDaoOperation.getInstance();
 
 	
-	private StudentOperation()
+	public StudentOperation()
 	{
 		
 	}
@@ -107,7 +107,7 @@ public class StudentOperation implements StudentInterface {
      * @return Student ID
      */
     @Override
-    public int getStudentId(String userId) {
+    public String getStudentId(String userId) {
         // TODO Auto-generated method stub
         return studentDaoInterface.getStudentId(userId);
 ;

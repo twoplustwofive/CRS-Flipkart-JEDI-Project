@@ -3,7 +3,7 @@
  */
 package com.flipkart.client;
 
-import com.flipkart.bean.*;
+import com.flipkart.bean.*; 
 import com.flipkart.service.*;
 
 import java.util.ArrayList;
