@@ -32,7 +32,7 @@ public class AdminCRSMenu {
 
 	AdminInterface adminOperation = AdminOperation.getInstance();
 	Scanner in = new Scanner(System.in);
-	NotificationInterface notificationInterface=new NotificationOperation();
+	NotificationInterface notificationInterface=NotificationOperation.getInstance();
 	
 	/**
 	 * Method to Create Admin Menu
@@ -107,7 +107,7 @@ public class AdminCRSMenu {
 		
 		
 		System.out.println("\n\n");
-		List<Course> courseList= adminOperation.viewCourses(0);
+		List<Course> courseList= adminOperation.viewCourses(1);
 		System.out.println("**************** Course ****************");
 		System.out.println(String.format("%20s | %20s", "CourseCode", "CourseName"));
 		for(Course course : courseList) {
@@ -152,8 +152,6 @@ public class AdminCRSMenu {
 		System.out.println("Enter Designation:");
 		String designation = in.next();
 		professor.setDesignation(designation);
-		
-		
 		
 		System.out.println("Enter Password:");
 		String password = in.next();
