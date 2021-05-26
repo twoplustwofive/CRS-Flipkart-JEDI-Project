@@ -12,10 +12,8 @@ import java.sql.Statement;
 
 
 import com.flipkart.bean.Student;
-import com.flipkart.client.CRSApplication;
 import com.flipkart.constant.SQLQueries;
 import com.flipkart.exception.StudentNotRegisteredException;
-import com.flipkart.service.StudentOperation;
 import com.flipkart.utils.DBUtils;
 
 /**
