@@ -14,12 +14,17 @@ import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
 import com.flipkart.bean.User;
+import com.flipkart.constant.Gender;
+import com.flipkart.constant.Role;
 import com.flipkart.constant.SQLQueries;
 import com.flipkart.exception.CourseExistsAlreadyException;
 import com.flipkart.exception.CourseNotDeletedException;
 import com.flipkart.exception.CourseNotFoundException;
 import com.flipkart.exception.ProfessorNotAddedException;
+import com.flipkart.exception.StudentNotFoundForApprovalException;
 import com.flipkart.exception.UserIdAlreadyInUseException;
+import com.flipkart.exception.UserNotAddedException;
+import com.flipkart.exception.UserNotFoundException;
 import com.flipkart.utils.DBUtils;
 
 /**
@@ -150,8 +155,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 				user.setRole(Role.stringToName(resultSet.getString(4)));
 				user.setGender(Gender.stringToGender( resultSet.getString(5)));
 				user.setAddress(resultSet.getString(6));
-				user.setCountry(resultSet.getString(7));
-				user.setStudentId(resultSet.getInt(8));
+				user.setStudentId(resultSet.getString(7));
 				userList.add(user);
 				
 			}
@@ -181,7 +185,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 			String sql = SQLQueries.APPROVE_STUDENT_QUERY;
 			statement = connection.prepareStatement(sql);
 			
-			statement.setInt(1,studentId);
+			statement.setString(1,studentId);
 			int row = statement.executeUpdate();
 			
 			System.out.println(row + " student approved.");
@@ -221,7 +225,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 			statement.setString(4, user.getRole().toString());
 			statement.setString(5, user.getGender().toString());
 			statement.setString(6, user.getAddress());
-			statement.setString(7, user.getCountry());
+			
 			int row = statement.executeUpdate();
 			
 			System.out.println(row + " user added.");
@@ -273,23 +277,23 @@ public class AdminDaoOperation implements AdminDaoInterface{
 			String sql = SQLQueries.ADD_PROFESSOR_QUERY;
 			statement = connection.prepareStatement(sql);
 			
-			statement.setString(1, professor.getUserID());
+			statement.setString(1, professor.getUserId());
 			statement.setString(2, professor.getDepartment());
 			statement.setString(3, professor.getDesignation());
 			int row = statement.executeUpdate();
 
 			System.out.println(row + " professor added.");
 			if(row == 0) {
-				System.out.println("Professor with professorId: " + professor.getUserID() + " not added.");
-				throw new ProfessorNotAddedException(professor.getUserID());
+				System.out.println("Professor with professorId: " + professor.getUserId() + " not added.");
+				throw new ProfessorNotAddedException(professor.getUserId());
 			}
 			
-			System.out.println("Professor with professorId: " + professor.getUserID() + " added."); 
+			System.out.println("Professor with professorId: " + professor.getUserId() + " added."); 
 			
 		}catch(SQLException se) {
 			
 			System.out.println(se.getMessage());
-			throw new UserIdAlreadyInUseException(professor.getUserID());
+			throw new UserIdAlreadyInUseException(professor.getUserId());
 			
 		} 
 		
@@ -357,7 +361,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 				
 			}
 			
-			(courseList.size() + " courses in catalogId: " + catalogId + ".");
+			System.out.println(courseList.size() + " courses in catalogId: " + catalogId + ".");
 			
 		}catch(SQLException se) {
 			
@@ -393,7 +397,6 @@ public class AdminDaoOperation implements AdminDaoInterface{
 				professor.setDepartment(resultSet.getString(4));
 				professor.setDesignation(resultSet.getString(5));
 				professor.setAddress(resultSet.getString(6));
-				professor.setCountry(resultSet.getString(7));
 				professor.setRole(Role.PROFESSOR);
 				professor.setPassword("*********");
 				professorList.add(professor);
@@ -408,6 +411,13 @@ public class AdminDaoOperation implements AdminDaoInterface{
 			
 		}
 		return professorList;
+	}
+
+	@Override
+	public void generateGradeCard(String Studentid) {
+		
+		
+		
 	}
 	
 

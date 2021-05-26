@@ -65,7 +65,7 @@ public class Student extends User
 	/**
 	 * @param studentID the studentID to set
 	 */
-	public void setStudentID(String studentId) 
+	public void setStudentId(String studentId) 
 	{
 		this.studentId = studentId;
 	}

@@ -32,7 +32,7 @@ public interface AdminDaoInterface {
 	 * Method to generate grade card of a Student 
 	 * studentid 
 	 */
-	public void generateGradeCard(int Studentid);
+	public void generateGradeCard(String Studentid);
 	
 	/**
 	 * Fetch Students yet to approved using SQL commands

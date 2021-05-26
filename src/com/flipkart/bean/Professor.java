@@ -24,6 +24,9 @@ public class Professor extends User {
 	public Professor(String userID, String name, Gender gender, Role role, String password, String address) {
 		super(userID, name, gender, role, password, address);
 	}
+	public Professor() {
+		// TODO Auto-generated constructor stub
+	}
 	/**
 	 * @return the professorID
 	 */

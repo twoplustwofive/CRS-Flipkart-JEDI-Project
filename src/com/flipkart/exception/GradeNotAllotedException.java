@@ -9,7 +9,7 @@ package com.flipkart.exception;
  */
 public class GradeNotAllotedException extends Exception{
 	 
-	private int studentId;
+	private String studentId;
 	 
 	/**
 	 * Constructor
@@ -24,7 +24,7 @@ public class GradeNotAllotedException extends Exception{
 	  * Getter function for studentId
 	  * @return
 	  */
-	 public int getStudentId()
+	 public String getStudentId()
 	 {
 		 return studentId;
 	 }

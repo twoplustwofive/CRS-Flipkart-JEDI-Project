@@ -11,18 +11,18 @@ import com.flipkart.constant.Role;
  *
  */
 public abstract class User {
-	private String userID;
+	private String userId;
 	private String name;
 	private Gender gender;
 	protected Role role;
 	private String password;
 	private String address;
 	
-	public User(String userID) {
-		this.userID = userID;
+	public User(String userId) {
+		this.userId = userId;
 	}
-	public User(String userID, String name, Gender gender, Role role, String password, String address) {
-		this.userID = userID;
+	public User(String userId, String name, Gender gender, Role role, String password, String address) {
+		this.userId = userId;
 		this.name = name;
 		this.gender = gender;
 		this.role = role;
@@ -94,10 +94,15 @@ public abstract class User {
 		this.address = address;
 	}
 	/**
-	 * @return the userID
+	 * @return the userId
 	 */
-	public String getUserID() {
-		return userID;
+	public String getUserId() {
+		return userId;
+	}
+	
+	public void setUserId(String userId)
+	{
+		this.userId = userId;
 	}
 	
 	
