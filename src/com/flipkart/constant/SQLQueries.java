@@ -43,6 +43,8 @@ public class SQLQueries {
 		public static final String NUMBER_OF_REGISTERED_COURSES=" select studentId from registeredcourse where studentId = ? ";
 		public static final String IS_REGISTERED=" select courseCode from registeredcourse where courseCode=? and studentId=? ";
 		
+		public static final String GET_GRADES = "select grade from registeredcourse where studentId=?";
+		
 		//ProfessorDao queries
 	
 		public static final String UPDATE_PASSWORD="update user set password=? where userId = ? ";
