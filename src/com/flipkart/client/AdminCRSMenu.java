@@ -47,7 +47,7 @@ public class AdminCRSMenu {
 			System.out.println("2. Add Course to catalog");
 			System.out.println("3. Delete Course from catalog");
 			System.out.println("4. Approve Students");
-			System.out.println("5. View Pending Admissions");
+			System.out.println("5. View Pending Approvals");
 			System.out.println("6. Add Professor");
 			System.out.println("7. Assign Courses To Professor");
 			System.out.println("8. Logout");
@@ -191,9 +191,9 @@ public class AdminCRSMenu {
 		if(pendingStudentsList.size() == 0) {
 			return pendingStudentsList;
 		}
-		System.out.println(String.format("%20s | %20s | %20s | %20s", "UserId", "StudentId", "Name", "Gender"));
+		System.out.println(String.format("%20s | %20s | %20s", "StudentId", "Name", "Gender"));
 		for(Student student : pendingStudentsList) {
-			System.out.println(String.format("%20s | %20d | %20s | %20s", student.getUserId(), student.getStudentId(), student.getName(), student.getGender().toString()));
+			System.out.println(String.format("%20s | %20s | %20s", student.getStudentId(), student.getName(), student.getGender().toString()));
 		}
 		return pendingStudentsList;
 	}
@@ -209,7 +209,7 @@ public class AdminCRSMenu {
 		}
 		
 		System.out.println("Enter Student's ID:");
-		String studentUserIdApproval = in.nextLine();
+		String studentUserIdApproval = in.next();
 		
 		
 		try {
@@ -265,7 +265,8 @@ public class AdminCRSMenu {
 		course.setSeats(10);
 		
 		try {
-		adminOperation.addCourse(course, courseList);		}
+		adminOperation.addCourse(course, courseList);		
+		}
 		catch (CourseExistsAlreadyException e) {
 			System.out.println("Course already existed "+e.getMessage());
 		}

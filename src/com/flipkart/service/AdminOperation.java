@@ -100,13 +100,15 @@ public class AdminOperation implements AdminInterface{
 	 * @throws CourseFoundException
 	 */
 	@Override
-	public void addCourse(Course newCourse, List<Course> courseList) throws CourseExistsAlreadyException {
-		if(!AdminValidator.isValidNewCourse(newCourse, courseList)) {
-			System.out.println("courseCode: " + newCourse.getCourseCode() + " already present in catalog!");
-			throw new CourseExistsAlreadyException(newCourse.getCourseCode());
-		}
+	public void addCourse(Course newCourse, List<Course> courseList) throws CourseExistsAlreadyException 
+	{
+		
 		
 		try {
+			if(!AdminValidator.isValidNewCourse(newCourse, courseList)) {
+				System.out.println("courseCode: " + newCourse.getCourseCode() + " already present in catalog!");
+				throw new CourseExistsAlreadyException(newCourse.getCourseCode());
+			}
 			adminDaoOperation.addCourse(newCourse);
 		}
 		catch(CourseExistsAlreadyException e) {
@@ -122,14 +124,18 @@ public class AdminOperation implements AdminInterface{
 	 */
 	@Override
 	public void approveStudent(String studentId, List<Student> studentList) throws StudentNotFoundForApprovalException {
-		if(!AdminValidator.isValidUnapprovedStudent(studentId, studentList)) {
-			throw new StudentNotFoundForApprovalException(studentId);
-		}
+		
 		
 		try {
+			System.out.println("operation validator");
+			if(AdminValidator.isValidUnapprovedStudent(studentId, studentList)) {
+				
+				throw new StudentNotFoundForApprovalException(studentId);
+			}
 			adminDaoOperation.approveStudent(studentId);
 		}
 		catch(StudentNotFoundForApprovalException e) {
+			
 			throw e;
 		}
 	}
