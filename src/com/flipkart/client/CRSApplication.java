@@ -9,15 +9,12 @@ import java.util.Scanner;
 
 import com.flipkart.constant.Gender;
 import com.flipkart.constant.NotificationType;
-import com.flipkart.constant.Role;
 import com.flipkart.exception.StudentNotRegisteredException;
 import com.flipkart.exception.UserNotFoundException;
 
 import com.flipkart.service.NotificationInterface;
 import com.flipkart.service.NotificationOperation;
 
-import com.flipkart.service.ProfessorInterface;
-import com.flipkart.service.ProfessorOperation;
 
 import com.flipkart.service.StudentInterface;
 import com.flipkart.service.StudentOperation;
@@ -178,7 +175,7 @@ public class CRSApplication {
 	{
 		Scanner sc=new Scanner(System.in);
 
-		String userId,name,password,address,country,branchName;
+		String userId,name,password,address,branchName;
 		Gender gender;
 		int genderV, batch;
 		try
@@ -229,6 +226,7 @@ public class CRSApplication {
 		{
 			System.out.println("Something went wrong! "+ex.getStudentName() +" not registered. Please try again");
 		}
+		sc.close();
 	}
 	
 	/**
