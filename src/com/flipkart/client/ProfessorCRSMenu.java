@@ -3,11 +3,12 @@
  */
 package com.flipkart.client;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import com.flipkart.bean.Course;
-import com.flipkart.bean.RegisteredCourse;
+import com.flipkart.bean.EnrolledStudent;
 import com.flipkart.exception.GradeNotAllotedException;
 import com.flipkart.service.ProfessorInterface;
 import com.flipkart.service.ProfessorOperation;
@@ -64,10 +65,10 @@ public class ProfessorCRSMenu {
 	public void viewEnrolledStudents(String profID) {
 		System.out.println(String.format("%20s %20s %20s","COURSE CODE","COURSE NAME","Student" ));
 		try {
-			List<RegisteredCourse> enrolledStudents = new ArrayList<RegisteredCourse>();
-			enrolledStudents = professorInterface.viewEnrolledStudent(profID);
-			for (RegisteredCourse obj: enrolledStudents) {
-				System.out.println(String.format("%20s %20s %20s",obj.getCourse().getCourseCode(), obj.getCourse().getCourseName(),obj.getStdID()));
+			List<EnrolledStudent> enrolledStudents = new ArrayList<EnrolledStudent>();
+			enrolledStudents = professorInterface.viewEnrolledStudents(profID);
+			for (EnrolledStudent obj: enrolledStudents) {
+				System.out.println(String.format("%20s %20s %20s",obj.getCourseCode(), obj.getCourseName(),obj.getStudentId()));
 			}
 			
 		} catch(Exception ex) {
@@ -77,7 +78,7 @@ public class ProfessorCRSMenu {
 	
 	public void getCourses(String profId) {
 		try {
-			List<Course> coursesEnrolled = professorInterface.getCourses(profId);
+			List<Course> coursesEnrolled = professorInterface.viewCourses(profId);
 			System.out.println(String.format("%20s %20s %20s","COURSE CODE","COURSE NAME","No. of Students" ));
 			for(Course obj: coursesEnrolled) {
 				System.out.println(String.format("%20s %20s %20s",obj.getCourseCode(), obj.getCourseName(),10- obj.getSeats()));
@@ -92,14 +93,14 @@ public class ProfessorCRSMenu {
 		
 		String courseCode, grade, studentId;
 		try {
-			List<RegisteredCourse> enrolledStudents = new ArrayList<RegisteredCourse>();
-			enrolledStudents = professorInterface.viewEnrolledStudent(profId);
+			List<EnrolledStudent> enrolledStudents = new ArrayList<EnrolledStudent>();
+			enrolledStudents = professorInterface.viewEnrolledStudents(profId);
 			System.out.println(String.format("%20s %20s %20s","COURSE CODE","COURSE NAME","Student ID" ));
-			for (RegisteredCourse obj: enrolledStudents) {
-				System.out.println(String.format("%20s %20s %20s",obj.getCourse().getCourseCode(), obj.getCourse().getCourseName(),obj.getStdID()));
+			for (EnrolledStudent obj: enrolledStudents) {
+				System.out.println(String.format("%20s %20s %20s",obj.getCourseCode(), obj.getCourseName(),obj.getStudentId()));
 			}
 			List<Course> coursesEnrolled = new ArrayList<Course>();
-			coursesEnrolled	= professorInterface.getCourses(profId);
+			coursesEnrolled	= professorInterface.viewCourses(profId);
 			System.out.println("----------------Add Grade--------------");
 			System.out.printf("Enter student id: ");
 			studentId = in.nextLine();
@@ -117,6 +118,9 @@ public class ProfessorCRSMenu {
 		} catch(GradeNotAllotedException ex) {
 			System.out.println("Grade cannot be added for"+ex.getStudentId());
 			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		in.close();
 	}
