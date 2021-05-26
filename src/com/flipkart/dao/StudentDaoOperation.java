@@ -8,14 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-
-
 import com.flipkart.bean.Student;
-import com.flipkart.client.CRSApplication;
 import com.flipkart.constant.SQLQueries;
 import com.flipkart.exception.StudentNotRegisteredException;
-import com.flipkart.service.StudentOperation;
 import com.flipkart.utils.DBUtils;
 
 /**
@@ -61,7 +56,7 @@ public class StudentDaoOperation implements StudentDaoInterface {
 	@Override
 	public String addStudent(Student student) throws StudentNotRegisteredException{
 		Connection connection=DBUtils.getConnection();
-		int studentId=0;
+		String studentId="0";
 		try
 		{
 			//open db connection
@@ -81,13 +76,14 @@ public class StudentDaoOperation implements StudentDaoInterface {
 				PreparedStatement preparedStatementStudent;
 				preparedStatementStudent=connection.prepareStatement(SQLQueries.ADD_STUDENT,Statement.RETURN_GENERATED_KEYS);
 				preparedStatementStudent.setString(1,student.getUserID());
-				preparedStatementStudent.setString(2, student.getBranch());
-				preparedStatementStudent.setInt(3, student.getBatch());
+				preparedStatementStudent.setString(2, student.getDepartment());
+				preparedStatementStudent.setInt(3, student.getGradYear());
+
 				preparedStatementStudent.setBoolean(4, false);
 				preparedStatementStudent.executeUpdate();
 				ResultSet results=preparedStatementStudent.getGeneratedKeys();
 				if(results.next())
-					studentId=results.getInt(1);
+					studentId=results.getString(1);
 			}
 			
 			
@@ -132,7 +128,7 @@ public class StudentDaoOperation implements StudentDaoInterface {
 			System.out.println(e.getMessage());
 		}
 		
-		return 0;
+		return "0";
 	}
 	
 	/**
