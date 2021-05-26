@@ -3,14 +3,10 @@
  */
 package com.flipkart.client;
 
-<<<<<<< HEAD
-import com.flipkart.bean.*; 
-=======
-import com.flipkart.bean.*;
+import com.flipkart.bean.Course;
 import com.flipkart.exception.CourseLimitExceededException;
 import com.flipkart.exception.CourseNotAvailableException;
 import com.flipkart.exception.CourseNotFoundException;
->>>>>>> 272dedbcac3432355690e38bc23c15bb75a871fb
 import com.flipkart.service.*;
 
 import java.sql.SQLException;
