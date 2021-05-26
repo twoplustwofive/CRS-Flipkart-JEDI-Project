@@ -1,6 +1,8 @@
 package com.flipkart.service;
 
 import com.flipkart.bean.SemRegistration;
+import com.flipkart.dao.StudentDaoInterface;
+import com.flipkart.dao.StudentDaoOperation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +13,31 @@ import com.flipkart.service.*;
 
 public class StudentOperation implements StudentInterface {
 
+	private static volatile StudentOperation instance=null;
+	StudentDaoInterface studentDaoInterface=StudentDaoOperation.getInstance();
 
-
+	
+	private StudentOperation()
+	{
+		
+	}
+	
+	/**
+	 * Method to make StudentOperation Singleton
+	 * @return
+	 */
+	public static StudentOperation getInstance()
+	{
+		if(instance==null)
+		{
+			// This is a synchronized block, when multiple threads will access this instance
+			synchronized(StudentOperation.class){
+				instance=new StudentOperation();
+			}
+		}
+		return instance;
+	}
+	
     /**
      * Method to register a student, although student can't login until it's approved by admin
      * @param name
@@ -84,7 +109,8 @@ public class StudentOperation implements StudentInterface {
     @Override
     public int getStudentId(String userId) {
         // TODO Auto-generated method stub
-        return 0;
+        return studentDaoInterface.getStudentId(userId);
+;
     }
 
 
@@ -96,7 +122,7 @@ public class StudentOperation implements StudentInterface {
     @Override
     public boolean isApproved(int studentId) {
         // TODO Auto-generated method stub
-        return false;
+		return studentDaoInterface.isApproved(studentId);
     }
 
 }

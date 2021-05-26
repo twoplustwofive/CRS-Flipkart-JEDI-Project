@@ -16,6 +16,11 @@ import java.util.Scanner;
 public class StudentCRSMenu {
 	
 	Scanner sc = new Scanner(System.in);
+	RegistrationInterface registrationInterface = RegistrationOperation.getInstance();
+	ProfessorInterface professorInterface = ProfessorOperation.getInstance();
+	NotificationInterface notificationInterface=NotificationOperation.getInstance();
+	private boolean is_registered;
+	
 
 	
 	public void create_menu(String studentId) {
