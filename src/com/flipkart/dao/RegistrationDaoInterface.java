@@ -6,7 +6,6 @@ import java.util.List;
 
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Grade;
-import com.flipkart.bean.GradeCard;
 
 /**
  * @author vijayrathod

@@ -1,26 +1,17 @@
 package com.flipkart.dao;
 
-
-import java.sql.PreparedStatement; 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 
 import com.flipkart.bean.Course;
-import com.flipkart.bean.Notification;
 import com.flipkart.bean.Grade;
-//import com.flipkart.constant.Grade;
-import com.flipkart.constant.PaymentMode;
-import com.flipkart.constant.NotificationType;
 import com.flipkart.constant.SQLQueries;
-import com.flipkart.exception.CourseLimitExceededException;
 import com.flipkart.exception.CourseNotFoundException;
-import com.flipkart.exception.SeatNotAvailableException;
 import com.flipkart.utils.DBUtils;
 
 
@@ -41,8 +32,7 @@ public class RegistrationDaoOperation implements RegistrationDaoInterface{
 	/**
 	 * Default Constructor
 	 */
-	private RegistrationDaoOperation() 
-	{}
+	private RegistrationDaoOperation() {}
 	
 	/**
 	 * Method to make RegistrationDaoOperation Singleton
@@ -58,8 +48,6 @@ public class RegistrationDaoOperation implements RegistrationDaoInterface{
 		}
 		return instance;
 	}
-	
-	
 
 
 	@Override
@@ -67,7 +55,6 @@ public class RegistrationDaoOperation implements RegistrationDaoInterface{
 		
 		Connection conn = DBUtils.getConnection();
 		
-
 		try 
 		{
 			stmt = conn.prepareStatement(SQLQueries.ADD_COURSE);

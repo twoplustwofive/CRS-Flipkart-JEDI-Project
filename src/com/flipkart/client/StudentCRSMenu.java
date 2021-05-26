@@ -154,28 +154,197 @@ private void registerCourses(String studentId)
 
 
 private void addCourse(String studentId) {
-	return;
+	if(is_registered)
+	{
+		List<Course> availableCourseList=viewCourse(studentId);
+		
+		if(availableCourseList==null)
+			return;
+
+		try
+		{
+			System.out.println("Enter Course Code : " );
+			String courseCode = sc.next();
+			if(registrationInterface.addCourse(courseCode, studentId,availableCourseList))
+			{
+				System.out.println(" You have successfully registered for Course : " + courseCode);
+			}
+			else
+			{
+				System.out.println(" You have already registered for Course : " + courseCode);
+			}
+		}
+		catch(CourseNotFoundException | CourseLimitExceedException | SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+	}
+	else 
+	{
+		System.out.println("Please complete registration");
+	}
+
 }
 
+/**
+ * Method to check if student is already registered
+ * @param studentId
+ * @return Registration Status
+ */
+private boolean getRegistrationStatus(int studentId)
+{
+	try 
+	{
+		return registrationInterface.getRegistrationStatus(studentId);
+	} 
+	catch (SQLException e)
+	{
+		System.out.println(e.getMessage());
+	}
+	return false;
+}
+
+
+/**
+ * Drop Course
+ * @param studentId
+ */
 private void dropCourse(String studentId) {
-	return;
+	if(is_registered)
+	{
+		List<Course> registeredCourseList=viewRegisteredCourse(studentId);
+		
+		if(registeredCourseList==null)
+			return;
+		
+		System.out.println("Enter the Course Code : ");
+		String courseCode = sc.next();
+		
+		try
+		{
+			registrationInterface.dropCourse(courseCode, studentId,registeredCourseList);
+			System.out.println("You have successfully dropped Course : " + courseCode);
+			
+		}
+		catch(CourseNotFoundException e)
+		{
+			System.out.println("You have not registered for course : " + e.getCourseCode());
+		} 
+		catch (SQLException e) 
+		{
+
+			System.out.println(e.getMessage());
+		}
+	}
+	else
+	{
+		System.out.println("Please complete registration");
+	}
 }
 
+
+/**
+ * View all available Courses 
+ * @param studentId
+ * @return List of available Courses 
+ */
 private List<Course> viewCourse(String studentId){
-	List<Course> l = new ArrayList<Course>();
-	return l;
+	List<Course> course_available=null;
+	try 
+	{
+		course_available = registrationInterface.viewCourses(studentId);
+	}
+	catch (SQLException e) 
+	{
+
+		System.out.println(e.getMessage());
+	}
+
+
+	if(course_available.isEmpty())
+	{
+		System.out.println("NO COURSE AVAILABLE");
+		return null;
+	}
+	
+
+	System.out.println(String.format("%-20s %-20s %-20s %-20s","COURSE CODE", "COURSE NAME", "INSTRUCTOR", "SEATS"));
+	for(Course obj : course_available)
+	{
+		System.out.println(String.format("%-20s %-20s %-20s %-20s",obj.getCourseCode(), obj.getCourseName(),obj.getInstructorId(), obj.getSeats()));
+	}
+	
+	return course_available;
 }
 
+
+/**
+ * View Registered Courses
+ * @param studentId
+ * @return List of Registered Courses
+ */
 private List<Course> viewRegisteredCourse(String studentId){
-	List<Course> l = new ArrayList<Course>();
-	return l;
+	List<Course> course_registered=null;
+	try 
+	{
+		course_registered = registrationInterface.viewRegisteredCourses(studentId);
+	} 
+	catch (SQLException e) 
+	{
+
+		System.out.println(e.getMessage());
+	}
+	
+	if(course_registered.isEmpty())
+	{
+		System.out.println("You haven't registered for any course");
+		return null;
+	}
+	
+	System.out.println(String.format("%-20s %-20s %-20s","COURSE CODE", "COURSE NAME", "INSTRUCTOR"));
+	
+	for(Course obj : course_registered)
+	{
+		 
+		
+		System.out.println(String.format("%-20s %-20s %-20s ",obj.getCourseCode(), obj.getCourseName(),professorInterface.getProfessorById(obj.getInstructorId())));
+	}
+	
+	return course_registered;
 }
 
+/**
+ * View grade card for particular student  
+ * @param studentId
+ */
 private void viewGradeCard(String studentId) {
-	return;
+	List<Grade> grade_card=null;
+	try 
+	{
+		grade_card = registrationInterface.viewGradeCard(studentId);
+	} 
+	catch (SQLException e) 
+	{
+
+		System.out.println(e.getMessage());
+	}
+	
+	System.out.println(String.format("%-20s %-20s %-20s","COURSE CODE", "COURSE NAME", "GRADE"));
+	
+	if(grade_card.isEmpty())
+	{
+		System.out.println("You haven't registered for any course");
+		return;
+	}
+	
+	for(Grade obj : grade_card)
+	{
+		System.out.println(String.format("%-20s %-20s %-20s",obj.getCrsCode(), obj.getCrsName(),obj.getGrade()));
+	}
 }
 
 private void make_payment(String studentId) {
-	return;
-}
+		return;
+	}
+
 }
