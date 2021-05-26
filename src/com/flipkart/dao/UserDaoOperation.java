@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.apache.log4j.Logger;
+
 import com.flipkart.constant.SQLQueries;
 import com.flipkart.exception.UserNotFoundException;
 import com.flipkart.utils.DBUtils;
@@ -15,7 +17,8 @@ import com.flipkart.utils.DBUtils;
  */
 public class UserDaoOperation implements UserDaoInterface{
 	private static volatile UserDaoOperation instance=null;
-	
+	private static Logger logger = Logger.getLogger(UserDaoOperation.class);
+
 	/**
 	 * Default Constructor
 	 */
@@ -64,7 +67,7 @@ public class UserDaoOperation implements UserDaoInterface{
 		}
 		catch(SQLException e)
 		{
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		finally
 		{
@@ -95,14 +98,14 @@ public class UserDaoOperation implements UserDaoInterface{
 			preparedStatement.setString(1,userId);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			
-			System.out.println("inside verify");
+			logger.info("inside verify");
 			
 			if(!resultSet.next())
 				throw new UserNotFoundException(userId);
 
 			else if(password.equals(resultSet.getString("password")))
 			{
-				System.out.println("inside equals");
+				logger.info("inside equals");
 				return true;
 			}
 			else
@@ -113,7 +116,7 @@ public class UserDaoOperation implements UserDaoInterface{
 		}
 		catch(SQLException ex)
 		{
-			System.out.println("Something went wrong, please try again! "+ ex.getMessage());
+			logger.error("Something went wrong, please try again! "+ ex.getMessage());
 		}
 		finally
 		{
@@ -148,7 +151,7 @@ public class UserDaoOperation implements UserDaoInterface{
 	{
 		Connection connection=DBUtils.getConnection();
 		try {
-			System.out.println(userId);
+			logger.info(userId);
 			connection=DBUtils.getConnection();
 			
 			PreparedStatement statement = connection.prepareStatement(SQLQueries.GET_ROLE);
@@ -157,18 +160,18 @@ public class UserDaoOperation implements UserDaoInterface{
 			
 			
 			
-			System.out.println("query executed");
+			logger.info("query executed");
 			
 			if(rs.next())
 			{
-				System.out.println(rs.getString("role"));
+				logger.info(rs.getString("role"));
 				return rs.getString("role");
 			}
 				
 		}
 		catch(Exception e)
 		{
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 			
 		}
 		

@@ -7,6 +7,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 import com.flipkart.constant.Gender;
 import com.flipkart.constant.NotificationType;
 import com.flipkart.exception.StudentNotRegisteredException;
@@ -27,7 +29,7 @@ import com.flipkart.service.UserOperation;
  */
 public class CRSApplication {
 
-
+	private static Logger logger = Logger.getLogger(CRSApplication.class);
 	static boolean loggedin = false;
 	StudentInterface studentInterface=StudentOperation.getInstance();
 	UserInterface userInterface =UserOperation.getInstance();
@@ -60,7 +62,7 @@ public class CRSApplication {
 					crsApplication.updatePassword();
 					break;
 				default:
-					System.out.println("Invalid Input");
+					logger.info("Invalid Input");
 			}
 			createMainMenu();
 			userInput=sc.nextInt();
@@ -68,7 +70,7 @@ public class CRSApplication {
 		}
 		catch(Exception ex)
 		{
-			System.out.println("Error occured "+ex);
+			logger.error("Error occured "+ex);
 		}
 		finally
 		{
@@ -81,12 +83,12 @@ public class CRSApplication {
 	 */
 	public static void createMainMenu()
 	{
-		System.out.println("----------Welcome to Course Management System---------");
-		System.out.println("1. Login");
-		System.out.println("2. Student Registration");
-		System.out.println("3. Update password");
-		System.out.println("4. Exit");
-		System.out.println("Enter user input");
+		logger.info("----------Welcome to Course Management System---------");
+		logger.info("1. Login");
+		logger.info("2. Student Registration");
+		logger.info("3. Update password");
+		logger.info("4. Exit");
+		logger.info("Enter user input");
 	}
 	
 	/**
@@ -103,20 +105,15 @@ public class CRSApplication {
 		String userId,password;
 		try
 		{
-			System.out.println("-----------------Login------------------");
-			System.out.println("Email:");
+			logger.info("-----------------Login------------------");
+			logger.info("Email:");
 			userId = in.next();
-			System.out.println("Password:");
+			logger.info("Password:");
 			password = in.next();
 			loggedin = userInterface.verifyCredentials(userId, password);
-			System.out.println("unknown");
-			//2 cases1
-			
-			
-			//true->role->student->approved
 			if(loggedin)
 			{
-				 System.out.println("Logged in");
+				 logger.info("Logged in");
 				 DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");  
 				 
 				 LocalDateTime myDateObj = LocalDateTime.now();
@@ -130,12 +127,12 @@ public class CRSApplication {
 				 
 				switch(role) {
 				case "ADMIN":
-					System.out.println(formattedDate + " Login Successful");
+					logger.info(formattedDate + " Login Successful");
 					AdminCRSMenu adminMenu = new AdminCRSMenu();
 					adminMenu.createMenu();
 					break;
 				case "PROFESSOR":
-					System.out.println(formattedDate + " Login Successful");
+					logger.info(formattedDate + " Login Successful");
 					ProfessorCRSMenu professorMenu=new ProfessorCRSMenu();
 					professorMenu.createMenu(userId);
 					
@@ -145,12 +142,12 @@ public class CRSApplication {
 					String studentId = userId;
 					boolean isApproved=studentInterface.isApproved(studentId);
 					if(isApproved) {
-						System.out.println(formattedDate + " Login Successful");
+						logger.info(formattedDate + " Login Successful");
 						StudentCRSMenu studentMenu=new StudentCRSMenu();
 						studentMenu.create_menu(studentId);
 						
 					} else {
-						System.out.println("Failed to login, you have not been approved by the administration!");
+						logger.warn("Failed to login, you have not been approved by the administration!");
 						loggedin=false;
 					}
 					break;
@@ -160,13 +157,13 @@ public class CRSApplication {
 			}
 			else
 			{
-				System.out.println("Invalid Credentials!");
+				logger.error("Invalid Credentials!");
 			}
 			
 		}
 		catch(UserNotFoundException ex)
 		{
-			System.out.println(ex.getMessage());
+			logger.error(ex.getMessage());
 		}
 		
 	}
@@ -184,14 +181,14 @@ public class CRSApplication {
 		try
 		{
 			//input all the student details
-			System.out.println("---------------Student Registration-------------");
-			System.out.println("Name:");
+			logger.info("---------------Student Registration-------------");
+			logger.info("Name:");
 			name=sc.nextLine();
-			System.out.println("Email:");
+			logger.info("Email:");
 			userId=sc.next();
-			System.out.println("Password:");
+			logger.info("Password:");
 			password=sc.next();
-			System.out.println("Gender: \t 1: Male \t 2.Female\t 3.Other");
+			logger.info("Gender: \t 1: Male \t 2.Female\t 3.Other");
 			genderV=sc.nextInt();
 			sc.nextLine();
 			
@@ -211,12 +208,12 @@ public class CRSApplication {
 				gender=Gender.OTHER;
 			}
 			
-			System.out.println("Branch:");
+			logger.info("Branch:");
 			branchName=sc.nextLine();
-			System.out.println("Batch:");
+			logger.info("Batch:");
 			batch=sc.nextInt();
 			sc.nextLine();
-			System.out.println("Address:");
+			logger.info("Address:");
 			address=sc.nextLine();
 			
 			
@@ -227,7 +224,7 @@ public class CRSApplication {
 		}
 		catch(StudentNotRegisteredException ex)
 		{
-			System.out.println("Something went wrong! "+ex.getStudentName() +" not registered. Please try again");
+			logger.error("Something went wrong! "+ex.getStudentName() +" not registered. Please try again");
 		}
 		//sc.close();
 	}
@@ -239,19 +236,19 @@ public class CRSApplication {
 		Scanner in = new Scanner(System.in);
 		String userId,newPassword;
 		try {
-			System.out.println("------------------Update Password--------------------");
-			System.out.println("Email");
+			logger.info("------------------Update Password--------------------");
+			logger.info("Email");
 			userId=in.next();
-			System.out.println("New Password:");
+			logger.info("New Password:");
 			newPassword=in.next();
 			boolean isUpdated=userInterface.updatePassword(userId, newPassword);
 			if(isUpdated)
-				System.out.println("Password updated successfully!");
+				logger.info("Password updated successfully!");
 
 			else
-				System.out.println("Something went wrong, please try again!");
+				logger.error("Something went wrong, please try again!");
 		} catch(Exception ex) {
-			System.out.println("Error Occured "+ex.getMessage());
+			logger.error("Error Occured "+ex.getMessage());
 		}
 		
 	}

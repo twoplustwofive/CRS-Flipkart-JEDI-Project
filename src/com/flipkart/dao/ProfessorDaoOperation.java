@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.flipkart.bean.Course;
 import com.flipkart.bean.EnrolledStudent;
 import com.flipkart.constant.SQLQueries;
@@ -18,7 +20,8 @@ import com.flipkart.utils.DBUtils;
 public class ProfessorDaoOperation implements ProfessorDaoInterface {
 
 	private static volatile ProfessorDaoOperation instance=null;
-	
+	private static Logger logger = Logger.getLogger(UserDaoOperation.class);
+
 	/**
 	 * Default Constructor
 	 */
@@ -66,7 +69,7 @@ public class ProfessorDaoOperation implements ProfessorDaoInterface {
 		}
 		catch(SQLException e)
 		{
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		finally
 		{
@@ -104,7 +107,7 @@ public class ProfessorDaoOperation implements ProfessorDaoInterface {
 		}
 		catch(SQLException e)
 		{
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		finally
 		{
@@ -142,7 +145,7 @@ public class ProfessorDaoOperation implements ProfessorDaoInterface {
 		}
 		catch(SQLException e)
 		{
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		finally
 		{
@@ -180,7 +183,7 @@ public class ProfessorDaoOperation implements ProfessorDaoInterface {
 		}
 		catch(SQLException e)
 		{
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		finally
 		{
