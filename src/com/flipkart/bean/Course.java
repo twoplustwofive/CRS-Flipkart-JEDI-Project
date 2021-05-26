@@ -22,7 +22,7 @@ public class Course
 	public Course(String crsCode,String crsName,String professorId,int seats) {
 		this.crsCode=crsCode;
 		this.crsName=crsName;
-		this.instructorId=instructorId;
+		this.instructorId=professorId;
 		this.seats=seats;
 	}
 	/**
