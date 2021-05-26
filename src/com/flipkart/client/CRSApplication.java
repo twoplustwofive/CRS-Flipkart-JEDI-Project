@@ -142,7 +142,7 @@ public class CRSApplication {
 					break;
 				case "STUDENT":
 					
-					String studentId=studentInterface.getStudentId(userId);
+					String studentId = userId;
 					boolean isApproved=studentInterface.isApproved(studentId);
 					if(isApproved) {
 						System.out.println(formattedDate + " Login Successful");

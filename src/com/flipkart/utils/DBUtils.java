@@ -31,6 +31,7 @@ public class DBUtils {
         	} catch (SQLException e) {
         		System.out.println("Error2345: " + e.getMessage());
         		e.printStackTrace();
+        		//connection = null;
         		return getConnection();
         	}
         } else {
