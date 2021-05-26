@@ -92,14 +92,14 @@ public class ProfessorDaoOperation implements ProfessorDaoInterface {
 		Connection connection=DBUtils.getConnection();
 		List<EnrolledStudent> enrolledStudents=new ArrayList<EnrolledStudent>();
 		try {
-			PreparedStatement statement = connection.prepareStatement(SQLQueries.GET_ENROLLED_STUDENTS_1);
+			PreparedStatement statement = connection.prepareStatement(SQLQueries.GET_ENROLLED_STUDENTS);
 			statement.setString(1, courseId);
 			
 			ResultSet results = statement.executeQuery();
 			while(results.next())
 			{
 				//public EnrolledStudent(String courseCode, String courseName, int studentId) 
-				enrolledStudents.add(new EnrolledStudent(results.getString("courseCode"),results.getString("courseName"),results.getInt("studentId")));
+				enrolledStudents.add(new EnrolledStudent(results.getString("courseCode"),results.getString("courseName"),results.getString("studentId")));
 			}
 		}
 		catch(SQLException e)

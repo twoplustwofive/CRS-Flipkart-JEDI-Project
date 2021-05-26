@@ -3,7 +3,6 @@ package com.flipkart.service;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import com.flipkart.bean.Course;
 import com.flipkart.bean.EnrolledStudent;
 import com.flipkart.dao.ProfessorDaoInterface;
@@ -67,13 +66,13 @@ public class ProfessorOperation implements ProfessorInterface {
 	 * @param courseId: Course id 
 	 * @return List of enrolled students
 	 */
-	@Override
 	
-	public List<EnrolledStudent> viewEnrolledStudents(String courseId) throws SQLException{
+	@Override
+	public List<EnrolledStudent> viewEnrolledStudents(String profId) throws SQLException{
 		List<EnrolledStudent> enrolledStudents=new ArrayList<EnrolledStudent>();
 		try
 		{
-			enrolledStudents=professorDAOInterface.getEnrolledStudents(courseId);
+			enrolledStudents=professorDAOInterface.getEnrolledStudents(profId);
 		}
 		catch(Exception ex)
 		{
@@ -111,4 +110,6 @@ public class ProfessorOperation implements ProfessorInterface {
 	{
 		return professorDAOInterface.getProfessorById(profId);
 	}
+
+	
 }

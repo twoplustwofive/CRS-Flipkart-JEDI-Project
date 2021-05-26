@@ -1,23 +1,26 @@
-/**
- * 
- */
 package com.flipkart.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
-import com.flipkart.exception.*;
 import com.flipkart.bean.Course;
+import com.flipkart.bean.Notification;
 import com.flipkart.bean.Grade;
+import com.flipkart.constant.PaymentMode;
 import com.flipkart.dao.RegistrationDaoInterface;
 import com.flipkart.dao.RegistrationDaoOperation;
+import com.flipkart.exception.CourseLimitExceededException;
+import com.flipkart.exception.CourseNotFoundException;
+import com.flipkart.exception.SeatNotAvailableException;
+import com.flipkart.validator.StudentValidator;
 
 /**
- * @author Aditya
- *
+ * @author JEDI-03
+ * The Registration Operation provides the business logic for student registration.
+ * 
  */
-public class RegistrationOperation implements RegistrationInterface 
-{
-	
+public class RegistrationOperation implements RegistrationInterface {
+
 	private static volatile RegistrationOperation instance = null;
 
 	private RegistrationOperation() {
@@ -39,81 +42,139 @@ public class RegistrationOperation implements RegistrationInterface
 
 	RegistrationDaoInterface registrationDaoInterface = RegistrationDaoOperation.getInstance();
 
+	/**
+	 * Method to add Course selected by student 
+	 * @param courseCode
+	 * @param studentId
+	 * @param courseList 
+	 * @return boolean indicating if the course is added successfully
+	 * @throws CourseNotFoundException
+	 * @throws SeatNotAvailableException 
+	 * @throws CourseLimitExceedException 
+	 * @throws SQLException 
+	 */
 	@Override
-	public boolean addCourse(String crsCode, String studentID, List<Course> courseCart) 
+	
+	public boolean addCourse(String courseCode, String studentId,List<Course> availableCourseList) throws CourseNotFoundException, CourseLimitExceededException, SeatNotAvailableException, SQLException 
 	{
-		Course crs = new Course();
+       
 		
-		/*
-		 * Fetch from the DATABASE
-		 * 
-		 * */
-		
-		
-		courseCart.add(crs);
-		
-		return true;
-	}
 
-	@Override
-	public boolean dropCourse(String crsCode, String studentID, List<Course> courseCart) throws CourseNotFoundException
-	{
-		
-		try
+		if (registrationDaoInterface.numOfRegisteredCourses(studentId) >= 6)
 		{	
-			for(Course i : courseCart)
-			{ 
-				if(i.getCourseCode() == crsCode)
-					courseCart.remove(i);
-			}
+			throw new CourseLimitExceededException(6);
 		}
-		
-		catch(CourseNotFoundException e)
+		else if (registrationDaoInterface.isRegistered(courseCode, studentId)) 
 		{
-			throw e;
+			return false;
+		} 
+		else if (!registrationDaoInterface.seatAvailable(courseCode)) 
+		{
+			throw new SeatNotAvailableException(courseCode);
+		} 
+		else if(!StudentValidator.isValidCourseCode(courseCode, availableCourseList))
+		{
+			throw new CourseNotFoundException(courseCode);
 		}
 		
+		  
+
+		return registrationDaoInterface.addCourse(courseCode, studentId);
+
+	}
+
+	/**
+	 *  Method to drop Course selected by student
+	 * @param courseCode
+	 * @param studentId
+	 * @param registeredCourseList 
+	 * @return boolean indicating if the course is dropped successfully
+	 * @throws CourseNotFoundException
+	 * @throws SQLException 
+	 */
+	@Override
+	
+	public boolean dropCourse(String courseCode, String studentId,List<Course> registeredCourseList) throws CourseNotFoundException, SQLException {
+		  if(!StudentValidator.isRegistered(courseCode, studentId, registeredCourseList))
+	        {
+	        	throw new CourseNotFoundException(courseCode);
+	        }
 		
-		return false;
+		return registrationDaoInterface.dropCourse(courseCode, studentId);
+
 	}
 
+	/** Method for Fee Calculation for selected courses
+	 * Fee calculation for selected courses
+	 * @param studentId
+	 * @return Fee Student has to pay
+	 * @throws SQLException 
+	 */
 	@Override
-	public List<Course> viewCourses(String studentID) 
-	{
-		// TODO Auto-generated method stub
-		return null;
+	
+	public double calculateFee(String studentId) throws SQLException {
+		return registrationDaoInterface.calculateFee(studentId);
 	}
 
+
+	/**
+	 * Method to view grade card for students
+	 * @param studentId
+	 * @return List of Student's Grades
+	 * @throws SQLException 
+	 */
 	@Override
-	public List<Course> viewRegisteredCourses(String studentID) 
-	{
-		// TODO Auto-generated method stub
-		return null;
+	
+	public List<Grade> viewGradeCard(String studentId) throws SQLException {
+		return registrationDaoInterface.viewGradeCard(studentId);
 	}
 
+	/**
+	 *  Method to view the list of available courses
+	 * @param studentId
+	 * @return List of courses
+	 * @throws SQLException 
+	 */
 	@Override
-	public List<Grade> viewGradeCard(String studentID) 
-	{
-		// TODO Auto-generated method stub
-		return null;
+	
+	public List<Course> viewCourses(String studentId) throws SQLException {
+		return registrationDaoInterface.viewCourses(studentId);
 	}
 
+	/**
+	 * Method to view the list of courses registered by the student
+	 * @param studentId
+	 * @return List of courses
+	 * @throws SQLException 
+	 */
 	@Override
-	public double calculateFee(String studentID) {
-		// TODO Auto-generated method stub
-		return 0;
+	
+	public List<Course> viewRegisteredCourses(String studentId) throws SQLException {
+		return registrationDaoInterface.viewRegisteredCourses(studentId);
 	}
-
+    
+	/**
+	 *  Method to check student registration status
+	 * @param studentId
+	 * @return boolean indicating if the student's registration status
+	 * @throws SQLException
+	 */
 	@Override
-	public boolean getRegistrationStatus(String studentID) {
-		// TODO Auto-generated method stub
-		return false;
+
+	public boolean getRegistrationStatus(String studentId) throws SQLException {
+		return registrationDaoInterface.getRegistrationStatus(studentId);
 	}
-
+	
+	/**
+	 * Method to set student registration status
+	 * @param studentId
+	 * @throws SQLException
+	 */
 	@Override
-	public void setRegistrationStatus(String studentID) {
-		// TODO Auto-generated method stub
-		
+	
+	public void setRegistrationStatus(String studentId) throws SQLException {
+		registrationDaoInterface.setRegistrationStatus(studentId);
+
 	}
 
 }
