@@ -44,7 +44,7 @@ public class DBUtils {
                 String url = prop.getProperty("url");
                 String user = prop.getProperty("user");
                 String password = prop.getProperty("password");
-                System.out.println(driver + url + user + password);
+                //System.out.println(driver + url + user + password);
                 Class.forName(driver);
                 connection = DriverManager.getConnection(url, user, password);
             } catch (ClassNotFoundException e) {

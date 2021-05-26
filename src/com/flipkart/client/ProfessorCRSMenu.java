@@ -126,6 +126,7 @@ public class ProfessorCRSMenu {
 			// TODO Auto-generated catch block
 			logger.error("Grade not added, SQL exception occured "+e.getMessage());
 		}
-		in.close();
+		
 	}
+
 }

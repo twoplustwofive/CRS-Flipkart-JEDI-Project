@@ -111,9 +111,6 @@ public class CRSApplication {
 			logger.info("Password:");
 			password = in.next();
 			loggedin = userInterface.verifyCredentials(userId, password);
-			logger.info("unknown");
-			//2 cases
-			//true->role->student->approved
 			if(loggedin)
 			{
 				 logger.info("Logged in");
