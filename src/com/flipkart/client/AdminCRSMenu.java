@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
+import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.Student;
 import com.flipkart.constant.Gender;
 import com.flipkart.constant.NotificationType;
@@ -49,8 +50,9 @@ public class AdminCRSMenu {
 			System.out.println("4. Approve Students");
 			System.out.println("5. View Pending Approvals");
 			System.out.println("6. Add Professor");
-			System.out.println("7. Assign Courses To Professor");
-			System.out.println("8. Logout");
+			System.out.println("7. Assign Professor To Courses");
+			System.out.println("8. Generate Report Card");
+			System.out.println("9. Logout");
 			System.out.println("*****************************");
 			
 			int choice = in.nextInt();
@@ -83,8 +85,12 @@ public class AdminCRSMenu {
 			case 7:
 				assignCourseToProfessor();
 				break;
-			
+				
 			case 8:
+				generateReportCard();
+				break;
+			
+			case 9:
 				CRSApplication.loggedin = false;
 				return;
 
@@ -94,6 +100,22 @@ public class AdminCRSMenu {
 		}
 	}
 	
+	private void generateReportCard() 
+	{
+		
+		System.out.print("Enter The StudentId for generating report card : ");
+		String studentId = in.next(); 
+		List<RegisteredCourse> CoursesOfStudent = adminOperation.generateGradeCard(studentId);
+		System.out.println("*************************** Report Card *************************** ");
+		System.out.println("***************************" + studentId + "*************************** ");
+		
+		System.out.println(String.format("%20s | %20s | %20s ", "CourseCode", "CourseName", "Grade"));
+		for(RegisteredCourse obj : CoursesOfStudent) {
+			System.out.println(String.format("%20s | %20s | %20s ", obj.getCourse().getCourseCode(), obj.getCourse().getCourseName(), obj.getGrade()));	
+		}
+		System.out.println("**********************************************************************");
+	}
+
 	/**
 	 * Method to assign Course to a Professor
 	 */

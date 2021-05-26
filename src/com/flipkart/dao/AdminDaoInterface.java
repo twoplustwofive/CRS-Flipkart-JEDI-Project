@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
+import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.Student;
 import com.flipkart.bean.User;
 import com.flipkart.exception.CourseExistsAlreadyException;
@@ -31,8 +32,9 @@ public interface AdminDaoInterface {
 	/**
 	 * Method to generate grade card of a Student 
 	 * studentid 
+	 * @return 
 	 */
-	public void generateGradeCard(String Studentid);
+	public List<RegisteredCourse> generateGradeCard(String Studentid);
 	
 	/**
 	 * Fetch Students yet to approved using SQL commands

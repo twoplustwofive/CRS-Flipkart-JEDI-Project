@@ -19,12 +19,13 @@ public class SQLQueries {
 		public static final String ASSIGN_COURSE_QUERY = "update Course set professorId = ? where courseCode = ?";
 		public static final String VIEW_COURSE_QUERY = "select courseCode, courseName, professorId from Course";
 		public static final String VIEW_PROFESSOR_QUERY = "select userId, name, gender, department, designation, address from Professor natural join User where userId = professorId";
-		
-		public static final String ADD_STUDENT="insert into student (studentId,department,gradYear,isApproved) values (?,?,?,?)";
+		public static final String SET_GENERATED_REPORT_CARD_TRUE = "update student set isGenerated = 1";
+		public static final String ADD_STUDENT="insert into student (studentId,department,gradYear,isApproved,isReportGenerated) values (?,?,?,?,0)";
 		public static final String IS_APPROVED="select isApproved from student where studentId = ? ";
 		public static final String GET_STUDENT_ID="select studentId from student where userId = ? ";
 			
 		// StudentDao Queries
+		//public static final String GET_COURSES_OF_STUDENT="select * from";
 		public static final String VIEW_REGISTERED_COURSES=" select * from course inner join registeredcourse on course.courseCode = registeredcourse.courseCode where registeredcourse.studentId = ?";
 		public static final String VIEW_AVAILABLE_COURSES=" select * from course where courseCode not in  (select courseCode  from registeredcourse where studentId = ?) and course.isOffered = ? and seats > 0";
 		public static final String CHECK_COURSE_AVAILABILITY=" select courseCode from registeredcourse where studentId = ? ";
@@ -54,6 +55,7 @@ public class SQLQueries {
 		public static final String GET_ENROLLED_STUDENTS="select course.courseCode,course.courseName,registeredcourse.studentId from course inner join registeredcourse on course.courseCode = registeredcourse.courseCode where course.professorId = ? order by course.courseCode";
 		public static final String ADD_GRADE="update registeredcourse set Grade=? where courseCode=? and studentId=?";
 		public static final String GET_PROF_NAME = "select name from user where userId = ?";
+		
 		
 		
 }

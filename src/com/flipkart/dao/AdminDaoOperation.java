@@ -12,6 +12,7 @@ import java.sql.SQLException;
 
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
+import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.Student;
 import com.flipkart.bean.User;
 import com.flipkart.constant.Gender;
@@ -414,9 +415,45 @@ public class AdminDaoOperation implements AdminDaoInterface{
 	}
 
 	@Override
-	public void generateGradeCard(String Studentid) 
+	public List<RegisteredCourse> generateGradeCard(String Studentid) 
 	{
+		List<RegisteredCourse> CoursesOfStudent = new ArrayList<RegisteredCourse>();
+		RegisteredCourse temp = new RegisteredCourse() ;
+		try {
+					String sql = SQLQueries.VIEW_REGISTERED_COURSES;
+					statement = connection.prepareStatement(sql);
+					statement.setString(1, Studentid);
+					ResultSet resultSet = statement.executeQuery();
+					
+					while(resultSet.next()) {
+						
+						Course course = new Course();
+						course.setCourseCode(resultSet.getString(1));
+						course.setCourseName(resultSet.getString(2));
+						course.setInstructorId(resultSet.getString(3));
+						course.setSeats(resultSet.getInt(4));
+						
+						temp.setCourse(course);
+						temp.setstudentId(Studentid);
+						temp.setGrade(resultSet.getString(8));
+						
+						CoursesOfStudent.add(temp);
+						
+					}
+					
+					String sql1 = SQLQueries.SET_GENERATED_REPORT_CARD_TRUE;
+					statement = connection.prepareStatement(sql1);
+					//statement.setInt(1, catalogId);
+					ResultSet resultSet1 = statement.executeQuery();
+						
+					
+				}catch(SQLException se) {
+					
+					System.out.println(se.getMessage());
+					
+				}
 		
+		return CoursesOfStudent;
 		
 		
 	}

@@ -8,12 +8,15 @@ package com.flipkart.bean;
  * @author Aditya
  *
  */
+
+import com.flipkart.constant.Grade;
+
 public class RegisteredCourse 
 {
 	Course course;
-	String stdID;
-	String grade;
-	int sem;
+	String studentId;
+	Grade grade;
+	
 	
 	
 	/**
@@ -28,30 +31,30 @@ public class RegisteredCourse
 	 * @param course the course to set
 	 */
 	public void setCourse(Course course) {
-		this.course = new Course(grade, grade, grade, sem);
+		this.course = new Course(course.getCourseCode(), course.getCourseName(), course.getInstructorId() ,course.getSeats());
 	}
 	
 	
 	/**
-	 * @return the stdID
+	 * @return the studentId
 	 */
-	public String getStdID() {
-		return stdID;
+	public String getstudentId() {
+		return studentId;
 	}
 	
 	
 	/**
-	 * @param stdID the stdID to set
+	 * @param studentId the studentId to set
 	 */
-	public void setStdID(String stdID) {
-		this.stdID = stdID;
+	public void setstudentId(String studentId) {
+		this.studentId = studentId;
 	}
 	
 	
 	/**
 	 * @return the grade
 	 */
-	public String getGrade() {
+	public Grade getGrade() {
 		return grade;
 	}
 	
@@ -61,26 +64,11 @@ public class RegisteredCourse
 	 * @param grade the grade to set
 	 */
 	public void setGrade(String grade) {
-		this.grade = grade;
+		this.grade = Grade.valueOf(grade);
 	}
 	
 	
-	/**
-	 * @return the sem
-	 */
-	public int getSem() 
-	{
-		return sem;
-	}
 	
-	
-	/**
-	 * @param sem the sem to set
-	 */
-	public void setSem(int sem) 
-	{
-		this.sem = sem;
-	}
 	
 
 }

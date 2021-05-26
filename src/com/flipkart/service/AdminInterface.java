@@ -38,8 +38,9 @@ public interface AdminInterface
 	/**
 	 * Method to generate grade card of a Student 
 	 * studentid 
+	 * @return 
 	 */
-	public void generateGradeCard(int Studentid);
+	public List<RegisteredCourse> generateGradeCard(String Studentid);
 	
 	/**
 	 * Method to approve a Student 

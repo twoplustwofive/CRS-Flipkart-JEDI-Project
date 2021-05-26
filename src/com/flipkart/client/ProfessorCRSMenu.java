@@ -35,9 +35,9 @@ public class ProfessorCRSMenu {
 			System.out.println("-------Professor Menu-----------");
 			System.out.println("--------------------------------");
 			System.out.println("1. view Courses");
-			System.out.println("1. view Enrolled Students");
-			System.out.println("1. add Grades");
-			System.out.println("1. logout");
+			System.out.println("2. view Enrolled Students");
+			System.out.println("3. add Grades");
+			System.out.println("4. logout");
 			System.out.println("--------------------------------");
 			System.out.printf("Choose From Menu: ");
 			
@@ -108,8 +108,8 @@ public class ProfessorCRSMenu {
 			courseCode = in.nextLine();
 			System.out.println("Enter grade: ");
 			grade = in.nextLine();
-			if (ProfessorValidator.isValidStudent(enrolledStudents, studentId)
-			&& ProfessorValidator.isValidCourse(coursesEnrolled, courseCode)) {
+			if (!(ProfessorValidator.isValidStudent(enrolledStudents, studentId)
+			&& ProfessorValidator.isValidCourse(coursesEnrolled, courseCode))) {
 				professorInterface.addGrade(studentId, courseCode, grade);
 				System.out.println("Grade added successfully for "+studentId);
 			} else {

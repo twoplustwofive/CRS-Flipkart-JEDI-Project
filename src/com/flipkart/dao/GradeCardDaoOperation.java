@@ -3,7 +3,7 @@
  */
 package com.flipkart.dao;
 
-import java.sql.Connection;
+import java.sql.Connection; 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -42,8 +42,8 @@ public class GradeCardDaoOperation implements GradeCardDaoInterface {
 	
 	private float grade2float(String grade) {
 		switch (grade) {
-		case Grade.A_:
-		case Grade.A:
+		
+		case grade.:
 			return 10;
 		case Grade.B:
 			return 8;

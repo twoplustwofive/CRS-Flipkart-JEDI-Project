@@ -67,9 +67,9 @@ public class AdminOperation implements AdminInterface{
 	 * studentid 
 	 */
 	
-	public void generateGradeCard(int Studentid)
+	public List<RegisteredCourse> generateGradeCard(String Studentid)
 	{
-		
+		return adminDaoOperation.generateGradeCard(Studentid);
 	}
 	
 	/**
