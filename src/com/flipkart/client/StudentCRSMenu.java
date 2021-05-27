@@ -143,7 +143,9 @@ private void registerCourses(String studentId)
 		}
 	}
 	
+	System.out.println("\n*******************************************************");
 	System.out.println("Registration Successful");
+	System.out.println("*******************************************************\n");
 	
 	try {
 		registrationInterface.setRegistrationStatus(studentId);
@@ -330,7 +332,7 @@ private List<Course> viewRegisteredCourse(String studentId){
 	{
 		 
 		
-		System.out.println(String.format("%-20s %-20s %-20s ",obj.getCourseCode(), obj.getCourseName(),professorInterface.getProfessorById(obj.getInstructorId())));
+		System.out.println(String.format("%-20s %-20s %-20s ",obj.getCourseCode(), obj.getCourseName(),obj.getInstructorId()));
 	}
 	
 	return course_registered;

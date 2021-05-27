@@ -62,7 +62,7 @@ public class StudentOperation implements StudentInterface {
 			//call the DAO class, and add the student record to the DB
 			
 			Student newStudent=new Student(userId,name,Role.STUDENT,password,gender,address,branch,userId,batch,false);
-			System.out.println("object created");
+			System.out.println("\nYour account has been created and pending for Approval by Admin.\n");
 			studentId=studentDaoInterface.addStudent(newStudent);
 			
 		}

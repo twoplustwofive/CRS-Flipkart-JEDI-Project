@@ -113,6 +113,7 @@ public class AdminCRSMenu {
 		
 		Scanner in = new Scanner(System.in);
 		
+		System.out.println("\nEnter the StudentId for report card generation : ");
 		String studentId = in.next();
 		
 		try 
@@ -270,6 +271,7 @@ public class AdminCRSMenu {
 		
 		try {
 			adminOperation.approveStudent(studentUserIdApproval, studentList);
+			System.out.println("\nStudent Id : " +studentUserIdApproval+ " has been approved\n");
 			//send notification from system
 			notificationInterface.sendNotification(NotificationType.REGISTRATION, studentUserIdApproval, null,0);
 	
@@ -291,6 +293,7 @@ public class AdminCRSMenu {
 		
 		try {
 			adminOperation.removeCourse(courseCode, courseList);
+			System.out.println("\nCourse Deleted : "+courseCode+"\n");
 		} catch (CourseNotFoundException e) {
 			
 			System.out.println(e.getMessage());
