@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
 
-import com.flipkart.constant.SQLQueries;
+import com.flipkart.constant.SQLQueriesConstant;
 import com.flipkart.exception.UserNotFoundException;
 import com.flipkart.utils.DBUtils;
 
@@ -53,7 +53,7 @@ public class UserDaoOperation implements UserDaoInterface{
 	public boolean updatePassword(String userId, String newPassword) {
 		Connection connection=DBUtils.getConnection();
 		try {
-			PreparedStatement statement = connection.prepareStatement(SQLQueries.UPDATE_PASSWORD);
+			PreparedStatement statement = connection.prepareStatement(SQLQueriesConstant.UPDATE_PASSWORD);
 			
 			statement.setString(1, newPassword);
 			statement.setString(2, userId);
@@ -94,7 +94,7 @@ public class UserDaoOperation implements UserDaoInterface{
 		try
 		{
 			//open db connection
-			PreparedStatement preparedStatement=connection.prepareStatement(SQLQueries.VERIFY_CREDENTIALS);
+			PreparedStatement preparedStatement=connection.prepareStatement(SQLQueriesConstant.VERIFY_CREDENTIALS);
 			preparedStatement.setString(1,userId);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			
@@ -142,9 +142,9 @@ public class UserDaoOperation implements UserDaoInterface{
 	}
 	
 	/**
-	 * Method to get Role of User from DataBase
+	 * Method to get RoleConstant of User from DataBase
 	 * @param userId
-	 * @return Role
+	 * @return RoleConstant
 	 */
 	@Override
 	public String getRole(String userId) 
@@ -154,7 +154,7 @@ public class UserDaoOperation implements UserDaoInterface{
 			logger.info(userId);
 			connection=DBUtils.getConnection();
 			
-			PreparedStatement statement = connection.prepareStatement(SQLQueries.GET_ROLE);
+			PreparedStatement statement = connection.prepareStatement(SQLQueriesConstant.GET_ROLE);
 			statement.setString(1, userId);
 			ResultSet rs = statement.executeQuery();
 			

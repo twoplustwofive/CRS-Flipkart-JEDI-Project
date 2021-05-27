@@ -3,8 +3,8 @@
  */
 package com.flipkart.bean;
 
-import com.flipkart.constant.Gender;
-import com.flipkart.constant.Role;
+import com.flipkart.constant.GenderConstant;
+import com.flipkart.constant.RoleConstant;
 
 /**
  * @author Aditya
@@ -18,7 +18,7 @@ public class Student extends User
 	boolean isApproved;
 	
 	//Constructing User of a Student type.
-	public Student(String userId, String name, Role role, String password, Gender gender, String address,String branchName,String studentId,int batch,boolean isApproved) {
+	public Student(String userId, String name, RoleConstant role, String password, GenderConstant gender, String address,String branchName,String studentId,int batch,boolean isApproved) {
 		super(userId, name, role, password,gender,address);
 		this.department = branchName;
 		this.studentId = studentId;

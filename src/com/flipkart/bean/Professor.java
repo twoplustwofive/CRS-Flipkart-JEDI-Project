@@ -5,8 +5,8 @@ package com.flipkart.bean;
 
 import java.util.Date;
 
-import com.flipkart.constant.Gender;
-import com.flipkart.constant.Role;
+import com.flipkart.constant.GenderConstant;
+import com.flipkart.constant.RoleConstant;
 
 /**
  * @author vivek
@@ -21,7 +21,7 @@ public class Professor extends User {
 	public Professor(String userID) {
 		super(userID);
 	}
-	public Professor(String userID, String name, Gender gender, Role role, String password, String address) {
+	public Professor(String userID, String name, GenderConstant gender, RoleConstant role, String password, String address) {
 		super(userID, name, role, password, gender, address);
 	}
 	public Professor() {

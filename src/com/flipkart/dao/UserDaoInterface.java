@@ -25,9 +25,9 @@ public interface UserDaoInterface {
 	public boolean updatePassword(String userID);
 	
 	/**
-	 * Method to get Role of User from DataBase
+	 * Method to get RoleConstant of User from DataBase
 	 * @param userId
-	 * @return Role
+	 * @return RoleConstant
 	 */
 	public String getRole(String userId);
 	

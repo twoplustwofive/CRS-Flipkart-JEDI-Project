@@ -12,9 +12,9 @@ import com.flipkart.bean.Grade;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.Student;
-import com.flipkart.constant.Gender;
-import com.flipkart.constant.NotificationType;
-import com.flipkart.constant.Role;
+import com.flipkart.constant.GenderConstant;
+import com.flipkart.constant.NotificationTypeConstant;
+import com.flipkart.constant.RoleConstant;
 import com.flipkart.exception.CourseExistsAlreadyException;
 import com.flipkart.exception.CourseNotDeletedException;
 import com.flipkart.exception.CourseNotFoundException;
@@ -211,21 +211,21 @@ public class AdminCRSMenu {
 		String password = in.next();
 		professor.setPassword(password);
 		
-		System.out.println("Enter Gender: \t 1: Male \t 2.Female \t 3.Other ");
+		System.out.println("Enter GenderConstant: \t 1: Male \t 2.Female \t 3.Other ");
 		int gender = in.nextInt();
 		
 		if(gender==1)
-			professor.setGender(Gender.MALE);
+			professor.setGender(GenderConstant.MALE);
 		else if(gender==2)
-			professor.setGender(Gender.FEMALE);
+			professor.setGender(GenderConstant.FEMALE);
 		else if(gender==3)
-			professor.setGender(Gender.OTHER);
+			professor.setGender(GenderConstant.OTHER);
 		
 		System.out.println("Enter Address:");
 		String address = in.next();
 		professor.setAddress(address);
 		
-		professor.setRole(Role.PROFESSOR);
+		professor.setRole(RoleConstant.PROFESSOR);
 		
 		try {
 			adminOperation.addProfessor(professor);
@@ -246,7 +246,7 @@ public class AdminCRSMenu {
 			System.out.println("No students pending approvals");
 			return pendingStudentsList;
 		}
-		System.out.println(String.format("%20s | %20s | %20s", "StudentId", "Name", "Gender"));
+		System.out.println(String.format("%20s | %20s | %20s", "StudentId", "Name", "GenderConstant"));
 		for(Student student : pendingStudentsList) {
 			System.out.println(String.format("%20s | %20s | %20s", student.getStudentId(), student.getName(), student.getGender().toString()));
 		}
@@ -273,7 +273,7 @@ public class AdminCRSMenu {
 			adminOperation.approveStudent(studentUserIdApproval, studentList);
 			System.out.println("\nStudent Id : " +studentUserIdApproval+ " has been approved\n");
 			//send notification from system
-			notificationInterface.sendNotification(NotificationType.REGISTRATION, studentUserIdApproval, null,0);
+			notificationInterface.sendNotification(NotificationTypeConstant.REGISTRATION, studentUserIdApproval, null,0);
 	
 		} catch (StudentNotFoundForApprovalException e) {
 			System.out.println(e.getMessage());

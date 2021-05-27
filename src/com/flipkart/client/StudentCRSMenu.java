@@ -5,8 +5,8 @@ package com.flipkart.client;
 
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Grade;
-import com.flipkart.constant.NotificationType;
-import com.flipkart.constant.PaymentMode;
+import com.flipkart.constant.NotificationTypeConstant;
+import com.flipkart.constant.PaymentModeConstant;
 import com.flipkart.exception.CourseLimitExceededException;
 import com.flipkart.exception.CourseNotFoundException;
 import com.flipkart.exception.SeatNotAvailableException;
@@ -410,13 +410,13 @@ private void make_payment(String studentId)
 			System.out.println("Select Mode of Payment:");
 			
 			int index = 1;
-			for(PaymentMode mode : PaymentMode.values())
+			for(PaymentModeConstant mode : PaymentModeConstant.values())
 			{
 				System.out.println(index + " " + mode);
 				index = index + 1;
 			}
 			
-			PaymentMode mode = PaymentMode.getPaymentMode(sc.nextInt());
+			PaymentModeConstant mode = PaymentModeConstant.getPaymentMode(sc.nextInt());
 			
 			if(mode == null)
 				System.out.println("Invalid Input");
@@ -424,7 +424,7 @@ private void make_payment(String studentId)
 			{
 				try 
 				{
-					notificationInterface.sendNotification(NotificationType.PAYED, studentId, mode, fee);
+					notificationInterface.sendNotification(NotificationTypeConstant.PAYED, studentId, mode, fee);
 					System.out.println("Payment Successful by StudentId :" + studentId);
 					registrationInterface.setPaymentStatus(studentId);				
 				}

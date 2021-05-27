@@ -6,7 +6,7 @@ import java.util.List;
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Notification;
 import com.flipkart.bean.Grade;
-import com.flipkart.constant.PaymentMode;
+import com.flipkart.constant.PaymentModeConstant;
 import com.flipkart.dao.RegistrationDaoInterface;
 import com.flipkart.dao.RegistrationDaoOperation;
 import com.flipkart.exception.CourseLimitExceededException;

@@ -12,9 +12,9 @@ import java.util.UUID;
 
 import org.apache.log4j.Logger;
 
-import com.flipkart.constant.NotificationType;
-import com.flipkart.constant.PaymentMode;
-import com.flipkart.constant.SQLQueries;
+import com.flipkart.constant.NotificationTypeConstant;
+import com.flipkart.constant.PaymentModeConstant;
+import com.flipkart.constant.SQLQueriesConstant;
 import com.flipkart.utils.DBUtils;
 
 /**
@@ -61,16 +61,16 @@ public class NotificationDaoOperation implements NotificationDaoInterface{
 	 * @throws SQLException
 	 */
 	@Override
-	public int sendNotification(NotificationType type, int studentId,PaymentMode modeOfPayment,double amount) throws SQLException{
+	public int sendNotification(NotificationTypeConstant type, int studentId,PaymentModeConstant modeOfPayment,double amount) throws SQLException{
 		int notificationId=0;
 		Connection connection=DBUtils.getConnection();
 		try
 		{
 			//INSERT_NOTIFICATION = "insert into notification(studentId,type,referenceId) values(?,?,?);";
-			PreparedStatement ps = connection.prepareStatement(SQLQueries.INSERT_NOTIFICATION,Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement ps = connection.prepareStatement(SQLQueriesConstant.INSERT_NOTIFICATION,Statement.RETURN_GENERATED_KEYS);
 			ps.setInt(1, studentId);
 			ps.setString(2,type.toString());
-			if(type==NotificationType.PAYED)
+			if(type==NotificationTypeConstant.PAYED)
 			{
 				//insert into payment, get reference id and add here
 				UUID referenceId=addPayment(studentId, modeOfPayment,amount);
@@ -112,7 +112,7 @@ public class NotificationDaoOperation implements NotificationDaoInterface{
 	 * @return: reference id of the transaction
 	 * @throws SQLException
 	 */
-	public UUID addPayment(int studentId, PaymentMode modeOfPayment,double amount) throws SQLException
+	public UUID addPayment(int studentId, PaymentModeConstant modeOfPayment,double amount) throws SQLException
 	{
 		UUID referenceId;
 		Connection connection=DBUtils.getConnection();
@@ -120,7 +120,7 @@ public class NotificationDaoOperation implements NotificationDaoInterface{
 		{
 			referenceId=UUID.randomUUID();
 			//INSERT_NOTIFICATION = "insert into notification(studentId,type,referenceId) values(?,?,?);";
-			PreparedStatement statement = connection.prepareStatement(SQLQueries.INSERT_PAYMENT);
+			PreparedStatement statement = connection.prepareStatement(SQLQueriesConstant.INSERT_PAYMENT);
 			statement.setInt(1, studentId);
 			statement.setString(2, modeOfPayment.toString());
 			statement.setString(3,referenceId.toString());

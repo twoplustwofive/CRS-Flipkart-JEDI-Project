@@ -10,8 +10,8 @@
 //
 //import org.apache.log4j.Logger;
 //
-//import com.flipkart.constant.Grade;
-//import com.flipkart.constant.SQLQueries;
+//import com.flipkart.constant.GradeConstant;
+//import com.flipkart.constant.SQLQueriesConstant;
 //import com.flipkart.utils.DBUtils;
 //
 ///**
@@ -47,15 +47,15 @@
 //		
 //		case grade.:
 //			return 10;
-//		case Grade.B:
+//		case GradeConstant.B:
 //			return 8;
-//		case Grade.C:
+//		case GradeConstant.C:
 //			return 6;
-//		case Grade.D:
+//		case GradeConstant.D:
 //			return 4;
-//		case Grade.E:
+//		case GradeConstant.E:
 //			return 2;
-//		case Grade.F:
+//		case GradeConstant.F:
 //			return 0;
 //		default:
 //			return 0;
@@ -68,7 +68,7 @@
 //		float grade = 0;
 //		int count = 0;
 //		try {
-//			statement = connection.prepareStatement(SQLQueries.GET_GRADES);
+//			statement = connection.prepareStatement(SQLQueriesConstant.GET_GRADES);
 //			statement.setInt(1, studentID);
 //			
 //			ResultSet results = statement.executeQuery();

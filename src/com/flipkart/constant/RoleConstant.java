@@ -3,10 +3,10 @@ package com.flipkart.constant;
 /**
  * 
  * @author Aditya
- * Enumeration class for Role Types
+ * Enumeration class for RoleConstant Types
  *
  */
-public enum Role {
+public enum RoleConstant {
 	ADMIN,PROFESSOR,STUDENT;
 	
 
@@ -18,20 +18,20 @@ public enum Role {
 	}
 	
 	/**
-	 * Method to get Role object from String
+	 * Method to get RoleConstant object from String
 	 * @param role
-	 * @return Role object
+	 * @return RoleConstant object
 	 */
-	public static Role stringToName(String role)
+	public static RoleConstant stringToName(String role)
 	{
-		Role userRole=null;
+		RoleConstant userRole=null;
 
 		if(role.equalsIgnoreCase("ADMIN"))
-			userRole=Role.ADMIN;
+			userRole=RoleConstant.ADMIN;
 		else if(role.equalsIgnoreCase("PROFESSOR"))
-			userRole=Role.PROFESSOR;
+			userRole=RoleConstant.PROFESSOR;
 		else if(role.equalsIgnoreCase("STUDENT"))
-			userRole=Role.STUDENT;
+			userRole=RoleConstant.STUDENT;
 		return userRole;
 	}
 }

@@ -12,7 +12,7 @@ import java.sql.Statement;
 import org.apache.log4j.Logger;
 
 import com.flipkart.bean.Student;
-import com.flipkart.constant.SQLQueries;
+import com.flipkart.constant.SQLQueriesConstant;
 import com.flipkart.exception.StudentNotRegisteredException;
 import com.flipkart.utils.DBUtils;
 
@@ -65,7 +65,7 @@ public class StudentDaoOperation implements StudentDaoInterface {
 		try
 		{
 			//open db connection
-			PreparedStatement preparedStatement=connection.prepareStatement(SQLQueries.ADD_USER_QUERY);
+			PreparedStatement preparedStatement=connection.prepareStatement(SQLQueriesConstant.ADD_USER_QUERY);
 			preparedStatement.setString(1, student.getUserId());
 			preparedStatement.setString(2, student.getName());
 			preparedStatement.setString(3, student.getPassword());
@@ -80,7 +80,7 @@ public class StudentDaoOperation implements StudentDaoInterface {
 				//add the student record
 				//"insert into student (userId,branchName,batch,isApproved) values (?,?,?,?)";
 				PreparedStatement preparedStatementStudent;
-				preparedStatementStudent=connection.prepareStatement(SQLQueries.ADD_STUDENT,Statement.RETURN_GENERATED_KEYS);
+				preparedStatementStudent=connection.prepareStatement(SQLQueriesConstant.ADD_STUDENT,Statement.RETURN_GENERATED_KEYS);
 				preparedStatementStudent.setString(1,student.getUserId());
 				preparedStatementStudent.setString(2, student.getDepartment());
 				preparedStatementStudent.setInt(3, student.getGradYear());
@@ -118,7 +118,7 @@ public class StudentDaoOperation implements StudentDaoInterface {
 	public String getStudentId(String userId) {
 		Connection connection=DBUtils.getConnection();
 		try {
-			PreparedStatement statement = connection.prepareStatement(SQLQueries.GET_STUDENT_ID);
+			PreparedStatement statement = connection.prepareStatement(SQLQueriesConstant.GET_STUDENT_ID);
 			statement.setString(1, userId);
 			ResultSet rs = statement.executeQuery();
 			
@@ -145,7 +145,7 @@ public class StudentDaoOperation implements StudentDaoInterface {
 	public boolean isApproved(String studentId) {
 		Connection connection=DBUtils.getConnection();
 		try {
-			PreparedStatement statement = connection.prepareStatement(SQLQueries.IS_APPROVED);
+			PreparedStatement statement = connection.prepareStatement(SQLQueriesConstant.IS_APPROVED);
 			statement.setString(1, studentId);
 			ResultSet rs = statement.executeQuery();
 			

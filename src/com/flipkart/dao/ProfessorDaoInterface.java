@@ -29,7 +29,7 @@ public interface ProfessorDaoInterface {
 	public List<EnrolledStudent> getEnrolledStudents(String courseId);
 	
 	/**
-	 * Method to Grade a student using SQL Commands
+	 * Method to GradeConstant a student using SQL Commands
 	 * @param: profId: professor id 
 	 * @param: courseCode: course code for the corresponding 
 	 * @return: returns the status after adding the grade

@@ -1,7 +1,7 @@
 package com.flipkart.service;
 
 
-import com.flipkart.constant.Gender;
+import com.flipkart.constant.GenderConstant;
 import com.flipkart.exception.StudentNotRegisteredException;
 
 /**
@@ -25,7 +25,7 @@ public interface StudentInterface {
 	 * @return Student ID
 	 * @throws StudentNotRegisteredException
 	 */
-	public String register(String name,String userID,String password,Gender gender,int batch,String branch,String address) throws StudentNotRegisteredException; 
+	public String register(String name,String userID,String password,GenderConstant gender,int batch,String branch,String address) throws StudentNotRegisteredException; 
 	
 	/**
 	 * Method to get Student ID from User ID

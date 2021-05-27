@@ -1,13 +1,13 @@
 package com.flipkart.service;
 
 import com.flipkart.bean.SemRegistration;
-import com.flipkart.constant.Role;
+import com.flipkart.constant.RoleConstant;
 import com.flipkart.dao.StudentDaoInterface;
 import com.flipkart.dao.StudentDaoOperation;
 import com.flipkart.exception.StudentNotRegisteredException;
 import com.flipkart.bean.Student;
 import com.flipkart.client.CRSApplication;
-import com.flipkart.constant.Gender;
+import com.flipkart.constant.GenderConstant;
 
 /**
  * 
@@ -55,13 +55,13 @@ public class StudentOperation implements StudentInterface {
 	 * @throws StudentNotRegisteredException
 	 */
 	@Override
-	public String register(String name,String userId,String password,Gender gender,int batch,String branch,String address) throws StudentNotRegisteredException{
+	public String register(String name,String userId,String password,GenderConstant gender,int batch,String branch,String address) throws StudentNotRegisteredException{
 		String studentId;
 		try
 		{
 			//call the DAO class, and add the student record to the DB
 			
-			Student newStudent=new Student(userId,name,Role.STUDENT,password,gender,address,branch,userId,batch,false);
+			Student newStudent=new Student(userId,name,RoleConstant.STUDENT,password,gender,address,branch,userId,batch,false);
 			System.out.println("\nYour account has been created and pending for Approval by Admin.\n");
 			studentId=studentDaoInterface.addStudent(newStudent);
 			

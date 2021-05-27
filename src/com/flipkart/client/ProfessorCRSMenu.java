@@ -111,12 +111,12 @@ public class ProfessorCRSMenu {
 			if (!(ProfessorValidator.isValidStudent(enrolledStudents, studentId)
 			&& ProfessorValidator.isValidCourse(coursesEnrolled, courseCode))) {
 				professorInterface.addGrade(studentId, courseCode, grade);
-				System.out.println("Grade added successfully for "+studentId);
+				System.out.println("GradeConstant added successfully for "+studentId);
 			} else {
 				System.out.println("Invalid data entered, try again!");
 			}
 		} catch(GradeNotAllotedException ex) {
-			System.out.println("Grade cannot be added for"+ex.getStudentId());
+			System.out.println("GradeConstant cannot be added for"+ex.getStudentId());
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

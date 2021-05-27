@@ -6,7 +6,7 @@ package com.flipkart.constant;
  * Enumeration class for Mode of Payments
  *
  */
-public enum PaymentMode {
+public enum PaymentModeConstant {
 	
 	CREDIT_CARD,NET_BANKING,DEBIT_CARD;
 	
@@ -15,16 +15,16 @@ public enum PaymentMode {
 	 * @param value
 	 * @return Mode of Payment
 	 */
-	public static PaymentMode getPaymentMode(int value)
+	public static PaymentModeConstant getPaymentMode(int value)
 	{
 		switch(value)
 		{
 			case 1:
-				return PaymentMode.CREDIT_CARD;
+				return PaymentModeConstant.CREDIT_CARD;
 			case 2:
-				return PaymentMode.NET_BANKING;
+				return PaymentModeConstant.NET_BANKING;
 			case 3:
-				return PaymentMode.DEBIT_CARD;
+				return PaymentModeConstant.DEBIT_CARD;
 			default:
 				return null;
 				

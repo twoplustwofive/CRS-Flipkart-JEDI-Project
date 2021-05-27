@@ -53,7 +53,7 @@ public interface RegistrationDaoInterface {
 	/**
 	 * Method to view grade card of the student
 	 * @param studentId
-	 * @return Grade Card
+	 * @return GradeConstant Card
 	 */
 	
 	public double calculateFee(String studentId) throws SQLException;

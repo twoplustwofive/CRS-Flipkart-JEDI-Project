@@ -71,7 +71,7 @@ public class UserOperation implements UserInterface {
 	/**
 	 * Method to get role of a specific User
 	 * @param userId
-	 * @return Role of the User
+	 * @return RoleConstant of the User
 	 */
 	@Override
 	public String getRole(String userId) {

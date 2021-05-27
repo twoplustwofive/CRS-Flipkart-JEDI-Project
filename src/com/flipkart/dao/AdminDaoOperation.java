@@ -18,9 +18,9 @@ import com.flipkart.bean.Professor;
 import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.Student;
 import com.flipkart.bean.User;
-import com.flipkart.constant.Gender;
-import com.flipkart.constant.Role;
-import com.flipkart.constant.SQLQueries;
+import com.flipkart.constant.GenderConstant;
+import com.flipkart.constant.RoleConstant;
+import com.flipkart.constant.SQLQueriesConstant;
 import com.flipkart.exception.CourseExistsAlreadyException;
 import com.flipkart.exception.CourseNotDeletedException;
 import com.flipkart.exception.CourseNotFoundException;
@@ -76,7 +76,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 		
 		statement = null;
 		try {
-			String sql = SQLQueries.DELETE_COURSE_QUERY;
+			String sql = SQLQueriesConstant.DELETE_COURSE_QUERY;
 			statement = connection.prepareStatement(sql);
 			
 			statement.setString(1,courseCode);
@@ -109,7 +109,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 		statement = null;
 		try {
 			
-			String sql = SQLQueries.ADD_COURSE_QUERY;
+			String sql = SQLQueriesConstant.ADD_COURSE_QUERY;
 			statement = connection.prepareStatement(sql);
 			
 			statement.setString(1, course.getCourseCode());
@@ -147,7 +147,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 		List<Student> userList = new ArrayList<Student>();
 		try {
 			
-			String sql = SQLQueries.VIEW_PENDING_ADMISSION_QUERY;
+			String sql = SQLQueriesConstant.VIEW_PENDING_ADMISSION_QUERY;
 			statement = connection.prepareStatement(sql);
 			ResultSet resultSet = statement.executeQuery();
 
@@ -157,8 +157,8 @@ public class AdminDaoOperation implements AdminDaoInterface{
 				user.setUserId(resultSet.getString(1));
 				user.setName(resultSet.getString(2));
 				user.setPassword(resultSet.getString(3));
-				user.setRole(Role.stringToName(resultSet.getString(4)));
-				user.setGender(Gender.stringToGender( resultSet.getString(5)));
+				user.setRole(RoleConstant.stringToName(resultSet.getString(4)));
+				user.setGender(GenderConstant.stringToGender( resultSet.getString(5)));
 				user.setAddress(resultSet.getString(6));
 				user.setStudentId(resultSet.getString(7));
 				userList.add(user);
@@ -187,7 +187,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 		
 		statement = null;
 		try {
-			String sql = SQLQueries.APPROVE_STUDENT_QUERY;
+			String sql = SQLQueriesConstant.APPROVE_STUDENT_QUERY;
 			statement = connection.prepareStatement(sql);
 			
 			statement.setString(1,studentId);
@@ -221,7 +221,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 		statement = null;
 		try {
 			
-			String sql = SQLQueries.ADD_USER_QUERY;
+			String sql = SQLQueriesConstant.ADD_USER_QUERY;
 			statement = connection.prepareStatement(sql);
 			
 			statement.setString(1, user.getUserId());
@@ -279,7 +279,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 		statement = null;
 		try {
 			
-			String sql = SQLQueries.ADD_PROFESSOR_QUERY;
+			String sql = SQLQueriesConstant.ADD_PROFESSOR_QUERY;
 			statement = connection.prepareStatement(sql);
 			
 			statement.setString(1, professor.getUserId());
@@ -316,7 +316,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 		
 		statement = null;
 		try {
-			String sql = SQLQueries.ASSIGN_COURSE_QUERY;
+			String sql = SQLQueriesConstant.ASSIGN_COURSE_QUERY;
 			statement = connection.prepareStatement(sql);
 			
 			statement.setString(1,professorId);
@@ -351,7 +351,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 		List<Course> courseList = new ArrayList<>();
 		try {
 			
-			String sql = SQLQueries.VIEW_COURSE_QUERY;
+			String sql = SQLQueriesConstant.VIEW_COURSE_QUERY;
 			statement = connection.prepareStatement(sql);
 			//statement.setInt(1, catalogId);
 			ResultSet resultSet = statement.executeQuery();
@@ -389,7 +389,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 		List<Professor> professorList = new ArrayList<Professor>();
 		try {
 			
-			String sql = SQLQueries.VIEW_PROFESSOR_QUERY;
+			String sql = SQLQueriesConstant.VIEW_PROFESSOR_QUERY;
 			statement = connection.prepareStatement(sql);
 			ResultSet resultSet = statement.executeQuery();
 			
@@ -398,11 +398,11 @@ public class AdminDaoOperation implements AdminDaoInterface{
 				Professor professor = new Professor();
 				professor.setUserId(resultSet.getString(1));
 				professor.setName(resultSet.getString(2));
-				professor.setGender(Gender.stringToGender(resultSet.getString(3)));
+				professor.setGender(GenderConstant.stringToGender(resultSet.getString(3)));
 				professor.setDepartment(resultSet.getString(4));
 				professor.setDesignation(resultSet.getString(5));
 				professor.setAddress(resultSet.getString(6));
-				professor.setRole(Role.PROFESSOR);
+				professor.setRole(RoleConstant.PROFESSOR);
 				professor.setPassword("*********");
 				professorList.add(professor);
 				
@@ -420,7 +420,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 	
 	public void setGeneratedReportCardTrue(String Studentid)
 	{
-		String sql1 = SQLQueries.SET_GENERATED_REPORT_CARD_TRUE;
+		String sql1 = SQLQueriesConstant.SET_GENERATED_REPORT_CARD_TRUE;
 		try {
 		statement = connection.prepareStatement(sql1);
 		statement.setString(1, Studentid);
@@ -438,7 +438,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 		List<RegisteredCourse> CoursesOfStudent = new ArrayList<RegisteredCourse>();
 		
 		try {
-					String sql = SQLQueries.VIEW_REGISTERED_COURSES;
+					String sql = SQLQueriesConstant.VIEW_REGISTERED_COURSES;
 					statement = connection.prepareStatement(sql);
 					statement.setString(1, Studentid);
 					ResultSet resultSet = statement.executeQuery();
@@ -465,7 +465,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 						
 					}
 					
-					String sql1 = SQLQueries.SET_GENERATED_REPORT_CARD_TRUE;
+					String sql1 = SQLQueriesConstant.SET_GENERATED_REPORT_CARD_TRUE;
 					statement = connection.prepareStatement(sql1);
 					statement.setString(1, Studentid);
 					int row = statement.executeUpdate();

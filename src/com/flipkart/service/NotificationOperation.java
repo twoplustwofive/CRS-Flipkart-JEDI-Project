@@ -5,8 +5,8 @@ package com.flipkart.service;
 
 import java.util.UUID;
 
-import com.flipkart.constant.NotificationType;
-import com.flipkart.constant.PaymentMode;
+import com.flipkart.constant.NotificationTypeConstant;
+import com.flipkart.constant.PaymentModeConstant;
 import com.flipkart.dao.NotificationDaoInterface;
 import com.flipkart.dao.NotificationDaoOperation;
 
@@ -44,13 +44,13 @@ public class NotificationOperation implements NotificationInterface{
 	 * @return notification id for the record added in the database
 	 */
 	@Override
-	public int sendNotification(NotificationType type, int studentId,PaymentMode modeOfPayment,double amount) {
+	public int sendNotification(NotificationTypeConstant type, int studentId,PaymentModeConstant modeOfPayment,double amount) {
 		return 0;
 		
 	}
 
 	@Override
-	public int sendNotification(NotificationType type, String studentId, PaymentMode modeOfPayment, double amount) {
+	public int sendNotification(NotificationTypeConstant type, String studentId, PaymentModeConstant modeOfPayment, double amount) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

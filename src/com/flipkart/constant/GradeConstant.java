@@ -3,10 +3,10 @@ package com.flipkart.constant;
 /**
  * 
  * @author Aditya
- * Enumeration class for Grade
+ * Enumeration class for GradeConstant
  * 
  */
-public enum Grade {
+public enum GradeConstant {
     A(10),
     A_MINUS(9),
     B(8),
@@ -23,21 +23,21 @@ public enum Grade {
      * Parameterized Constructor
      * @param value
      */
-    private Grade(int value) {
+    private GradeConstant(int value) {
         this.value = value;
     }
 
     /**
-     * Method to get Grade Value
-     * @return Grade Value
+     * Method to get GradeConstant Value
+     * @return GradeConstant Value
      */
     public int hasValue() {
         return this.value;
     }
 
     /**
-     * Method to convert Grade enum to String
-     * @return Grade in String
+     * Method to convert GradeConstant enum to String
+     * @return GradeConstant in String
      */
     @Override
     public String toString() {

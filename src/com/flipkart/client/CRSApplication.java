@@ -7,8 +7,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-import com.flipkart.constant.Gender;
-import com.flipkart.constant.NotificationType;
+import com.flipkart.constant.GenderConstant;
+import com.flipkart.constant.NotificationTypeConstant;
 import com.flipkart.exception.StudentNotRegisteredException;
 import com.flipkart.exception.UserNotFoundException;
 
@@ -179,7 +179,7 @@ public class CRSApplication {
 		Scanner sc=new Scanner(System.in);
 
 		String userId,name,password,address,branchName;
-		Gender gender;
+		GenderConstant gender;
 		int genderV, batch;
 		try
 		{
@@ -191,24 +191,24 @@ public class CRSApplication {
 			userId=sc.next();
 			System.out.println("Password:");
 			password=sc.next();
-			System.out.println("Gender: \t 1: Male \t 2.Female\t 3.Other");
+			System.out.println("GenderConstant: \t 1: Male \t 2.Female\t 3.Other");
 			genderV=sc.nextInt();
 			sc.nextLine();
 			
 			switch(genderV)
 			{
 			case 1:
-				gender=Gender.MALE;
+				gender=GenderConstant.MALE;
 				break;
 			case 2:
-				gender=Gender.FEMALE;
+				gender=GenderConstant.FEMALE;
 				break;
 				
 			case 3:
-				gender=Gender.OTHER;
+				gender=GenderConstant.OTHER;
 				break;
 			default: 
-				gender=Gender.OTHER;
+				gender=GenderConstant.OTHER;
 			}
 			
 			System.out.println("Branch:");
@@ -222,7 +222,7 @@ public class CRSApplication {
 			
 			String newStudentId = studentInterface.register(name, userId, password, gender, batch, branchName, address);
 			
-			//notificationInterface.sendNotification(NotificationType.REGISTRATION, newStudentId, null,0);
+			//notificationInterface.sendNotification(NotificationTypeConstant.REGISTRATION, newStudentId, null,0);
 			
 		}
 		catch(StudentNotRegisteredException ex)
