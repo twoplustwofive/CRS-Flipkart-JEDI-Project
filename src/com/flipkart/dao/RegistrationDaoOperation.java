@@ -61,7 +61,7 @@ public class RegistrationDaoOperation implements RegistrationDaoInterface{
 			stmt = conn.prepareStatement(SQLQueries.ADD_COURSE);
 			stmt.setString(1, studentId);
 			stmt.setString(2, courseCode);
-
+			stmt.setString(3, "-");
 			stmt.executeUpdate();
 			
 			stmt = conn.prepareStatement(SQLQueries.DECREMENT_COURSE_SEATS);
@@ -346,7 +346,7 @@ public class RegistrationDaoOperation implements RegistrationDaoInterface{
 		{
 			stmt = conn.prepareStatement(SQLQueries.VIEW_AVAILABLE_COURSES);
 			stmt.setString(1, studentId);
-			stmt.setBoolean(2, true);
+			//stmt.setBoolean(2, true);
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
@@ -503,5 +503,58 @@ public class RegistrationDaoOperation implements RegistrationDaoInterface{
 		return status;
 	}
 
+	@Override
+	public boolean getPaymentStatus(String studentId) throws SQLException 
+	{
+		{
+			Connection conn = DBUtils.getConnection();
+			boolean status = false;
+			try 
+			{
+				stmt = conn.prepareStatement(SQLQueries.GET_PAYMENT_STATUS);
+				stmt.setString(1, studentId);
+				ResultSet rs = stmt.executeQuery();
+				rs.next();
+				status = rs.getBoolean(1);
+				//System.out.println(status);	
+			} 
+			catch (SQLException e) 
+			{
+				logger.error(e.getMessage());
 
+			} 
+			finally
+			{
+				stmt.close();
+				conn.close();
+			}
+
+			return status;
+	}
+
+
+	}
+
+	@Override
+	public void setPaymentStatus(String studentId) throws SQLException {
+		Connection conn = DBUtils.getConnection();
+		try 
+		{
+			stmt = conn.prepareStatement(SQLQueries.SET_PAYMENT_STATUS);
+			stmt.setString(1, studentId);
+			stmt.executeUpdate();
+
+		} 
+		catch (SQLException e) 
+		{
+			logger.error(e.getMessage());
+
+		} 
+		finally
+		{
+			stmt.close();
+			conn.close();
+		}
+
+	}
 }

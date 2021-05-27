@@ -103,6 +103,8 @@ public class StudentCRSMenu {
 
 private void registerCourses(String studentId)
 {
+	
+	
 	if(is_registered)
 	{
 		System.out.println(" Registration is already completed");
@@ -137,21 +139,29 @@ private void registerCourses(String studentId)
 			System.out.println(e.getMessage());
 		} catch (SeatNotAvailableException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 	
-	System.out.println("Registration Successful");	
+	System.out.println("Registration Successful");
+	
+	try {
+		registrationInterface.setRegistrationStatus(studentId);
+	}
+	catch(SQLException e)
+	{
+		System.out.println(e.getMessage());
+	}
     is_registered = true;
     
-    try 
-    {
-		registrationInterface.setRegistrationStatus(studentId);
-	} 
-    catch (SQLException e) 
-    {
-    	System.out.println(e.getMessage());
-	}
+//    try 
+//    {
+//		registrationInterface.setRegistrationStatus(studentId);
+//	} 
+//    catch (SQLException e) 
+//    {
+//    	System.out.println(e.getMessage());
+//	}
 }
 
 
@@ -180,14 +190,14 @@ private void addCourse(String studentId) {
 		{
 			System.out.println(e.getMessage());
 		} catch (CourseNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+			
 		} catch (CourseLimitExceededException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+			
 		} catch (SeatNotAvailableException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+			
 		}
 	}
 	else 
@@ -262,7 +272,6 @@ private void dropCourse(String studentId) {
 private List<Course> viewCourse(String studentId){
 	List<Course> course_available=null;
 	
-	 
 	
 	try 
 	{
@@ -370,9 +379,11 @@ private void make_payment(String studentId)
 	
 	double fee = 1000.0;
 	boolean isreg = false;
+	boolean ispaid = false;
 	try
 	{
 		isreg = registrationInterface.getRegistrationStatus(studentId);
+		ispaid = registrationInterface.getPaymentStatus(studentId);
 //		fee=registrationInterface.calculateFee(studentId);
 	} 
 	catch (SQLException e) 
@@ -382,11 +393,11 @@ private void make_payment(String studentId)
 	}
 
 	
-	if(isreg)
+	if(!isreg)
 	{
-		System.out.println("You have already paid the fees");
+		System.out.println("You have not registered yet");
 	}
-	else
+	else if(isreg && !ispaid)
 	{
 		
 		System.out.println("Your total fee  = " + fee);
@@ -413,7 +424,7 @@ private void make_payment(String studentId)
 				{
 					notificationInterface.sendNotification(NotificationType.PAYED, studentId, mode, fee);
 					System.out.println("Payment Successful by StudentId :" + studentId);
-					registrationInterface.setRegistrationStatus(studentId);				
+					registrationInterface.setPaymentStatus(studentId);				
 				}
 				catch (Exception e) 
 				{
@@ -427,6 +438,11 @@ private void make_payment(String studentId)
 				
 		}
 		
+	}
+	
+	else
+	{
+		System.out.println("You have already paid the fees");
 	}
 	
 }

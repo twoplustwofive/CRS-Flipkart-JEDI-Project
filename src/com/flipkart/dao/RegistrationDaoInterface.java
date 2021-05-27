@@ -88,6 +88,8 @@ public interface RegistrationDaoInterface {
 	 * @return Student's registration status
 	 */
 	public boolean getRegistrationStatus(String studentId) throws SQLException;
+	
+	public boolean getPaymentStatus(String studentId) throws SQLException;
 
 	/**
 	 *  Method to set student registration status
@@ -106,6 +108,9 @@ public interface RegistrationDaoInterface {
 
 
 	public boolean isReportGenerated(String studentId) throws SQLException;
+
+
+	public void setPaymentStatus(String studentId) throws SQLException;
 
 	
 }

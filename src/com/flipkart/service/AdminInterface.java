@@ -16,6 +16,8 @@ import com.flipkart.bean.*;
 public interface AdminInterface 
 {
 	
+	public void setGeneratedReportCardTrue(String Studentid);
+	
 	/**
 	 * Method to get list of courses in catalog
 	 * @param catalogId

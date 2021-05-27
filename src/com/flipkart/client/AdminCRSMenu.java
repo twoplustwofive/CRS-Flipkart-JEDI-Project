@@ -3,10 +3,12 @@
  */
 package com.flipkart.client;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
 import com.flipkart.bean.Course;
+import com.flipkart.bean.Grade;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.Student;
@@ -24,6 +26,8 @@ import com.flipkart.service.AdminInterface;
 import com.flipkart.service.AdminOperation;
 import com.flipkart.service.NotificationInterface;
 import com.flipkart.service.NotificationOperation;
+import com.flipkart.service.RegistrationInterface;
+import com.flipkart.service.RegistrationOperation;
 
 /**
  * @author Goenka
@@ -34,6 +38,7 @@ public class AdminCRSMenu {
 	AdminInterface adminOperation = AdminOperation.getInstance();
 	Scanner in = new Scanner(System.in);
 	NotificationInterface notificationInterface=NotificationOperation.getInstance();
+	RegistrationInterface registrationInterface = RegistrationOperation.getInstance();
 	
 	/**
 	 * Method to Create Admin Menu
@@ -103,18 +108,44 @@ public class AdminCRSMenu {
 	private void generateReportCard() 
 	{
 		
-		System.out.print("Enter The StudentId for generating report card : ");
-		String studentId = in.next(); 
-		List<RegisteredCourse> CoursesOfStudent = adminOperation.generateGradeCard(studentId);
-		System.out.println("*************************** Report Card *************************** ");
-		System.out.println("***************************" + studentId + "*************************** ");
+		List<Grade> grade_card=null;
+		boolean isReportGenerated = true;
 		
-		System.out.println(String.format("%20s | %20s | %20s ", "CourseCode", "CourseName", "Grade"));
-		for(RegisteredCourse obj : CoursesOfStudent) {
-			System.out.println(String.format("%20s | %20s | %20s ", obj.getCourse().getCourseCode(), obj.getCourse().getCourseName(), obj.getGrade()));	
+		Scanner in = new Scanner(System.in);
+		
+		String studentId = in.next();
+		
+		try 
+		{
+			adminOperation.setGeneratedReportCardTrue(studentId);
+			if(isReportGenerated) {
+				grade_card = registrationInterface.viewGradeCard(studentId);
+				System.out.println(String.format("%-20s %-20s %-20s","COURSE CODE", "COURSE NAME", "GRADE"));
+				
+				if(grade_card.isEmpty())
+				{
+					System.out.println("You haven't registered for any course");
+					return;
+				}
+				
+				for(Grade obj : grade_card)
+				{
+					System.out.println(String.format("%-20s %-20s %-20s",obj.getCrsCode(), obj.getCrsName(),obj.getGrade()));
+				}
+			}
+			else
+				System.out.println("Report card not yet generated");
+		} 
+		catch (SQLException e) 
+		{
+
+			System.out.println(e.getMessage());
 		}
-		System.out.println("**********************************************************************");
+		
+		
 	}
+
+	
 
 	/**
 	 * Method to assign Course to a Professor
@@ -131,9 +162,9 @@ public class AdminCRSMenu {
 		System.out.println("\n\n");
 		List<Course> courseList= adminOperation.viewCourses();
 		System.out.println("**************** Course ****************");
-		System.out.println(String.format("%20s | %20s", "CourseCode", "CourseName"));
+		System.out.println(String.format("%20s | %20s | %20s", "CourseCode", "CourseName", "ProfessorId"));
 		for(Course course : courseList) {
-			System.out.println(String.format("%20s | %20s ", course.getCourseCode(), course.getCourseName()));
+			System.out.println(String.format("%20s | %20s | %20s", course.getCourseCode(), course.getCourseName(), course.getInstructorId()));
 		}
 		
 		System.out.println("Enter Course Code:");
@@ -211,6 +242,7 @@ public class AdminCRSMenu {
 		
 		List<Student> pendingStudentsList= adminOperation.viewPendingAdmissions();
 		if(pendingStudentsList.size() == 0) {
+			System.out.println("No students pending approvals");
 			return pendingStudentsList;
 		}
 		System.out.println(String.format("%20s | %20s | %20s", "StudentId", "Name", "Gender"));
@@ -227,6 +259,8 @@ public class AdminCRSMenu {
 		
 		List<Student> studentList = viewPendingAdmissions();
 		if(studentList.size() == 0) {
+			
+			
 			return;
 		}
 		

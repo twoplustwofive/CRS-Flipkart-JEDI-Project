@@ -33,7 +33,12 @@ public interface AdminDaoInterface {
 	 * Method to generate grade card of a Student 
 	 * studentid 
 	 * @return 
+	 * 
+	 * 
 	 */
+	
+	public void setGeneratedReportCardTrue(String Studentid);
+	
 	public List<RegisteredCourse> generateGradeCard(String Studentid);
 	
 	/**

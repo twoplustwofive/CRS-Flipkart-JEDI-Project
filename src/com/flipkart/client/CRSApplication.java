@@ -90,7 +90,7 @@ public class CRSApplication {
 	}
 	
 	/**
-	 * Method for Login functionality
+	 * Method for Login function2ality
 	 */
 	public void loginUser()
 	{

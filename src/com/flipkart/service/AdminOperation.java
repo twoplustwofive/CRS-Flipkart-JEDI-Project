@@ -127,7 +127,7 @@ public class AdminOperation implements AdminInterface{
 		
 		
 		try {
-			System.out.println("operation validator");
+			
 			if(AdminValidator.isValidUnapprovedStudent(studentId, studentList)) {
 				
 				throw new StudentNotFoundForApprovalException(studentId);
@@ -170,6 +170,12 @@ public class AdminOperation implements AdminInterface{
 		catch(CourseNotFoundException | UserNotFoundException e) {
 			throw e;
 		}
+	}
+
+	@Override
+	public void setGeneratedReportCardTrue(String Studentid) {
+		adminDaoOperation.setGeneratedReportCardTrue(Studentid);
+		
 	}
 
 }

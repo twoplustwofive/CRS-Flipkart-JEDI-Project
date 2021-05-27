@@ -183,4 +183,17 @@ public class RegistrationOperation implements RegistrationInterface {
 		return registrationDaoInterface.isReportGenerated(studentId);
 	}
 
+	@Override
+	public boolean getPaymentStatus(String studentId) throws SQLException 
+	{
+		return registrationDaoInterface.getPaymentStatus(studentId);
+		
+	}
+
+	@Override
+	public void setPaymentStatus(String studentId) throws SQLException{
+		registrationDaoInterface.setPaymentStatus(studentId);
+		
+	}
+
 }

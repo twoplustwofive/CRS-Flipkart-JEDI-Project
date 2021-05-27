@@ -14,7 +14,8 @@ public enum Grade {
     C(6),
 	C_MINUS(5),
     D(4),
-    E(3);
+    E(3),
+    NOT_GRADED(0);
 
     final private int value;
 

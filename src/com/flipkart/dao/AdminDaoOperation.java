@@ -116,6 +116,7 @@ public class AdminDaoOperation implements AdminDaoInterface{
 			statement.setString(2, course.getCourseName());
 			
 			statement.setInt(3, 10);
+			statement.setString(4, "NOT_GRADED");
 			int row = statement.executeUpdate();
 			
 			logger.info(row + " course added");
@@ -416,6 +417,20 @@ public class AdminDaoOperation implements AdminDaoInterface{
 		}
 		return professorList;
 	}
+	
+	public void setGeneratedReportCardTrue(String Studentid)
+	{
+		String sql1 = SQLQueries.SET_GENERATED_REPORT_CARD_TRUE;
+		try {
+		statement = connection.prepareStatement(sql1);
+		statement.setString(1, Studentid);
+		int row = statement.executeUpdate();
+		}
+		catch(SQLException e)
+		{
+			logger.error(e.getMessage());
+		}
+	}
 
 	@Override
 	public List<RegisteredCourse> generateGradeCard(String Studentid) 
@@ -439,9 +454,13 @@ public class AdminDaoOperation implements AdminDaoInterface{
 						
 						
 						temp.setCourse(course);
+						System.out.println("course object generated");
 						temp.setstudentId(Studentid);
+						
+						
 						temp.setGrade(resultSet.getString(8));
 						
+						System.out.println("graded");
 						CoursesOfStudent.add(temp);
 						
 					}

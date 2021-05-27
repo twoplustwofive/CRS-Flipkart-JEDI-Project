@@ -38,6 +38,8 @@ public interface RegistrationInterface {
 	 * @throws SQLException
 	 */
 	boolean getRegistrationStatus(String studentId) throws SQLException;
+	
+	boolean getPaymentStatus(String studentId) throws SQLException;
 
 	/**
 	 * Method to view the list of courses registered by the student
@@ -84,5 +86,7 @@ public interface RegistrationInterface {
 			throws CourseNotFoundException, SQLException;
 
 	public boolean isReportGenerated(String studentId) throws SQLException;
+
+	public void setPaymentStatus(String studentId) throws SQLException;
 	
 }
